@@ -94,7 +94,8 @@ set wildignore+=*/.git/*,*/tmp/*,*.swp
 " UNDO
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set undofile   " set undodir=~/.vim/undodir
+set undodir=~/.vim/undodir
+set undofile
 set noswapfile " Don't create swap files.
 set nobackup   " Some servers have issues with backup files, see #649.
 set nowritebackup

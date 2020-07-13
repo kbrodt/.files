@@ -6,6 +6,7 @@
 - clean: ['~', '~/.config']
 
 - shell:
+  - [bash fzf/install.sh, Installing fzf]
   - [bash coc/install.sh, Installing coc]
 
 - link:

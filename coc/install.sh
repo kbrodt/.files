@@ -6,13 +6,18 @@ set -o errexit    # exit when command fails
 
 # Install latest nodejs
 if [ ! -x "$(command -v node)" ]; then
-    curl --fail -LSs https://install-node.now.sh/latest | bash
+    curl --fail -LSs https://install-node.now.sh/latest | sed -E 's/confirm "Install Node.*//' | sudo bash 
+    # curl --fail -LSs https://install-node.now.sh/latest | sed -E 's/confirm "Install Node.*//' | bash -s -- --prefix=$HOME --version=8 --verbose
+    # export PATH="$HOME/bin/:$PATH"
+    # curl --fail -LSs https://install-node.now.sh/latest | bash
     export PATH="/usr/local/bin/:$PATH"
     # Or use apt-get
     # sudo apt-get install nodejs
 fi
 
-curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+if [ ! -x "$(command -v yarn)" ]; then
+    curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+fi
 
 # Use package feature to install coc.nvim
 

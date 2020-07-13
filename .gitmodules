@@ -1,0 +1,28 @@
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "vim/bundle/gruvbox"]
+    path = vim/pack/default/start/gruvbox
+    url = https://github.com/morhetz/gruvbox.git
+    ignore = untracked
+[submodule "vim/bundle/gruvbox-material"]
+    path = vim/pack/default/start/gruvbox-material
+    url = https://github.com/sainnhe/gruvbox-material.git
+    ignore = untracked
+[submodule "vim/bundle/nerdtree"]
+	path = vim/pack/default/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+	ignore = untracked
+[submodule "vim/bundle/lightline.vim"]
+	path = vim/pack/default/start/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+    ignore = untracked
+[submodule "vim/bundle/python-syntax"]
+    path = vim/pack/default/start/python-syntax
+    url = https://github.com/vim-python/python-syntax.git
+    ignore = untracked
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/pack/default/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git 
+	ignore = untracked

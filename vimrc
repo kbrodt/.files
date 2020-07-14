@@ -133,6 +133,10 @@ nnoremap <s-tab> <<_
 vnoremap <tab> >gv
 vnoremap <s-tab> <gv
 
+" move highlighted text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 " leader
 let mapleader=" "
 

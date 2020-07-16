@@ -24,8 +24,8 @@ nnoremap <c-l> <c-w><c-l>
 nnoremap <c-h> <c-w><c-h>
 
 " (shift)tab (de)indents code
-nnoremap <tab> >>_
-nnoremap <s-tab> <<_
+nnoremap >> >>_
+nnoremap << <<_
 
 " (shift)tab (de)indents code
 vnoremap <tab> >gv

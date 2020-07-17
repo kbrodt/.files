@@ -5,11 +5,11 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 
+pip install --upgrade autopep8
 pip install --upgrade jedi
 pip install pylint
 pip install black
 pip install rope
-
 
 NODEJS=$HOME/soft/node
 # Install latest nodejs
@@ -31,7 +31,7 @@ fi
 
 # Use package feature to install coc.nvim
 
-if [ ! -x "$(command -v nvim)" ]; then
+if [ ! -x "$(command -v $HOME/.local/nvim/bin/nvim)" ]; then
     # for vim8
     mkdir -p ~/.vim/pack/coc/start
     cd ~/.vim/pack/coc/start

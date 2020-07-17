@@ -6,6 +6,7 @@
 - clean: ['~', '~/.config']
 
 - shell:
+  - [bash neovim/install.sh, Installing neovim]
   - [bash fzf/install.sh, Installing fzf]
 
 - link:
@@ -27,3 +28,4 @@
   - >
     git cleanall -f
     vim/pack/default/start/
+    zsh/plugins/

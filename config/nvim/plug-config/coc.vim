@@ -2,7 +2,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:coc_custom_config = '1'
-" let g:coc_disable_startup_warning = 1
+let g:coc_disable_startup_warning = 1
 " let g:vista_default_executive = 'coc'
 
 set hidden " TextEdit might fail if hidden is not set.

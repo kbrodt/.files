@@ -7,7 +7,6 @@
 
 - shell:
   - [bash fzf/install.sh, Installing fzf]
-  - [bash coc/install.sh, Installing coc]
 
 - link:
     ~/.config/nvim: config/nvim
@@ -21,6 +20,7 @@
   - ~/.vim/undodir
 
 - shell:
+  - [bash coc/install.sh, Installing coc]
   - git submodule sync --recursive
   # the following have to run after linking ~/.gitconfig
   - git update-submodules

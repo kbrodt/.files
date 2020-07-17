@@ -4,13 +4,22 @@
 set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
+
+pip install --upgrade jedi
+pip install pylint
+pip install black
+
+
+NODEJS=$HOME/soft/node
 # Install latest nodejs
 if [ ! -x "$(command -v node)" ]; then
-    curl --fail -LSs https://install-node.now.sh/latest | sed -E 's/confirm "Install Node.*//' | sudo bash 
-    # curl --fail -LSs https://install-node.now.sh/latest | sed -E 's/confirm "Install Node.*//' | bash -s -- --prefix=$HOME --version=8 --verbose
-    # export PATH="$HOME/bin/:$PATH"
-    # curl --fail -LSs https://install-node.now.sh/latest | bash
-    export PATH="/usr/local/bin/:$PATH"
+    mkdir -p $NODEJS
+    NODE_SCRIPT=/tmp/install-node.sh
+    curl --fail -LSs https://install-node.now.sh/latest -o $NODE_SCRIPT
+    chmod +x $NODE_SCRIPT
+    PREFIX=$NODEJS $NODE_SCRIPT -y
+    PATH="$HOME/soft/node/bin:$PATH"
+    echo 'export PATH="$HOME/soft/node/bin:$PATH"' >> $HOME/.bashrc
     # Or use apt-get
     # sudo apt-get install nodejs
 fi
@@ -21,15 +30,17 @@ fi
 
 # Use package feature to install coc.nvim
 
-# for vim8
-# mkdir -p ~/.vim/pack/coc/start
-# cd ~/.vim/pack/coc/start
-# curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
-
-# for neovim
-mkdir -p ~/.local/share/nvim/site/pack/coc/start
-cd ~/.local/share/nvim/site/pack/coc/start
-curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
+if [ ! -x "$(command -v nvim)" ]; then
+    # for vim8
+    mkdir -p ~/.vim/pack/coc/start
+    cd ~/.vim/pack/coc/start
+    curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
+else
+    # for neovim
+    mkdir -p ~/.local/share/nvim/site/pack/coc/start
+    cd ~/.local/share/nvim/site/pack/coc/start
+    curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
+fi
 
 # Install extensions
 mkdir -p ~/.config/coc/extensions 

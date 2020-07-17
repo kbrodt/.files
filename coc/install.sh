@@ -8,6 +8,7 @@ set -o errexit    # exit when command fails
 pip install --upgrade jedi
 pip install pylint
 pip install black
+pip install rope
 
 
 NODEJS=$HOME/soft/node

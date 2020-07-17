@@ -37,6 +37,9 @@ if [ ! -x "$(command -v nvim)" ]; then
     cd ~/.vim/pack/coc/start
     curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
 else
+    pip install pynvim
+    npm i -g neovim
+
     # for neovim
     mkdir -p ~/.local/share/nvim/site/pack/coc/start
     cd ~/.local/share/nvim/site/pack/coc/start

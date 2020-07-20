@@ -31,7 +31,7 @@ fi
 
 # Use package feature to install coc.nvim
 
-if [ ! -x "$(command -v nvim)" ] || [ ! -x "$(command -v $HOME/.local/nvim/bin/nvim)" ]; then
+if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v $HOME/.local/nvim/bin/nvim)" ]; then
     # for vim8
     mkdir -p ~/.vim/pack/coc/start
     cd ~/.vim/pack/coc/start

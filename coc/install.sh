@@ -5,11 +5,11 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 
-pip install --upgrade autopep8
-pip install --upgrade jedi
-pip install pylint
-pip install black
-pip install rope
+pip3 install --upgrade autopep8
+pip3 install --upgrade jedi
+pip3 install pylint
+pip3 install black
+pip3 install rope
 
 NODEJS=$HOME/soft/node
 # Install latest nodejs
@@ -37,7 +37,7 @@ if [ ! -x "$(command -v $HOME/.local/nvim/bin/nvim)" ]; then
     cd ~/.vim/pack/coc/start
     curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
 else
-    pip install pynvim
+    pip3 install pynvim
     npm i -g neovim
 
     # for neovim

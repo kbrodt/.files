@@ -26,3 +26,6 @@
 	path = vim/pack/default/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
     ignore = untracked
+[submodule "zsh/plugins/fast-syntax-highlighting"]
+	path = zsh/plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma/fast-syntax-highlighting

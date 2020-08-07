@@ -13,9 +13,12 @@
     ~/.config/nvim: config/nvim
     ~/.gitconfig:
     ~/.gitignore_global:
+    ~/.shell:
     ~/.tmux.conf: 
     ~/.vim:
     ~/.vimrc:
+    ~/.zsh:
+    ~/.zshrc:
 
 - create:
   - ~/.vim/undodir

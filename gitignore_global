@@ -9,6 +9,7 @@ profile_default/
 ipython_config.py
 
 # vi
+.vim/
 [._]*.sw[a-p]
 [._]*.s[a-v][a-z]
 *~

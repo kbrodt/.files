@@ -6,9 +6,10 @@ set -o errexit    # exit when command fails
 
 
 pip3 install --upgrade jedi
-pip3 install --upgrade flake8
 pip3 install --upgrade black
 pip3 install --upgrade rope
+pip3 install --upgrade flake8
+pip3 install --upgrade mypy
 
 NODEJS=$HOME/soft/node
 # Install latest nodejs

@@ -11,6 +11,7 @@
 
 - link:
     ~/.config/nvim: config/nvim
+    ~/.config/mypy: config/mypy
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.shell:

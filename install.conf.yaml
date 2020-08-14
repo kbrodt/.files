@@ -10,8 +10,9 @@
   - [bash fzf/install.sh, Installing fzf]
 
 - link:
-    ~/.config/nvim: config/nvim
+    ~/.config/flake8: config/flake8
     ~/.config/mypy: config/mypy
+    ~/.config/nvim: config/nvim
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.shell:

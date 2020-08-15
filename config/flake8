@@ -4,7 +4,7 @@
 max-line-length = 88
 max-complexity = 18
 # it's not a bug that we aren't using all of hacking
-extend-ignore = 
+extend-ignore =
     E203,
 	# E501: line too long
 	E501,

@@ -62,7 +62,7 @@ commands =
     mkdir -p reports/coverage
     coverage run --source=tor4 -m pytest {posargs:tests}
     coverage report --fail-under 80
-    coverage html -d reports/coverage
+    coverage html -d reports/coverage --fail-under 80
 
 #    mypy --junit-xml reports/mypy/typecheck.xml --cobertura-xml-report reports/mypy --html-report reports/mypy .
 

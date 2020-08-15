@@ -3,13 +3,6 @@ requires = [ "setuptools >= 35.0.2", "wheel >= 0.29.0"]
 build-backend = "setuptools.build_meta"
 
 
-# Example configuration for Black.
-
-# NOTE: you have to use single-quoted strings in TOML for regular expressions.
-# It's the equivalent of r-strings in Python.  Multiline strings are treated as
-# verbose regular expressions by Black.  Use [ ] to denote a significant space
-# character.
-
 [tool.black]
 line-length = 88
 target-version = ['py36', 'py37', 'py38']
@@ -29,6 +22,7 @@ exclude = '''
 )/
 '''
 
+
 [tool.isort]
 profile = "hug"
 multi_line_output = 3
@@ -44,6 +38,10 @@ disable = ["C0330", "C0326"]
 
 [tool.pylint.format]
 max-line-length = 88
+
+
+[tool.coverage.run]
+plugins = ["covdefaults"]
 
 
 [tool.tox]

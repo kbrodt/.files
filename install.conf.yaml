@@ -11,6 +11,8 @@
 
 - link:
     ~/.config/flake8: config/flake8
+    ~/.config/pylintrc: config/pylintrc
+    ~/.config/isort.cfg: config/isort.cfg
     ~/.config/mypy: config/mypy
     ~/.config/nvim: config/nvim
     ~/.gitconfig:

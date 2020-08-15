@@ -1,7 +1,11 @@
 [flake8]
-# max-line-length = 119
+# line length is intentionally set to 80 here because black uses Bugbear
+# See https://github.com/psf/black/blob/master/README.md#line-length for more details
+max-line-length = 88
+max-complexity = 18
 # it's not a bug that we aren't using all of hacking
-ignore =
+extend-ignore = 
+    E203,
 	# E501: line too long
 	E501,
     # F812: list comprehension redefines ...
@@ -37,3 +41,7 @@ exclude =
     build,
     # This contains builds of flake8 that we don't want to check
     dist
+# We need to configure the mypy.ini because the flake8-mypy's default
+# options don't properly override it, so if we don't specify it we get
+# half of the config from mypy.ini and half from flake8-mypy.
+mypy_config = ~/.config/mypy/config

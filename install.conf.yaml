@@ -22,7 +22,7 @@
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.ssh/config: ssh/config
-    ~/.tmux.conf: 
+    ~/.tmux.conf:
 
 - shell:
   - [bash fzf/install.sh, Installing fzf]

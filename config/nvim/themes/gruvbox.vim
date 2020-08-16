@@ -9,7 +9,7 @@ if has('termguicolors')
 endif
 
 if has('gui_running')
-    set background=dark 
+    set background=dark
 elseif &t_Co < 256
     colorscheme default
     set nocursorline

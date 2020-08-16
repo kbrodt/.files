@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+        # - id: detect-aws-credentials
+      - id: detect-private-key
+        # - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: fix-encoding-pragma
+        args: ['--remove']
+      - id: mixed-line-ending
+      - id: no-commit-to-branch
+        args: [--branch, staging]
+      - id: pretty-format-json
+      - id: trailing-whitespace

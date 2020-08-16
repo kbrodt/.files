@@ -20,4 +20,3 @@ if [ ! -x "$(command -v nvim)" ]; then
 
     echo 'export PATH="$HOME/.local/nvim/bin:$PATH"' >> $HOME/.bashrc
 fi
-

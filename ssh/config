@@ -1,0 +1,13 @@
+Host shad-gpu
+    User kbrodt
+    ProxyCommand ssh kbrodt@hadoop2.yandex.ru -W shad-gpu01h.ydf.yandex.net:22
+
+Host imladris
+    HostName 193.106.92.23
+    User kvbrodt
+    IdentityFile ~/.ssh/id_rsa
+    LocalForward 9999 localhost:8888
+
+Host diro
+    HostName arcade.iro.umontreal.ca
+    User brodtkir

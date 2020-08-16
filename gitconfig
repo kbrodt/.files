@@ -48,12 +48,17 @@
 
 [user]
 	useConfigOnly = true
+    name = Kirill Brodt
+    email = cyrill.brodt@gmail.com
 
 [http]
 	cookieFile = ~/.gitcookies
 
 [core]
 	excludesfile = ~/.gitignore_global
+
+[github]
+    user = kbrodt
 
 # Allow local customizations in the .gitconfig_local file
 [include]

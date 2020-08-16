@@ -10,6 +10,9 @@
   - [bash fzf/install.sh, Installing fzf]
 
 - link:
+    ~/.bash:
+    ~/.bash_profile:
+    ~/.bashrc:
     ~/.config/flake8: config/flake8
     ~/.config/.pre-commit-config.yaml: config/pre-commit-config.yaml
     ~/.config/pyproject.toml: config/pyproject.toml
@@ -21,6 +24,7 @@
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.shell:
+    ~/.ssh/config: ssh/config
     ~/.tmux.conf: 
     ~/.vim:
     ~/.vimrc:

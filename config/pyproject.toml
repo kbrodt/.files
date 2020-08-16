@@ -1,6 +1,33 @@
 [build-system]
-requires = [ "setuptools >= 35.0.2", "wheel >= 0.29.0"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
+
+
+[tool.poetry]
+name = ""
+version = "0.1.0"
+description = ""
+authors = ["Kirill Brodt <cyrill.brodt@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = ""
+keywords = []
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+numpy = "^1.16.0"
+pip = "^20.0.2"
+scipy = "^1.4.1"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^19.10b0", allow-prereleases = true}
+coverage = "^5.2.1"
+covdefaults = "^1.1.0"
+flake8 = "^3.8.3"
+isort = "^4.3.21"
+mypy = "^0.782.0"
+pytest = "^5.0"
+lxml = "^4.5.2"
 
 
 [tool.black]
@@ -51,20 +78,21 @@ isolated_build = True
 envlist = py36,pre-commit
 
 [testenv]
-deps =
-    -rrequirements.txt
-    -rrequirements-dev.txt
 # Let us make a reports dir using mkdir
 whitelist_externals =
     /bin/mkdir
+    poetry
 commands =
+    poetry install -v
+    poetry run pytest tests/
+
     coverage erase
     mkdir -p reports/coverage
     coverage run --source=tor4 -m pytest {posargs:tests}
     coverage report --fail-under 80
     coverage html -d reports/coverage --fail-under 80
 
-#    mypy --junit-xml reports/mypy/typecheck.xml --cobertura-xml-report reports/mypy --html-report reports/mypy .
+    mypy --junit-xml reports/mypy/typecheck.xml --cobertura-xml-report reports/mypy --html-report reports/mypy .
 
 [testenv:pre-commit]
 skip_install = true

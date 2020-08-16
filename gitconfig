@@ -48,6 +48,8 @@
 
 [user]
 	useConfigOnly = true
+    name = Kirill Brodt
+    email = cyrill.brodt@gmail.com
 
 [http]
 	cookieFile = ~/.gitcookies

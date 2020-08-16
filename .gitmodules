@@ -29,3 +29,6 @@
 [submodule "zsh/plugins/fast-syntax-highlighting"]
 	path = zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting
+[submodule "vim/pack/default/start/vim-toml"]
+	path = vim/pack/default/start/vim-toml
+	url = https://github.com/cespare/vim-toml.git

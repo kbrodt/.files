@@ -5,12 +5,12 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 
-pip3 install --upgrade pip --user
-pip3 install --upgrade jedi --user
-pip3 install --upgrade black --user
-pip3 install --upgrade rope --user
-pip3 install --upgrade flake8 --user
-pip3 install --upgrade mypy --user
+pip3 install --upgrade pip
+pip3 install --upgrade jedi
+pip3 install --upgrade black
+pip3 install --upgrade rope
+pip3 install --upgrade flake8
+pip3 install --upgrade mypy
 
 NODEJS=$HOME/soft/node
 # Install latest nodejs

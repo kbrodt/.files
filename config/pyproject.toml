@@ -5,7 +5,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = ""
-version = "0.1.0"
+version = ""
 description = ""
 authors = ["Kirill Brodt <cyrill.brodt@gmail.com>"]
 license = "MIT"
@@ -84,15 +84,14 @@ whitelist_externals =
     poetry
 commands =
     poetry install -v
-    poetry run pytest tests/
 
     coverage erase
     mkdir -p reports/coverage
-    coverage run --source=tor4 -m pytest {posargs:tests}
-    coverage report --fail-under 80
-    coverage html -d reports/coverage --fail-under 80
+    poetry run coverage run --source=tor4 -m pytest {posargs:tests}
+    poetry run coverage report --fail-under 80
+    poetry run coverage html -d reports/coverage --fail-under 80
 
-    mypy --junit-xml reports/mypy/typecheck.xml --cobertura-xml-report reports/mypy --html-report reports/mypy .
+    poetry run mypy --junit-xml reports/mypy/typecheck.xml --cobertura-xml-report reports/mypy --html-report reports/mypy .
 
 [testenv:pre-commit]
 skip_install = true

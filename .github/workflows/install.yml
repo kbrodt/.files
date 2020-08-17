@@ -18,7 +18,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+        run: ./neovim/install_deps
 
       - name: Install
         run: ./install

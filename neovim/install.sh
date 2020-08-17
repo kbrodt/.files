@@ -6,7 +6,6 @@ set -o errexit    # exit when command fails
 
 
 NEOVIM=$HOME/soft/neovim
-# Install latest nodejs
 if [ ! -x "$(command -v nvim)" ]; then
     if [ ! -d "$NEOVIM" ]; then
         mkdir -p "$NEOVIM"

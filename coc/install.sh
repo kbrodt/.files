@@ -5,6 +5,7 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 
+[ ! -x "$(command -v pip3)" ] && alias pip3="pip"
 pip3 install --upgrade pip
 pip3 install --upgrade jedi
 pip3 install --upgrade black

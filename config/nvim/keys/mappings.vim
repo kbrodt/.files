@@ -28,8 +28,8 @@ nnoremap >> >>_
 nnoremap << <<_
 
 " (shift)tab (de)indents code
-vnoremap <tab> >gv
-vnoremap <s-tab> <gv
+vnoremap >> >gv
+vnoremap << <gv
 
 " move highlighted text
 vnoremap J :m '>+1<CR>gv=gv

@@ -5,13 +5,13 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 
-[ ! -x "$(command -v pip3)" ] && alias pip3="pip"
-pip3 install --upgrade pip
-pip3 install --upgrade jedi
-pip3 install --upgrade black
-pip3 install --upgrade rope
-pip3 install --upgrade flake8
-pip3 install --upgrade mypy
+[ -x "$(command -v python3)" ] && alias python="python3"
+python -m pip install --upgrade pip
+python -m pip install --upgrade jedi
+python -m pip install --upgrade black
+python -m pip install --upgrade rope
+python -m pip install --upgrade flake8
+python -m pip install --upgrade mypy
 
 NODEJS=$HOME/soft/node
 # Install latest nodejs
@@ -39,7 +39,7 @@ if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v "$HOME"/.local/nvim/bin
     cd ~/.vim/pack/coc/start
     curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
 else
-    pip3 install pynvim
+    python -m pip install pynvim
     npm i -g neovim
 
     # for neovim

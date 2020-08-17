@@ -8,9 +8,9 @@
 - link:
     ~/.bash:
     ~/.bash_profile:
-      if: '[ ! -f `HOME`/.bash_profile ]'
+      if: '[ ! -f "$HOME"/.bash_profile ]'
     ~/.bashrc:
-      if: '[ ! -f `HOME`/.bashrc ]'
+      if: '[ ! -f "$HOME"/.bashrc ]'
     ~/.shell:
     ~/.zsh:
     ~/.zshrc:

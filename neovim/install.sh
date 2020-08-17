@@ -9,14 +9,14 @@ NEOVIM=$HOME/soft/neovim
 # Install latest nodejs
 if [ ! -x "$(command -v nvim)" ]; then
     if [ ! -d "$NEOVIM" ]; then
-        mkdir -p $NEOVIM
-        git clone https://github.com/neovim/neovim.git $NEOVIM
+        mkdir -p "$NEOVIM"
+        git clone https://github.com/neovim/neovim.git "$NEOVIM"
     fi
 
-    cd $NEOVIM
+    cd "$NEOVIM"
 
     make CMAKE_BUILD_TYPE=Release -j8
-    make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX=$HOME/.local/nvim install
+    make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME"/.local/nvim install
 
-    echo 'export PATH="$HOME/.local/nvim/bin:$PATH"' >> $HOME/.bashrc
+    echo 'export PATH="$HOME/.local/nvim/bin:$PATH"' >> "$HOME"/.bashrc
 fi

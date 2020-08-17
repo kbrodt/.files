@@ -10,7 +10,7 @@ COLOR_CYAN='\[\e[36m\]'
 
 machine_name() {
     if [[ -f $HOME/.name ]]; then
-        cat $HOME/.name
+        cat "$HOME"/.name
     else
         hostname
     fi

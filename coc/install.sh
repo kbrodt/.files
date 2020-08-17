@@ -15,13 +15,13 @@ pip3 install --upgrade mypy
 NODEJS=$HOME/soft/node
 # Install latest nodejs
 if [ ! -x "$(command -v node)" ]; then
-    mkdir -p $NODEJS
+    mkdir -p "$NODEJS"
     NODE_SCRIPT=/tmp/install-node.sh
     curl --fail -LSs https://install-node.now.sh/latest -o $NODE_SCRIPT
     chmod +x $NODE_SCRIPT
     PREFIX=$NODEJS $NODE_SCRIPT -y
     PATH="$HOME/soft/node/bin:$PATH"
-    echo 'export PATH="$HOME/soft/node/bin:$PATH"' >> $HOME/.bashrc
+    echo 'export PATH="$HOME/soft/node/bin:$PATH"' >> "$HOME"/.bashrc
     # Or use apt-get
     # sudo apt-get install nodejs
 fi
@@ -32,7 +32,7 @@ fi
 
 # Use package feature to install coc.nvim
 
-if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v $HOME/.local/nvim/bin/nvim)" ]; then
+if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v "$HOME"/.local/nvim/bin/nvim)" ]; then
     # for vim8
     mkdir -p ~/.vim/pack/coc/start
     cd ~/.vim/pack/coc/start

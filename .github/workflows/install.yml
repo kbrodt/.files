@@ -1,0 +1,25 @@
+name: Install
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+
+      - name: Install
+        run: ./install

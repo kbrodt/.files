@@ -6,12 +6,12 @@ set -o errexit    # exit when command fails
 
 
 [ -x "$(command -v python3)" ] && alias python="python3"
-python -m pip install --upgrade pip
-python -m pip install --upgrade jedi
-python -m pip install --upgrade black
-python -m pip install --upgrade rope
-python -m pip install --upgrade flake8
-python -m pip install --upgrade mypy
+python -m pip install --upgrade pip --user
+python -m pip install --upgrade jedi --user
+python -m pip install --upgrade black --user
+python -m pip install --upgrade rope --user
+python -m pip install --upgrade flake8 --user
+python -m pip install --upgrade mypy --user
 
 NODEJS=$HOME/soft/node
 # Install latest nodejs
@@ -39,7 +39,7 @@ if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v "$HOME"/.local/nvim/bin
     cd ~/.vim/pack/coc/start
     curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
 else
-    python -m pip install pynvim
+    python -m pip install pynvim --user
     npm i -g neovim
 
     # for neovim

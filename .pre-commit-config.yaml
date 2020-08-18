@@ -20,3 +20,7 @@ repos:
         args: [--branch, staging]
       - id: pretty-format-json
       - id: trailing-whitespace
+        #   - repo: https://github.com/gruntwork-io/pre-commit
+        #     rev: v0.1.10 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+        #     hooks:
+        #       - id: shellcheck

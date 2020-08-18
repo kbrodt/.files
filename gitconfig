@@ -1,4 +1,9 @@
 [alias]
+    s = status -sb
+    a = add -u
+    c = commit -v
+    d = diff
+    ds = diff --stat
 	cleanall = clean -fdx # this is dangerous, so it's intentionally long to type
 	update-submodules = submodule update --init --recursive
 

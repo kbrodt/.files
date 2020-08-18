@@ -11,9 +11,6 @@
       if: '[ ! -f "$HOME"/.bash_profile ]'
     ~/.bashrc:
       if: '[ ! -f "$HOME"/.bashrc ]'
-    ~/.shell:
-    ~/.zsh:
-    ~/.zshrc:
     ~/.config/flake8: config/flake8
     ~/.config/.pre-commit-config.yaml: config/pre-commit-config.yaml
     ~/.config/pyproject.toml: config/pyproject.toml
@@ -21,20 +18,22 @@
     ~/.config/tox.ini: config/tox.ini
     ~/.config/isort.cfg: config/isort.cfg
     ~/.config/mypy: config/mypy
+    ~/.config/nvim: config/nvim
     ~/.gitconfig:
     ~/.gitignore_global:
+    ~/.shell:
     ~/.ssh/config: ssh/config
     ~/.tmux.conf:
+    ~/.vim:
+    ~/.vimrc:
+    ~/.zsh:
+    ~/.zshrc:
 
 - shell:
   - [bash fzf/install.sh, Installing fzf]
   - [bash neovim/install.sh, Installing neovim]
   - [bash coc/install.sh, Installing coc]
-
-- link:
-    ~/.config/nvim: config/nvim
-    ~/.vim:
-    ~/.vimrc:
+  - [bash pyide/install.sh, Installing python ide tools]
 
 - create:
   - ~/.vim/undodir

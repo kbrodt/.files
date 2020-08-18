@@ -5,8 +5,8 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 
-NEOVIM=$HOME/soft/neovim
 if [ ! -x "$(command -v nvim)" ]; then
+    NEOVIM=$HOME/soft/neovim
     if [ ! -d "$NEOVIM" ]; then
         mkdir -p "$NEOVIM"
         git clone https://github.com/neovim/neovim.git "$NEOVIM"

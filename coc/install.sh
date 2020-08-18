@@ -19,7 +19,6 @@ if [ ! -x "$(command -v node)" ]; then
 
     PATH="$HOME/soft/node/bin:$PATH"
     echo 'export PATH="$HOME/soft/node/bin:$PATH"' >> "$HOME"/.bashrc
-
 fi
 
 # Install yarn
@@ -27,28 +26,28 @@ if [ ! -x "$(command -v yarn)" ]; then
     curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 fi
 
-# Use package feature to install coc.nvim
-if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v "$HOME"/.local/nvim/bin/nvim)" ]; then
-    # for vim8
-    NVIM_PACK=~/.vim/pack/coc/start
-else
-    python3 -m pip install pynvim --user
-    npm i -g neovim
-
-    # for neovim
-    NVIM_PACK=~/.local/share/nvim/site/pack/coc/start
-fi
-mkdir -p $NVIM_PACK
-cd $NVIM_PACK
-curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
-
-# Install extensions
-mkdir -p ~/.config/coc/extensions
-cd ~/.config/coc/extensions
-if [ ! -f package.json ]
-then
-    echo '{"dependencies":{}}'> package.json
-fi
-
-# Change extension names to the extensions you need
-npm install coc-python --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+# # Use package feature to install coc.nvim
+# if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v "$HOME"/.local/nvim/bin/nvim)" ]; then
+#     # for vim8
+#     NVIM_PACK=~/.vim/pack/coc/start
+# else
+#     python3 -m pip install pynvim --user
+#     npm i -g neovim
+#
+#     # for neovim
+#     NVIM_PACK=~/.local/share/nvim/site/pack/coc/start
+# fi
+# mkdir -p $NVIM_PACK
+# cd $NVIM_PACK
+# curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz | tar xzfv -
+#
+# # Install extensions
+# mkdir -p ~/.config/coc/extensions
+# cd ~/.config/coc/extensions
+# if [ ! -f package.json ]
+# then
+#     echo '{"dependencies":{}}'> package.json
+# fi
+#
+# # Change extension names to the extensions you need
+# npm install coc-python --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod

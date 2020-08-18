@@ -4,6 +4,7 @@
     c = commit -v
     d = diff
     ds = diff --stat
+    co = checkout
 	cleanall = clean -fdx # this is dangerous, so it's intentionally long to type
 	update-submodules = submodule update --init --recursive
 

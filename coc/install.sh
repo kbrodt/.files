@@ -32,7 +32,7 @@ if [ ! -x "$(command -v nvim)" ] && [ ! -x "$(command -v "$HOME"/.local/nvim/bin
     NVIM_PACK=~/.vim/pack/coc/start
 else
     python3 -m pip install pynvim --user
-    npm i neovim
+    npm i -g neovim
 
     # for neovim
     NVIM_PACK=~/.local/share/nvim/site/pack/coc/start

@@ -1,6 +1,0 @@
-pip
-jedi
-black
-rope
-flake8
-mypy

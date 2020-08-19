@@ -20,7 +20,7 @@ else
     " let g:gruvbox_invert_selection='0'
     " colorscheme gruvbox
 
-    let g:gruvbox_material_background = 'hard'
+    let g:gruvbox_material_background = 'medium'
     colorscheme gruvbox-material
 endif
 

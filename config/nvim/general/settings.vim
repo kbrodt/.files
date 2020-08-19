@@ -49,6 +49,7 @@ set fileencoding=utf-8  " The encoding written to file
 set ruler               "  Show the cursor position all the time
 set signcolumn=yes      "  Always show the signcolumn, otherwise it would shift the text each time
 set clipboard=unnamedplus " Copy paste between vim and everything else
+set t_Co=256            " Support 256 colors
 
 " Having longer udatetime (default os 4000 ms = 4s) leads to noticeable
 " delays and poor user experience.

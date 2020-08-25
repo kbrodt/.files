@@ -42,11 +42,13 @@ alias \
     ...="cd ../.." \
     .3="cd ../../.." \
 
+function listdot() { ls -al --color=auto | awk '{if ($9~/^\./) {print}}'; }
+
 # Colorize commands when possible.
 alias \
 	la="ls -a --color=auto --group-directories-first" \
 	ll="ls -l --color=auto --group-directories-first" \
-	l.='ls -a | grep "^\."' \
+    l.="listdot" \
 	ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \

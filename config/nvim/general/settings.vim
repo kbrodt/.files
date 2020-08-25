@@ -77,7 +77,7 @@ set backspace=indent,eol,start
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
-" map <C-a> <Nop>
+map <C-a> <Nop>  " Unbind for tmux
 " map <C-x> <Nop>
 
 " Searching

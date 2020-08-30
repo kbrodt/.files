@@ -1,6 +1,7 @@
 [alias]
     s = status -sb
     a = add -u
+    b = branch -vv
     c = commit -v
     d = diff
     ds = diff --stat

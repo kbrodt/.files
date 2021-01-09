@@ -63,7 +63,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-	autocrlf = false
+	autocrlf = true
 
 [github]
     user = kbrodt

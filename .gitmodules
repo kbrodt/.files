@@ -1,44 +1,40 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
-    update = merge
+	ignore = dirty
 [submodule "vim/bundle/gruvbox"]
     path = vim/pack/default/start/gruvbox
     url = https://github.com/morhetz/gruvbox.git
-    update = merge
+    ignore = untracked
 [submodule "vim/bundle/gruvbox-material"]
     path = vim/pack/default/start/gruvbox-material
     url = https://github.com/sainnhe/gruvbox-material.git
-    update = merge
+    ignore = untracked
 [submodule "vim/bundle/lightline.vim"]
 	path = vim/pack/default/start/lightline.vim
 	url = https://github.com/itchyny/lightline.vim
-    update = merge
+    ignore = untracked
 [submodule "vim/bundle/python-syntax"]
     path = vim/pack/default/start/python-syntax
     url = https://github.com/vim-python/python-syntax.git
-    update = merge
+    ignore = untracked
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/pack/default/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-    update = merge
+	ignore = untracked
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/pack/default/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-    update = merge
+    ignore = untracked
 [submodule "zsh/plugins/fast-syntax-highlighting"]
 	path = zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting
-    update = merge
 [submodule "vim/pack/default/start/vim-toml"]
 	path = vim/pack/default/start/vim-toml
 	url = https://github.com/cespare/vim-toml.git
-    update = merge
 [submodule "vim/pack/default/start/vimwiki"]
 	path = vim/pack/default/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
-    update = merge
 [submodule "vim/pack/default/start/vim-markdown"]
 	path = vim/pack/default/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
-    update = merge

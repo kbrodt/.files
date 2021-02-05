@@ -2,10 +2,6 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "vim/bundle/gruvbox"]
-    path = vim/pack/default/start/gruvbox
-    url = https://github.com/morhetz/gruvbox.git
-    ignore = untracked
 [submodule "vim/bundle/gruvbox-material"]
     path = vim/pack/default/start/gruvbox-material
     url = https://github.com/sainnhe/gruvbox-material.git

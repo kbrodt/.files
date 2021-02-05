@@ -5,5 +5,5 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 python3 -m pip install --upgrade --user \
-    pip jedi black rope flake8 mypy pynvim pylint isort \
+    pip black rope flake8 mypy pynvim pylint isort \
     cpplint clang-format

@@ -14,7 +14,7 @@ installarch() {
 
 installdeps() {
     (uname -a | grep -q Ubuntu) && installubuntu
-    (uname -a | grep -q arch) && installarch
+    (uname -a | grep -q -E "(arch|artix)") && installarch
 }
 
 installdeps

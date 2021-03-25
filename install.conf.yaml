@@ -19,6 +19,7 @@
     ~/.config/isort.cfg: config/isort.cfg
     ~/.config/mypy: config/mypy
     ~/.config/nvim: config/nvim
+    ~/.config/zathura: config/zathura
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.pdbrc:

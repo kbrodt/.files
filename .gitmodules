@@ -24,9 +24,6 @@
 [submodule "vim/pack/default/start/vim-toml"]
 	path = vim/pack/default/start/vim-toml
 	url = https://github.com/cespare/vim-toml.git
-[submodule "vim/pack/default/start/vimwiki"]
-	path = vim/pack/default/start/vimwiki
-	url = https://github.com/vimwiki/vimwiki.git
 [submodule "vim/pack/default/start/vim-markdown"]
 	path = vim/pack/default/start/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git

@@ -5,6 +5,7 @@
     c = commit -v
     d = diff
     ds = diff --stat
+    p = pull
     co = checkout
     l = log --oneline --decorate --graph     
 	cleanall = clean -fdx # this is dangerous, so it's intentionally long to type

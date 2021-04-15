@@ -6,6 +6,7 @@
     d = diff
     ds = diff --stat
     co = checkout
+    l = log --oneline --decorate --graph     
 	cleanall = clean -fdx # this is dangerous, so it's intentionally long to type
 	update-submodules = submodule update --init --recursive
 

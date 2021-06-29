@@ -18,7 +18,10 @@ chmod +x $NODE_SCRIPT
 PREFIX=$NODEJS $NODE_SCRIPT -y
 
 PATH="$HOME/soft/node/bin:$PATH"
-echo 'export PATH="$HOME/soft/node/bin:$PATH"' >> "$HOME"/.bashrc
+grep \
+    'export PATH="$HOME/soft/node/bin:$PATH"' "$HOME"/.bashrc -q \
+    || echo 'export PATH="$HOME/soft/node/bin:$PATH"' >> "$HOME"/.bashrc \
+    || :
 # fi
 
 # Install yarn

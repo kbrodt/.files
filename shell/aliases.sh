@@ -44,6 +44,14 @@ alias \
 
 function listdot() { ls -al --color=auto | awk '{if ($9~/^\./) {print}}'; }
 
+function pvenv() {
+    if [ -d venv ]; then
+        . venv/bin/activate
+    else
+        . ~/venv/bin/activate
+    fi
+}
+
 # Colorize commands when possible.
 alias \
 	la="ls -a --color=auto --group-directories-first" \
@@ -52,4 +60,4 @@ alias \
 	ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
-    pv="([ -d venv ] && . venv/bin/activate) || ([ -d ~/venv ] && . ~/venv/bin/activate)" \
+    pv=pvenv \

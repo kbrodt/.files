@@ -52,4 +52,4 @@ alias \
 	ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
-    pv=". venv/bin/activate || . ~/venv/bin/activate" \
+    pv="[ -d venv ] && . venv/bin/activate || [ -d ~/venv ] && . ~/venv/bin/activate" \

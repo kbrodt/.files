@@ -1,0 +1,51 @@
+# Webbrowser/Discord
+super + {w, c}
+    {firefox, discord}
+
+# Mute microphone/volume
+super + {F7, F8}
+    amixer -q set {Capture, Master} toggle
+
+# Mute volume
+XF86AudioMute
+    amixer -q set Master toggle
+
+# Decrease/Increase volume
+super + {F9, F10}
+    amixer -q set Master 5%{-,+} unmute
+XF86Audio{Lower,Raise}Volume
+    amixer -q set Master 5%{-,+} unmute
+
+# Play/pause audio
+super + F11
+    playerctl play-pause
+XF86AudioPlay
+    playerctl play-pause
+
+# Prev/Next audio
+super + F12
+    playerctl previous
+XF86Audio{Prev,Next}
+    playerctl {previous, next}
+
+# Screenshot
+super + s
+    import png:- | tee ~/pix/ss/$(date +%s).png | xclip -sel cb -t image/png
+super + shift + s
+    import -window root png:- | tee ~/pix/ss/$(date +%s).png | xclip -sel cb -t image/png
+
+# Translate
+super + t
+    trans -b :ru "$(xclip -o)" \
+        | fold -w 240 -s \
+        | dmenu -b -fn "monospace:size=16" -l 25 \
+        | :
+
+super + shift + t
+    echo "en fr es" \
+        | xargs -n 1 \
+        | dmenu -p "Choose language" \
+        | xargs -I {} trans -b ru:{} "$(xclip -o)" \
+        | fold -w 240 -s \
+        | dmenu -b -fn "monospace:size=16" -l 25 \
+        | :

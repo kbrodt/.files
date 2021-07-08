@@ -15,6 +15,7 @@
     ~/.config/.pre-commit-config.yaml: config/pre-commit-config.yaml
     ~/.config/pyproject.toml: config/pyproject.toml
     ~/.config/pylintrc: config/pylintrc
+    ~/.config/sxhkd: config/sxhkd
     ~/.config/tox.ini: config/tox.ini
     ~/.config/isort.cfg: config/isort.cfg
     ~/.config/mypy: config/mypy

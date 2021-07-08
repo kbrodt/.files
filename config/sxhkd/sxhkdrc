@@ -45,7 +45,7 @@ super + shift + t
     echo "en fr es" \
         | xargs -n 1 \
         | dmenu -p "Choose language" \
-        | xargs -I {} trans -b ru:{} "$(xclip -o)" \
+        | xargs -I lang trans -b ru:lang "$(xclip -o)" \
         | fold -w 240 -s \
         | dmenu -b -fn "monospace:size=16" -l 25 \
         | :

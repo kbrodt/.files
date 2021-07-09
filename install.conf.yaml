@@ -24,6 +24,7 @@
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.pdbrc:
+    ~/pipewire-pulse.sh:
     ~/.shell:
     ~/.ssh/config: ssh/config
     ~/.tmux.conf:

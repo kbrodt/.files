@@ -14,7 +14,7 @@ if [ ! -x "$(command -v nvim)" ]; then
 
     cd "$NEOVIM"
 
-    make CMAKE_BUILD_TYPE=Release -j8
+    make CMAKE_BUILD_TYPE=Release -j$((`nproc`+1))
     make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME"/.local/nvim install
 
     grep \
@@ -25,6 +25,6 @@ elif [ -d "$NEOVIM" ]; then  # update
     cd "$NEOVIM"
     git pull
 
-    make CMAKE_BUILD_TYPE=Release -j8
+    make CMAKE_BUILD_TYPE=Release -j$((`nproc`+1))
     make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME"/.local/nvim install
 fi

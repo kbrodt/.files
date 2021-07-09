@@ -36,7 +36,7 @@ installarch() {
 }
 
 installdeps() {
-    (uname -a | grep -iq -E "(debian|ubuntu") && installubuntu
+    (uname -a | grep -iq -E "(debian|ubuntu)") && installubuntu
     (uname -a | grep -iq -E "(arch|artix)") && installarch
 }
 

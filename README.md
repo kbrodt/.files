@@ -11,3 +11,18 @@ After clonning this repo, run `install` to set up the development environment.
 - [fd](https://github.com/sharkdp/fd)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [hyperfine](https://github.com/sharkdp/hyperfine)
+- [trans](https://github.com/soimort/translate-shell/)
+
+## Useful cli
+
+### IP info
+
+```bash
+curl ipinfo.io
+```
+
+### Weather
+
+```bash
+curl wttr.in/CITY
+```

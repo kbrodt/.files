@@ -35,13 +35,13 @@ super + shift + s
     import -window root png:- | tee ~/pix/ss/$(date +%s).png | xclip -sel cb -t image/png
 
 # Translate
-super + t
+super + e
     trans -b :ru "$(xclip -o)" \
         | fold -w 240 -s \
         | dmenu -b -fn "monospace:size=16" -l 25 \
         | :
 
-super + shift + t
+super + shift + e
     echo "en fr es" \
         | xargs -n 1 \
         | dmenu -p "Choose language" \

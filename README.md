@@ -14,6 +14,10 @@ After clonning this repo, run `install` to set up the development environment.
 - [document viewer `zathura`](https://pwmt.org/projects/zathura/)
 - [image viewer `sxiv`](https://github.com/muennich/sxiv)
 - [google translate cli `trans`](https://github.com/soimort/translate-shell/)
+- [music player `cmus`](https://cmus.github.io/)
+- music piracy `smloadr`
+- [movies/tv piracy `stremio`](https://www.stremio.com/)
+- [ebooks `foliate`](https://johnfactotum.github.io/foliate/)
 
 ## Useful cli
 

@@ -37,6 +37,7 @@ super + shift + s
 # Translate
 super + e
     trans -b :ru "$(xclip -o)" \
+        | xclip -sel cb -i -f \
         | fold -w 240 -s \
         | dmenu -b -fn "monospace:size=16" -l 25 \
         | :
@@ -46,6 +47,7 @@ super + shift + e
         | xargs -n 1 \
         | dmenu -p "Choose language" \
         | xargs -I lang trans -b ru:lang "$(xclip -o)" \
+        | xclip -sel cb -i -f \
         | fold -w 240 -s \
         | dmenu -b -fn "monospace:size=16" -l 25 \
         | :

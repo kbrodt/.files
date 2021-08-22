@@ -11,3 +11,22 @@ Host imladris
 Host diro
     HostName arcade.iro.umontreal.ca
     User brodtkir
+
+Host home
+    HostName 96.20.186.70
+    User kbrodt
+    Port 69
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    LocalForward 8888 localhost:8888
+    LocalForward 8889 localhost:8889
+    LocalForward 6007 localhost:6006
+    LocalForward 5000 localhost:5000
+
+Host apollo
+    HostName 10.4.88.2
+    User brodt
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    LocalForward 6006 localhost:6006
+    LocalForward 6007 localhost:6007

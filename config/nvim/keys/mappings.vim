@@ -28,7 +28,7 @@ nnoremap Y y$
 " keeping it centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
-" nnoremap J mzJ`z
+nnoremap J mzJ`z
 
 " undo break points
 inoremap , ,<c-g>u

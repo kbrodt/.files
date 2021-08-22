@@ -18,9 +18,9 @@ XF86Audio{Lower,Raise}Volume
 
 # Play/pause audio
 super + F11
-    playerctl play-pause
+    playerctl -a play-pause
 XF86AudioPlay
-    playerctl play-pause
+    playerctl -a play-pause
 
 # Prev/Next audio
 super + F12

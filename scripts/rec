@@ -1,0 +1,75 @@
+#!/usr/bin/env sh
+
+# screencasts
+
+
+MODE="${1}"
+
+
+case "${MODE}" in
+    mic)
+        ffmpeg \
+            -f x11grab \
+            -framerate 25 \
+            -r 500/21 \
+            $(xwininfo \
+                | gawk \
+                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
+                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
+                | tac) \
+            -f alsa \
+            -thread_queue_size 1024 \
+            -channels 1 \
+            -sample_rate 44100 \
+            -i default \
+            -t 30 \
+            ~/records/$(date +%s).mkv \
+
+        ;;
+    cam)
+        ffmpeg \
+            -f x11grab \
+            -thread_queue_size 64 \
+            -framerate 25 \
+            -r 500/21 \
+            $(xwininfo \
+                | gawk \
+                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
+                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
+                | tac) \
+            -f alsa \
+            -thread_queue_size 1024 \
+            -channels 1 \
+            -sample_rate 44100 \
+            -i default \
+            -t 30 \
+            -f v4l2 \
+            -thread_queue_size 64 \
+            -video_size 240x160 \
+            -framerate 25 \
+            -i /dev/video0 \
+            -filter_complex 'overlay=main_w-overlay_w-10:10:format=yuv444' \
+            -vcodec libx264 \
+            -preset ultrafast \
+            -qp 0 \
+            -pix_fmt yuv444p \
+            ~/records/$(date +%s).mkv \
+
+        ;;
+    *)
+        ffmpeg \
+            -f x11grab \
+            -framerate 25 \
+            -r 500/21 \
+            $(xwininfo \
+                | gawk \
+                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
+                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
+                | tac) \
+            -f pulse \
+            -i alsa_output.pci-0000_00_1b.0.analog-stereo.monitor \
+            -ac 2 \
+            ~/records/$(date +%s).mkv \
+
+        ;;
+esac

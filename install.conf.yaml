@@ -3,7 +3,7 @@
       create: true
       relink: true
 
-- clean: ['~', '~/.config']
+- clean: ['~', '~/.config', '~/.local/bin']
 
 - link:
     ~/.bash:
@@ -11,20 +11,16 @@
       if: '[ ! -f "$HOME"/.bash_profile ]'
     ~/.bashrc:
       if: '[ ! -f "$HOME"/.bashrc ]'
-    ~/.config/flake8: config/flake8
-    ~/.config/.pre-commit-config.yaml: config/pre-commit-config.yaml
-    ~/.config/pyproject.toml: config/pyproject.toml
-    ~/.config/pylintrc: config/pylintrc
-    ~/.config/sxhkd: config/sxhkd
-    ~/.config/tox.ini: config/tox.ini
-    ~/.config/isort.cfg: config/isort.cfg
-    ~/.config/mypy: config/mypy
-    ~/.config/nvim: config/nvim
-    ~/.config/zathura: config/zathura
+    ~/.config/:
+      path: config/*
+      glob: true
     ~/.gitconfig:
     ~/.gitignore_global:
     ~/.pdbrc:
     ~/pipewire-pulse.sh:
+    ~/.local/bin/:
+      path: scripts/**
+      glob: true
     ~/.shell:
     ~/.ssh/config: ssh/config
     ~/.tmux.conf:
@@ -43,6 +39,11 @@
 
 - create:
   - ~/.vim/undodir
+  - ~/dl
+  - ~/lit
+  - ~/music
+  - ~/pix/ss
+  - ~/records
 
 - shell:
   - git submodule sync --recursive

@@ -19,6 +19,7 @@ installubuntu() {
         g++ \
         pkg-config \
         unzip \
+        curl \
     && sudo apt-get clean \
     && :
 }
@@ -32,6 +33,7 @@ installarch() {
         unzip \
         ninja \
         tree-sitter \
+        curl \
     && :
 }
 

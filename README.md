@@ -15,7 +15,9 @@ After clonning this repo, run `install` to set up the development environment.
 - [document viewer `zathura`](https://pwmt.org/projects/zathura/)
 - [image viewer `sxiv`](https://github.com/muennich/sxiv)
 - [3D viewer `f3d`](https://kitware.github.io/F3D)
-- [note-taken software `xournalpp`](https://xournalpp.github.io/)
+- [password manager `pass`](https://www.passwordstore.org/)
+- [document and bibliography manager `papis`](https://github.com/papis/papis)
+- [TODO list manager `taskwarrior`](https://taskwarrior.org/)
 
 #### Not tested
 
@@ -30,6 +32,12 @@ After clonning this repo, run `install` to set up the development environment.
 - [fast find `fd`](https://github.com/sharkdp/fd)
 - [fast grep `ripgrep`](https://github.com/BurntSushi/ripgrep)
 - [cli benchmarking `hyperfine`](https://github.com/sharkdp/hyperfine)
+
+### GUI
+
+- [note-taken software `xournalpp`](https://xournalpp.github.io/)
+- [office suite `libreoffice`](https://www.libreoffice.org/)
+- [3D creation suite `blender`](https://www.blender.org/)
 
 ## Useful cli
 

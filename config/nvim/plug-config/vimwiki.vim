@@ -1,5 +1,7 @@
 let g:vimwiki_list = [{'path': '~/notes/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                      \ 'syntax': 'markdown',
+                      \ 'ext': '.md',
+                      \ 'links_space_char': '_'}]
 
 let g:vimwiki_ext2syntax = {'.md': 'markdown',
                     \ '.markdown': 'markdown',

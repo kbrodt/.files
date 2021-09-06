@@ -1,0 +1,9 @@
+{
+    ".*": {
+        "resolution": "1200,800",
+        "no-background": true,
+        "filename": true,
+        "scalars": "RGBA",
+        "comp": -2
+    }
+}

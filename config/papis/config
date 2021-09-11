@@ -20,6 +20,8 @@ default-library = papers
 
 [papers]
 dir = ~/papis/papers
+add-file-name = paper
 
 [books]
 dir = ~/papis/books
+add-file-name = book

@@ -29,7 +29,21 @@ data.location=~/.task
 #include /usr/share/doc/task/rc/solarized-light-256.theme
 #include /usr/share/doc/task/rc/no-color.theme
 
-# Report
+# Basic config
+weekstart=monday
+search.case.sensitive=no
 
-# next report: don't show annotations
+# Report
+# don't show annotations
+
+# next
 report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+
+# ready
+report.ready.columns=id,start.age,entry.age,depends.indicator,priority,project,tags,recur.indicator,scheduled.countdown,due.countdown,until.remaining,description.count,urgency
+
+# completed
+report.completed.columns=id,uuid.short,entry,end,entry.age,depends,priority,project,tags,recur.indicator,due,description.count
+
+# waiting
+report.waiting.columns=id,start.active,entry.age,depends.indicator,priority,project,tags,recur.indicator,wait,wait.remaining,scheduled,due,until,description.count

@@ -23,6 +23,7 @@
       glob: true
     ~/.shell:
     ~/.ssh/config: ssh/config
+    ~/.taskrc:
     ~/.tmux.conf:
     ~/.vim:
     ~/.vimrc:

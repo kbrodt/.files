@@ -60,4 +60,5 @@ alias \
 	ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
+	cal="cal -m" \
     pv=pvenv \

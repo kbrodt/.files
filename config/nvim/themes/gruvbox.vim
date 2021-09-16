@@ -1,6 +1,8 @@
 " color scheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+packadd! gruvbox-material
+
 set colorcolumn=80 " colored column
 highlight colorcolumn ctermbg=0 guibg=lightgrey
 

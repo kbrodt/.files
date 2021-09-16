@@ -2030,6 +2030,8 @@ c.session.lazy_restore = True
 ## qutebrowser`.
 ## Type: Dict
 # c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}'}
+c.url.searchengines["g"] = "https://www.google.com/search?q={}"
+c.url.searchengines["yt"] = "https://www.youtube.com/search?q={}"
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl

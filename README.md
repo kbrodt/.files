@@ -18,6 +18,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [password manager `pass`](https://www.passwordstore.org/)
 - [document and bibliography manager `papis`](https://github.com/papis/papis)
 - [TODO list manager `taskwarrior`](https://taskwarrior.org/)
+- [mail reader `neomutt`](https://neomutt.org/)
 
 #### Not tested
 
@@ -38,6 +39,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [note-taken software `xournalpp`](https://xournalpp.github.io/)
 - [office suite `libreoffice`](https://www.libreoffice.org/)
 - [3D creation suite `blender`](https://www.blender.org/)
+- [keyboard-focused browser `qutebrowser`](https://qutebrowser.org/)
 
 ## Useful cli
 

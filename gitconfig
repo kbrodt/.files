@@ -8,68 +8,69 @@
     p = pull
     co = checkout
     l = log --oneline --decorate --graph     
-	cleanall = clean -fdx # this is dangerous, so it's intentionally long to type
-	update-submodules = submodule update --init --recursive
+    cleanall = clean -fdx # this is dangerous, so it's intentionally long to type
+    update-submodules = submodule update --init --recursive
 
 [diff]
-	mnemonicPrefix = true
-	wordRegex = "[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
-	compactionHeuristic = true
+    mnemonicPrefix = true
+    wordRegex = "[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
+    compactionHeuristic = true
 
 [color]
-	ui = auto
+    ui = auto
 
 [color "grep"]
-	match = cyan bold
-	selected = blue
-	context = normal
-	filename = magenta
-	linenumber = green
-	separator = yellow
-	function = blue
+    match = cyan bold
+    selected = blue
+    context = normal
+    filename = magenta
+    linenumber = green
+    separator = yellow
+    function = blue
 
 [pretty]
-	line = "%C(auto)%h %<|(60,trunc)%s %C(green)%ad%C(auto)%d"
-	detail = "%C(auto)%h %s%n  %C(yellow)by %C(blue)%an %C(magenta)<%ae> [%G?] %C(green)%ad%n %C(auto)%d%n"
+    line = "%C(auto)%h %<|(60,trunc)%s %C(green)%ad%C(auto)%d"
+    detail = "%C(auto)%h %s%n  %C(yellow)by %C(blue)%an %C(magenta)<%ae> [%G?] %C(green)%ad%n %C(auto)%d%n"
 
 [merge]
-	defaultToUpstream = true
-	tool = vimdiff
+    defaultToUpstream = true
+    tool = vimdiff
 
 [pull]
-	ff = only
+    ff = only
 
 [mergetool]
-	keepBackup = false
+    keepBackup = false
 
 [push]
-	default = upstream
+    default = upstream
 
 [credential]
-	helper = cache --timeout=3600
+    helper = cache --timeout=3600
 
 [grep]
-	lineNumber = true
+    lineNumber = true
 
 [advice]
-	detachedHead = false
-	waitingForEditor = false
+    detachedHead = false
+    waitingForEditor = false
 
 [user]
-	useConfigOnly = true
+    useConfigOnly = true
     name = Kirill Brodt
     email = cyrill.brodt@gmail.com
 
 [http]
-	cookieFile = ~/.gitcookies
+    cookieFile = ~/.gitcookies
 
 [core]
-	excludesfile = ~/.gitignore_global
-	autocrlf = false
+    excludesfile = ~/.gitignore_global
+    autocrlf = false
+    editor = nvim
 
 [github]
     user = kbrodt
 
 # Allow local customizations in the .gitconfig_local file
 [include]
-	path = ~/.gitconfig_local
+    path = ~/.gitconfig_local

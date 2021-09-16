@@ -2264,12 +2264,11 @@ c.session.lazy_restore = True
 # config.bind('yy', 'yank')
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
-config.bind(",v", "spawn --detach mpv {url}")
-config.bind(",a", "spawn --detach mpv --no-video {url}")
-config.bind(",V", "spawn --detach youtube-dl -ciw -o ~/dl/%(title)s.%(ext)s {url}")
+config.bind(",a", "spawn mpv --no-video {url}")
+config.bind(",V", "spawn youtube-dl -ciw -o ~/dl/%(title)s.%(ext)s {url}")
 config.bind(
     ",A",
-    "spawn --detach youtube-dl -f \"bestaudio/best\" -ciw -o ~/dl/%(title)s.%(ext)s"
+    "spawn youtube-dl -f \"bestaudio/best\" -ciw -o ~/dl/%(title)s.%(ext)s"
     " --extract-audio --audio-quality 0 --audio-format mp3 {url}",
 )
 config.bind(",m", "spawn umpv {url}")

@@ -1,0 +1,68 @@
+bind index,pager i noop
+# bind index,pager gg noop
+bind index,pager g noop
+# bind index,pager M noop
+# bind index,pager C noop
+# bind index \Cf noop
+
+# Macros
+macro index ig '<change-folder>imaps://imap.gmail.com<enter>' "Go to gmail"
+macro index iy '<change-folder>imaps://imap.yandex.ru<enter>' "Go to yandex"
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro browser h '<change-dir><kill-line>..<enter>' "Go to parent folder"
+
+# Bindings
+
+bind attach <return> view-mailcap
+bind attach h exit
+bind attach l view-mailcap
+
+bind browser l select-entry
+bind browser gg top-page
+bind browser G bottom-page
+bind browser \cd half-down
+bind browser \cu half-up
+
+# bind editor <space> noop
+bind editor <Tab> complete-query
+
+# General rebindings
+bind index h noop
+bind index j next-entry
+bind index k previous-entry
+bind index l display-message
+bind index gg first-entry
+bind index G last-entry
+bind index \cd half-down
+bind index \cu half-up
+# bind index D delete-message
+# bind index U undelete-message
+# bind index L limit
+bind index \031 previous-undeleted  # Mouse wheel
+bind index \005 next-undeleted  # Mouse wheel
+bind index R group-reply
+
+bind pager h exit
+bind pager j next-line
+bind pager k previous-line
+bind pager l view-attachments
+bind pager gg top
+bind pager G bottom
+bind pager \cd half-down
+bind pager \cu half-up
+bind pager \031 previous-line # Mouse wheel
+bind pager \005 next-line  # Mouse wheel
+bind pager R group-reply
+
+# bind index,query <space> tag-entry
+# bind index,pager S sync-mailbox
+# bind index,pager H view-raw-message
+
+# Sidebar mappings
+bind index,pager \ck sidebar-prev
+bind index,pager \cj sidebar-next
+bind index,pager \co sidebar-open
+bind index,pager \cp sidebar-prev-new
+bind index,pager \cn sidebar-next-new
+bind index,pager B sidebar-toggle-visible

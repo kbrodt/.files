@@ -1,0 +1,23 @@
+# GENERAL OPTIONS
+unset signature
+
+# RECEIVE OPTIONS
+set imap_check_subscribed
+set imap_list_subscribed
+unset imap_passive
+set imap_keepalive = 900
+set mail_check     = 1800
+
+# REMOTE YANDEX FOLDERS
+set folder    = 'imaps://imap.yandex.ru:993'
+set spoolfile = '+INBOX'
+set record    = '+Sent'
+set postponed = '+Drafts'
+
+# SEND OPTIONS
+set ssl_starttls  = yes
+set ssl_force_tls = yes
+set realname      = $my_name
+set from          = $my_yandex_user
+set smtp_url      = 'smtps://'$my_yandex_user'@smtp.yandex.ru:465/'
+set smtp_pass     = $my_yandex_pass

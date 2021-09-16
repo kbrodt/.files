@@ -1,0 +1,22 @@
+source "gpg -dq $HOME/.config/mutt/accounts.asc |"
+
+folder-hook 'gmail.com' 'source ~/.config/mutt/gmail'
+folder-hook 'yandex.ru' 'source ~/.config/mutt/yandex'
+
+source '~/.config/mutt/gmail'
+
+account-hook gmail.com 'set imap_user=$my_gmail_user imap_pass=$my_gmail_pass'
+account-hook yandex.ru 'set imap_user=$my_yandex_user imap_pass=$my_yandex_pass'
+
+set alias_file    = ~/.config/mutt/aliases
+set sort_alias    = alias
+set reverse_alias = yes
+source $alias_file
+set mailcap_path  = ~/.config/mutt/mailcap
+auto_view text/html
+
+source '~/.config/mutt/general'
+source '~/.config/mutt/bindings'
+
+source '~/.config/mutt/colors-gruvbox-shuber.muttrc'
+source '~/.config/mutt/colors-gruvbox-shuber-extended.muttrc'

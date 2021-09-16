@@ -1,0 +1,38 @@
+# Mail editor
+set editor=nvim
+
+set text_flowed=yes
+set sleep_time = 0
+
+# Cache
+set header_cache = '~/.cache/mutt'
+set message_cachedir = '~/.cache/mutt'
+
+set date_format = "%d/%m/%y %I:%M%p"
+set index_format = "%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
+set markers = no		# Disables the `+` displayed at line wraps
+set mark_old = no		# Unread mail stay unread until read
+set mime_forward = yes	# attachments are forwarded with mail
+set wait_key = no		# mutt won't ask "press key to continue"
+set fast_reply			# skip to compose when replying
+set fcc_attach			# save attachments with the body
+set forward_format = "Fwd: %s"	# format of subject when forwarding
+set forward_quote		# include message in forwards
+set reverse_name		# reply as whomever it was to
+set include			    # include message in replies
+set mail_check=60 # to avoid lags using IMAP with some email providers (yahoo for example)
+
+# Sorting threads and subthreads such that newest are on top (bottom is default)
+set sort = threads 
+set sort_aux = reverse-last-date-received
+
+# Display Sidebar
+set sidebar_width = 20
+set sidebar_visible = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%D%?F? [%F]?%* %?N?%N/? %?S?%S?'
+set sidebar_short_path = yes
+set sidebar_delim_chars="/"             # Delete everything up to the last / character
+set sidebar_folder_indent               # Indent folders whose names we've shortened
+set sidebar_indent_string="  "          # Indent with two spaces

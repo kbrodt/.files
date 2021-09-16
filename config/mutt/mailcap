@@ -1,0 +1,6 @@
+application/pdf; zathura %s;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s;
+image/*; sxiv %s;
+video/*; mpv %s;
+audio/*; mpv --no-video %s;
+text/html; w3m -I %{charset} -T text/html; copiousoutput;

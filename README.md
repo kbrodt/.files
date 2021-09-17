@@ -33,6 +33,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [fast find `fd`](https://github.com/sharkdp/fd)
 - [fast grep `ripgrep`](https://github.com/BurntSushi/ripgrep)
 - [cli benchmarking `hyperfine`](https://github.com/sharkdp/hyperfine)
+- [manage files on cloud storage `rclone`](https://rclone.org/)
 
 ### GUI
 

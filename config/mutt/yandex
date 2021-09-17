@@ -11,8 +11,8 @@ set mail_check     = 1800
 # REMOTE YANDEX FOLDERS
 set folder    = 'imaps://imap.yandex.ru:993'
 set spoolfile = '+INBOX'
-set record    = '+Sent'
-set postponed = '+Drafts'
+set record    = '+Отправленные'
+set postponed = '+Черновики'
 
 # SEND OPTIONS
 set ssl_starttls  = yes

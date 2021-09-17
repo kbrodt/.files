@@ -2276,6 +2276,7 @@ config.bind(
 config.bind(",m", "spawn umpv {url}")
 config.bind(",M", "hint links spawn umpv {hint-url}")
 config.bind(";M", "hint --rapid links spawn umpv {hint-url}")
+config.bind(";A", "hint --rapid links spawn umpv --no-video {hint-url}")
 
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')

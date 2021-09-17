@@ -34,6 +34,10 @@ import subprocess
 import string
 
 files = sys.argv[1:]
+use_video = True
+if files[0] == "--no-video":
+    use_video = False
+    files = files[1:]
 
 # this is the same method mpv uses to decide this
 def is_url(filename):
@@ -79,8 +83,12 @@ else:
     # Let mpv recreate socket if it doesn't already exist.
 
     opts = (os.getenv("MPV") or "mpv").split()
-    opts.extend(["--no-terminal", "--force-window", "--input-ipc-server=" + SOCK,
-                 "--"])
+    if not use_video:
+        opts.extend(["--no-video", "--no-terminal", "--input-ipc-server=" + SOCK,
+                     "--"])
+    else:
+        opts.extend(["--no-terminal", "--force-window", "--input-ipc-server=" + SOCK,
+                     "--"])
     opts.extend(files)
 
     subprocess.check_call(opts)

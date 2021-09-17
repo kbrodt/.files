@@ -13,6 +13,7 @@ set folder    = 'imaps://imap.yandex.ru:993'
 set spoolfile = '+INBOX'
 set record    = '+Отправленные'
 set postponed = '+Черновики'
+unmailboxes *
 
 # SEND OPTIONS
 set ssl_starttls  = yes

@@ -62,3 +62,4 @@ alias \
 	diff="diff --color=auto" \
 	cal="cal -m" \
     pv=pvenv \
+    rem3="rem -p3 | rem2ps | ps2pdf - | zathura -" \

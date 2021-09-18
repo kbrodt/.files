@@ -19,6 +19,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [document and bibliography manager `papis`](https://github.com/papis/papis)
 - [TODO list manager `taskwarrior`](https://taskwarrior.org/)
 - [mail reader `neomutt`](https://neomutt.org/)
+- [sophisticated calendar and alarm `remind`](https://dianne.skoll.ca/projects/remind/)
 
 #### Not tested
 

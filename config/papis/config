@@ -15,7 +15,7 @@ add-file-name = {doc[year]}-{doc[author_list][0][family]}-{doc[title]}
 # notes-name
 notes-name = notes.md
 # Change the cite key format (papis "ref")
-ref-format = {doc[author_list][0][family]}{doc[year]}
+ref-format = {doc[author_list][0][family]}{doc[year]}{doc[title]}
 default-library = papers
 
 [papers]

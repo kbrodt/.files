@@ -43,6 +43,13 @@ After clonning this repo, run `install` to set up the development environment.
 - [3D creation suite `blender`](https://www.blender.org/)
 - [keyboard-focused browser `qutebrowser`](https://qutebrowser.org/)
 
+### etc
+
+- [copy and paste `xclip`](https://github.com/astrand/xclip)
+- [keybindings `sxhkd`](https://github.com/baskerville/sxhkd)
+- [music control `playerctl`](https://github.com/altdesktop/playerctl)
+- [plugin to control with standard media keys `mpv-mpris`](https://github.com/hoyon/mpv-mpris)
+
 ## Useful cli
 
 ### IP info

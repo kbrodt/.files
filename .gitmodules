@@ -27,6 +27,3 @@
 [submodule "vim/pack/default/start/vimwiki"]
 	path = vim/pack/default/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
-[submodule "vim/pack/default/start/nvim-lspconfig"]
-	path = vim/pack/default/start/nvim-lspconfig
-	url = https://github.com/neovim/nvim-lspconfig.git

@@ -73,6 +73,4 @@ curl -F "shorten=SOME_URL" http://0x0.st
 
 ## TODO
 
-- [ ] [native nvim lsp](https://github.com/neovim/nvim-lspconfig)
-- [ ] [nvim-compe](https://github.com/hrsh7th/nvim-compe)
 - [ ] [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)

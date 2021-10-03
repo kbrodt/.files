@@ -35,7 +35,7 @@
 - shell:
   - [bash fzf/install.sh, Installing fzf]
   - [bash neovim/install.sh, Installing neovim]
-  - [bash coc/install.sh, Installing coc]
+  - [bash lsp/install.sh, Installing lsp]
   - [bash pyide/install.sh, Installing python ide tools]
 
 - create:

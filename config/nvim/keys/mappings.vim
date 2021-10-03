@@ -44,3 +44,8 @@ nnoremap <expr> j (v:count > 5 ? "m`" . v:count : "") . 'j'
 
 " incriment
 noremap <A-x> <C-a>
+
+" buffer
+map gn :bn<cr>
+map gp :bn<cr>
+map gq :bdel<cr>

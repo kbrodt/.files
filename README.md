@@ -27,6 +27,8 @@ After clonning this repo, run `install` to set up the development environment.
 - music piracy `smloadr`
 - [movies/tv piracy `stremio`](https://www.stremio.com/)
 - [ebooks `foliate`](https://johnfactotum.github.io/foliate/)
+- [entertainment system `kodi`](https://kodi.tv/)
+- [video conferencing `jitsi`](https://jitsi.org/)
 
 ### CLI
 
@@ -70,6 +72,10 @@ curl wttr.in/CITY
 curl -F "file=@SOME_FILE" http://0x0.st
 curl -F "shorten=SOME_URL" http://0x0.st
 ```
+
+## Games
+
+- [RTS `0 A.D.`](https://play0ad.com/)
 
 ## TODO
 

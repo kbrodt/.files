@@ -1,6 +1,6 @@
 # Webbrowser/Discord
 super + {w, c}
-    {firefox, discord}
+    {qutebrowser, discord}
 
 # Mute microphone/volume
 super + {F7, F8}

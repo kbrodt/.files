@@ -1,5 +1,5 @@
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,menuone,noselect'
 
 -- nvim-cmp setup
 local cmp = require('cmp')
@@ -24,20 +24,22 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = function(core, fallback)
+    ['<Tab>'] = function(fallback)
       if vim.fn.pumvisible() == 1 then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
-      elseif not check_back_space() then
-        cmp.mapping.complete()(core, fallback)
+      -- if cmp.visible() then
+        -- cmp.select_next_item()
       else
-        vim.cmd(':>')
+        fallback()
       end
     end,
     ['<S-Tab>'] = function(fallback)
       if vim.fn.pumvisible() == 1 then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      -- if cmp.visible() then
+        -- cmp.select_prev_item()
       else
-        vim.cmd(':<')
+        fallback()
       end
     end,
   },

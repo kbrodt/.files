@@ -47,5 +47,5 @@ noremap <A-x> <C-a>
 
 " buffer
 map gn :bn<cr>
-map gp :bn<cr>
-map gq :bdel<cr>
+map gp :bp<cr>
+map gw :bdel<cr>

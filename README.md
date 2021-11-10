@@ -37,6 +37,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [fast grep `ripgrep`](https://github.com/BurntSushi/ripgrep)
 - [cli benchmarking `hyperfine`](https://github.com/sharkdp/hyperfine)
 - [manage files on cloud storage `rclone`](https://rclone.org/)
+- [`isync`: free IMAP and MailDir mailbox synchronizer](https://isync.sourceforge.io/)
 
 ### GUI
 

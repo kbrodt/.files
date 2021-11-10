@@ -10,13 +10,20 @@ set imap_keepalive = 900
 set mail_check     = 1800
 
 # REMOTE GMAIL FOLDERS
-set folder    = 'imaps://imap.gmail.com:993'
+# set folder    = 'imaps://imap.gmail.com:993'
+set mbox_type = Maildir
+set folder    = $my_gmail_folder
 set spoolfile = '+INBOX'
-set postponed = '+[Gmail]/Drafts'
+set record    = '+Sent'
+set postponed = '+Drafts'
+set trash     = '+Trash'
 unmailboxes *
+mailboxes =INBOX =Sent =Drafts =Trash =Spam
 
 # SEND OPTIONS
 set realname  = $my_name
 set from      = $my_gmail_user
 set smtp_url  = 'smtp://'$my_gmail_user'@smtp.gmail.com:587/'
 set smtp_pass = $my_gmail_pass
+
+macro index S '<shell-escape>mbsync -V gmail-inbox gmail-sent<enter>' "sync email"

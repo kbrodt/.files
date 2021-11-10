@@ -21,6 +21,7 @@
     ~/.local/bin/:
       path: scripts/**
       glob: true
+    ~/.mbsyncrc:
     ~/.shell:
     ~/.ssh/config: ssh/config
     ~/.taskrc:

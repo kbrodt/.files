@@ -1,0 +1,147 @@
+# IMAPAccount (gmail)
+
+IMAPAccount gmail
+Host imap.gmail.com
+Port 993
+# User ***
+UserCmd "pass Google/neomutt | cut -d' ' -f1"
+# Pass ***************
+## To store the password in an encrypted file use PassCmd instead of Pass
+# PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.authinfo.gpg | awk '/machine account@gmail.com/ {print $6}'"
+PassCmd "pass Google/neomutt | cut -d' ' -f2"
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+AuthMechs LOGIN
+SSLVersions TLSv1.2
+# Increase timeout
+Timeout 120
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.local/share/email/gmail/
+Inbox ~/.local/share/email/gmail/INBOX
+SubFolders Verbatim
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns * ![Gmail]* ![Mailbox]*
+CopyArrivalDate yes
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Sync the movement of messages between folders and deletions, add after making sure the sync works
+Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+Channel gmail-inbox
+Far :gmail-remote:"INBOX"
+Near :gmail-local:"INBOX"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-sent
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:"Sent"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-trash
+Far :gmail-remote:"[Gmail]/Bin"
+Near :gmail-local:"Trash"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-spam
+Far :gmail-remote:"[Gmail]/Spam"
+Near :gmail-local:"Spam"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-all
+Far :gmail-remote:"[Gmail]/All Mail"
+Near :gmail-local:"Archive"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Channel gmail-drafts
+Far :gmail-remote:"[Gmail]/Drafts"
+Near :gmail-local:"Drafts"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-sent
+Channel gmail-trash
+Channel gmail-all
+Channel gmail-spam
+Channel gmail-drafts
+
+
+## IMAPAccount (Yandex)
+
+IMAPAccount yandex
+Host imap.yandex.ru
+Port 993
+# User ***************
+UserCmd "pass Yandex/neomutt | cut -d' ' -f1"
+# Pass ***************
+PassCmd "pass Yandex/neomutt | cut -d' ' -f2"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+AuthMechs LOGIN
+SSLVersion TLSv1.2
+Timeout 120
+
+IMAPStore yandex-remote
+Account yandex
+
+MaildirStore yandex-local
+Path ~/.local/share/email/yandex/
+Inbox ~/.local/share/email/yandex/INBOX
+SubFolders Verbatim
+
+Channel yandex
+Far :yandex-remote:
+Near :yandex-local:
+Patterns *
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Channel yandex-inbox
+Far :yandex-remote:"INBOX"
+Near :yandex-local:"INBOX"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Channel yandex-sent
+Far :yandex-remote:"&BB4EQgQ,BEAEMAQyBDsENQQ9BD0ESwQ1-"
+Near :yandex-local:"&BB4EQgQ,BEAEMAQyBDsENQQ9BD0ESwQ1-"
+CopyArrivalDate yes
+Create Both
+Expunge Both
+SyncState *
+
+Group yandex
+Channel yandex-inbox
+Channel yandex-sent

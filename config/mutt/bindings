@@ -6,8 +6,10 @@ bind index,pager g noop
 # bind index \Cf noop
 
 # Macros
-macro index ig '<change-folder>imaps://imap.gmail.com<enter>' "Go to gmail"
-macro index iy '<change-folder>imaps://imap.yandex.ru<enter>' "Go to yandex"
+# macro index ig '<change-folder>imaps://imap.gmail.com<enter>' "Go to gmail"
+# macro index iy '<change-folder>imaps://imap.yandex.ru<enter>' "Go to yandex"
+macro index ig '<sync-mailbox><enter-command>source ~/.config/mutt/gmail<enter><change-folder>!<enter>;<check-stats>' "Go to gmail"
+macro index iy '<sync-mailbox><enter-command>source ~/.config/mutt/yandex<enter><change-folder>!<enter>;<check-stats>' "Go to yandex"
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
 macro browser h '<change-dir><kill-line>..<enter>' "Go to parent folder"
@@ -60,9 +62,9 @@ bind pager R group-reply
 # bind index,pager H view-raw-message
 
 # Sidebar mappings
-bind index,pager \ck sidebar-prev
-bind index,pager \cj sidebar-next
-bind index,pager \co sidebar-open
+bind index,pager K sidebar-prev
+bind index,pager J sidebar-next
+bind index,pager L sidebar-open
 bind index,pager \cp sidebar-prev-new
 bind index,pager \cn sidebar-next-new
 bind index,pager B sidebar-toggle-visible

@@ -9,11 +9,15 @@ set imap_keepalive = 900
 set mail_check     = 1800
 
 # REMOTE YANDEX FOLDERS
-set folder    = 'imaps://imap.yandex.ru:993'
+# set folder    = 'imaps://imap.yandex.ru:993'
+set mbox_type = Maildir
+set folder    = $my_yandex_folder
 set spoolfile = '+INBOX'
 set record    = '+Отправленные'
 set postponed = '+Черновики'
+set trash     = '+Удаленные'
 unmailboxes *
+mailboxes =INBOX '+Отправленные' '+Удаленные' '+Спам'
 
 # SEND OPTIONS
 set ssl_starttls  = yes
@@ -22,3 +26,5 @@ set realname      = $my_name
 set from          = $my_yandex_user
 set smtp_url      = 'smtps://'$my_yandex_user'@smtp.yandex.ru:465/'
 set smtp_pass     = $my_yandex_pass
+
+macro index S '<shell-escape>mbsync -V yandex-inbox yandex-sent<enter>' "sync email"

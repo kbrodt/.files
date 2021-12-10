@@ -4,3 +4,5 @@ map D toggle_page_mode
 # set selection-clipboard clipboard
 
 map <C-e> exec 'xournalpp "%"'
+
+set guioptions ""

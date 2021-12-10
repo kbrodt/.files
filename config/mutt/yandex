@@ -27,4 +27,4 @@ set from          = $my_yandex_user
 set smtp_url      = 'smtps://'$my_yandex_user'@smtp.yandex.ru:465/'
 set smtp_pass     = $my_yandex_pass
 
-macro index S '<shell-escape>mbsync -V yandex-inbox yandex-sent<enter>' "sync email"
+macro index S '<shell-escape>mbsync yandex-inbox yandex-sent > /dev/null 2>&1 &<enter><shell-escape>notmuch new<enter>' "sync email"

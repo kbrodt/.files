@@ -26,4 +26,4 @@ set from      = $my_gmail_user
 set smtp_url  = 'smtp://'$my_gmail_user'@smtp.gmail.com:587/'
 set smtp_pass = $my_gmail_pass
 
-macro index S '<shell-escape>mbsync -V gmail-inbox gmail-sent<enter>' "sync email"
+macro index S '<shell-escape>mbsync gmail-inbox gmail-sent > /dev/null 2>&1 &<enter><shell-escape>notmuch new<enter>' "sync email"

@@ -35,6 +35,7 @@ set relativenumber
 set showcmd             " show command in bottom bar
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
+set list
 set showmatch           " highlight matching [{()}]
 set laststatus=2        " Always display the statusline in all windows
 set showtabline=2       " Always display the tabline, even if there is only one tab

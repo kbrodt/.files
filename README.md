@@ -20,15 +20,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [TODO list manager `taskwarrior`](https://taskwarrior.org/)
 - [mail reader `neomutt`](https://neomutt.org/)
 - [sophisticated calendar and alarm `remind`](https://dianne.skoll.ca/projects/remind/)
-
-#### Not tested
-
-- [music player `cmus`](https://cmus.github.io/)
-- music piracy `smloadr`
-- [movies/tv piracy `stremio`](https://www.stremio.com/)
-- [ebooks `foliate`](https://johnfactotum.github.io/foliate/)
-- [entertainment system `kodi`](https://kodi.tv/)
-- [video conferencing `jitsi`](https://jitsi.org/)
+- [keyboard-focused browser `qutebrowser`](https://qutebrowser.org/)
 
 ### CLI
 
@@ -44,14 +36,33 @@ After clonning this repo, run `install` to set up the development environment.
 - [note-taken software `xournalpp`](https://xournalpp.github.io/)
 - [office suite `libreoffice`](https://www.libreoffice.org/)
 - [3D creation suite `blender`](https://www.blender.org/)
-- [keyboard-focused browser `qutebrowser`](https://qutebrowser.org/)
+- [Desktop app `jitsi meet`](https://github.com/jitsi/jitsi-meet-electron)
 
 ### etc
 
 - [copy and paste `xclip`](https://github.com/astrand/xclip)
 - [keybindings `sxhkd`](https://github.com/baskerville/sxhkd)
 - [music control `playerctl`](https://github.com/altdesktop/playerctl)
-- [plugin to control with standard media keys `mpv-mpris`](https://github.com/hoyon/mpv-mpris)
+- [plugin to control mpv with standard functional media keys `mpv-mpris`](https://github.com/hoyon/mpv-mpris)
+
+### server
+
+- [proxy server `nginx`](https://nginx.org/en/)
+- [nonprofit certificate authority `letsencrypt`](https://letsencrypt.org/)
+- [hyperfast web frontend for git repos `cgit`](https://git.zx2c4.com/cgit/about/)
+- [productivity platform `nextcloud`](https://nextcloud.com/)
+- [video conferencing `jitsi`](https://jitsi.org/)
+- [uncomplicated firewall `ufw`]()
+- [`fail2ban`](https://www.fail2ban.org/wiki/index.php/Main_Page)
+- [`prosody` a modern XMPP communication server](https://prosody.im/)
+
+#### Not tested
+
+- [music player `cmus`](https://cmus.github.io/)
+- music piracy `smloadr`
+- [movies/tv piracy `stremio`](https://www.stremio.com/)
+- [ebooks `foliate`](https://johnfactotum.github.io/foliate/)
+- [entertainment system `kodi`](https://kodi.tv/)
 
 ## Useful cli
 

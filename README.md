@@ -14,7 +14,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [media player `mpv`](https://mpv.io/)
 - [document viewer `zathura`](https://pwmt.org/projects/zathura/)
 - [image viewer `sxiv`](https://github.com/muennich/sxiv)
-- [3D viewer `f3d`](https://kitware.github.io/F3D)
+- [3D viewer `f3d`](https://f3d-app.github.io/f3d/)
 - [password manager `pass`](https://www.passwordstore.org/)
 - [document and bibliography manager `papis`](https://github.com/papis/papis)
 - [TODO list manager `taskwarrior`](https://taskwarrior.org/)

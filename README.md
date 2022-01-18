@@ -21,6 +21,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [mail reader `neomutt`](https://neomutt.org/)
 - [sophisticated calendar and alarm `remind`](https://dianne.skoll.ca/projects/remind/)
 - [keyboard-focused browser `qutebrowser`](https://qutebrowser.org/)
+- [RSS feed reader `newsboat`](https://newsboat.org/)
 
 ### CLI
 

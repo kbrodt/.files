@@ -18,6 +18,10 @@ case "${MODE}" in
             --output eDP-1 --auto --pos 2560x1200 \
             --output HDMI-1 --primary --mode 2560x1600 --auto --pos 0x0 \
 
+        for s in $(seq 20 24); do
+            xsetwacom --set ""${s}"" MapToOutput HDMI-1
+        done
+
         ;;
     off)
         xrandr \

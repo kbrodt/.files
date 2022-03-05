@@ -55,7 +55,7 @@ c.auto_save.session = True
 ## Valid values:
 ##   - webengine: Use QtWebEngine (based on Chromium - recommended).
 ##   - webkit: Use QtWebKit (based on WebKit, similar to Safari - many known security issues!).
-# c.backend = 'webengine'
+c.backend = 'webengine'
 
 ## Map keys to other keys, so that they are equivalent in all modes. When
 ## the key used as dictionary-key is pressed, the binding for the key
@@ -2348,6 +2348,9 @@ config.bind(
 # config.bind('<Shift-Tab>', 'completion-item-focus prev', mode='command')
 # config.bind('<Tab>', 'completion-item-focus next', mode='command')
 # config.bind('<Up>', 'completion-item-focus --history prev', mode='command')
+
+config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
 
 ## Bindings for hint mode
 # config.bind('<Ctrl-B>', 'hint all tab-bg', mode='hint')

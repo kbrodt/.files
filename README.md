@@ -22,6 +22,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [sophisticated calendar and alarm `remind`](https://dianne.skoll.ca/projects/remind/)
 - [keyboard-focused browser `qutebrowser`](https://qutebrowser.org/)
 - [RSS feed reader `newsboat`](https://newsboat.org/)
+- [`profanity` XMPP client](https://profanity-im.github.io/)
 
 ### CLI
 
@@ -45,6 +46,8 @@ After clonning this repo, run `install` to set up the development environment.
 - [keybindings `sxhkd`](https://github.com/baskerville/sxhkd)
 - [music control `playerctl`](https://github.com/altdesktop/playerctl)
 - [plugin to control mpv with standard functional media keys `mpv-mpris`](https://github.com/hoyon/mpv-mpris)
+- [`barrier` share keyboard between multiple computers](https://github.com/debauchee/barrier)
+- [`weylus`](https://github.com/H-M-H/Weylus)
 
 ### server
 
@@ -56,6 +59,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [uncomplicated firewall `ufw`]()
 - [`fail2ban`](https://www.fail2ban.org/wiki/index.php/Main_Page)
 - [`prosody` a modern XMPP communication server](https://prosody.im/)
+- [`mumble` voice chat application](https://www.mumble.info/)
 
 #### Not tested
 

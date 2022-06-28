@@ -14,8 +14,11 @@ if [ ! -x "$(command -v nvim)" ]; then
 
     cd "$NEOVIM"
 
-    make CMAKE_BUILD_TYPE=Release -j$((`nproc`+1))
-    make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME"/.local/nvim install
+    mkdir -p build
+    cd build
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${HOME}"/.local/nvim
+    make -j$((`nproc`+1))
+    make install
 
     grep \
         'export PATH="$HOME/.local/nvim/bin:$PATH"' "$HOME"/.bashrc -q \
@@ -25,6 +28,9 @@ elif [ -d "$NEOVIM" ]; then  # update
     cd "$NEOVIM"
     git pull
 
-    make CMAKE_BUILD_TYPE=Release -j$((`nproc`+1))
-    make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="$HOME"/.local/nvim install
+    mkdir -p build
+    cd build
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${HOME}"/.local/nvim
+    make -j$((`nproc`+1))
+    make install
 fi

@@ -32,6 +32,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [cli benchmarking `hyperfine`](https://github.com/sharkdp/hyperfine)
 - [manage files on cloud storage `rclone`](https://rclone.org/)
 - [`isync`: free IMAP and MailDir mailbox synchronizer](https://isync.sourceforge.io/)
+- [`videogrep` searches through dialog in video](https://antiboredom.github.io/videogrep/)
 
 ### GUI
 
@@ -39,6 +40,8 @@ After clonning this repo, run `install` to set up the development environment.
 - [office suite `libreoffice`](https://www.libreoffice.org/)
 - [3D creation suite `blender`](https://www.blender.org/)
 - [Desktop app `jitsi meet`](https://github.com/jitsi/jitsi-meet-electron)
+- [Vector graphics editor `inkscape`](https://inkscape.org/)
+- [Image editor `gimp`](https://www.gimp.org/)
 
 ### etc
 
@@ -60,6 +63,9 @@ After clonning this repo, run `install` to set up the development environment.
 - [`fail2ban`](https://www.fail2ban.org/wiki/index.php/Main_Page)
 - [`prosody` a modern XMPP communication server](https://prosody.im/)
 - [`mumble` voice chat application](https://www.mumble.info/)
+- [`transfer.sh` easy and fast file sharing](https://github.com/dutchcoders/transfer.sh)
+  - [How to self host server behind proxy](https://github.com/dutchcoders/transfer.sh/issues/458)
+  - [`oshi.at`](https://github.com/somenonymous/OshiUpload)
 
 #### Not tested
 

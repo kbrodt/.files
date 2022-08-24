@@ -4,11 +4,11 @@ IMAPAccount gmail
 Host imap.gmail.com
 Port 993
 # User ***
-UserCmd "pass social/Google/neomutt | cut -d' ' -f1"
+UserCmd "pass social/google/neomutt | cut -d' ' -f1"
 # Pass ***************
 ## To store the password in an encrypted file use PassCmd instead of Pass
 # PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.authinfo.gpg | awk '/machine account@gmail.com/ {print $6}'"
-PassCmd "pass social/Google/neomutt | cut -d' ' -f2"
+PassCmd "pass social/google/neomutt | cut -d' ' -f2"
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 AuthMechs LOGIN
@@ -99,9 +99,9 @@ IMAPAccount yandex
 Host imap.yandex.ru
 Port 993
 # User ***************
-UserCmd "pass social/Yandex/neomutt | cut -d' ' -f1"
+UserCmd "pass social/yandex/neomutt | cut -d' ' -f1"
 # Pass ***************
-PassCmd "pass social/Yandex/neomutt | cut -d' ' -f2"
+PassCmd "pass social/yandex/neomutt | cut -d' ' -f2"
 AuthMechs LOGIN
 SSLType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt

@@ -1,10 +1,10 @@
 # Keyboard layout
 # setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle
-setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle
+setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle,win:swapcaps
 # xbindkeys
 sxhkd &
 
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+# [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # Run slstatus
 slstatus &

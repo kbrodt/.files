@@ -3,6 +3,6 @@ map d scroll half-down
 map D toggle_page_mode
 # set selection-clipboard clipboard
 
-map <C-e> exec 'xournalpp "%"'
+map <C-e> exec 'xournalpp $FILE'
 
 set guioptions ""

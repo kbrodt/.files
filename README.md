@@ -50,7 +50,9 @@ After clonning this repo, run `install` to set up the development environment.
 - [music control `playerctl`](https://github.com/altdesktop/playerctl)
 - [plugin to control mpv with standard functional media keys `mpv-mpris`](https://github.com/hoyon/mpv-mpris)
 - [`barrier` share keyboard between multiple computers](https://github.com/debauchee/barrier)
-- [`weylus`](https://github.com/H-M-H/Weylus)
+- [`weylus` tablet into a graphic touch screen](https://github.com/H-M-H/Weylus)
+- [`ventoy` bootable USB](https://www.ventoy.net/en/index.html)
+- [`qemu` machine emulator](https://www.qemu.org/)
 
 ### server
 

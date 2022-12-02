@@ -42,6 +42,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [Desktop app `jitsi meet`](https://github.com/jitsi/jitsi-meet-electron)
 - [Vector graphics editor `inkscape`](https://inkscape.org/)
 - [Image editor `gimp`](https://www.gimp.org/)
+- [`dragon` drag-on-drop source/sink](https://github.com/mwh/dragon)
 
 ### etc
 
@@ -68,6 +69,8 @@ After clonning this repo, run `install` to set up the development environment.
 - [`transfer.sh` easy and fast file sharing](https://github.com/dutchcoders/transfer.sh)
   - [How to self host server behind proxy](https://github.com/dutchcoders/transfer.sh/issues/458)
   - [`oshi.at`](https://github.com/somenonymous/OshiUpload)
+- [`yt-local` browser-based client for watching Youtube](https://git.sr.ht/~heckyel/yt-local)
+- [`syncthing` continuous file synchronization](https://syncthing.net/)
 
 #### Not tested
 

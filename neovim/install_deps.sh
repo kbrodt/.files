@@ -20,6 +20,16 @@ installubuntu() {
         pkg-config \
         unzip \
         curl \
+        libuv \
+        libluv \
+        libtermkey \
+        libvterm \
+        luajit \
+        lua-lpeg \
+        lua-mpack \
+        msgpack-c \
+        tree-sitter \
+        unibilium \
     && sudo apt-get clean \
     && :
 }
@@ -32,8 +42,17 @@ installarch() {
         cmake \
         unzip \
         ninja \
-        tree-sitter \
         curl \
+        libuv \
+        libluv \
+        libtermkey \
+        libvterm \
+        luajit \
+        lua-lpeg \
+        lua-mpack \
+        msgpack-c \
+        tree-sitter \
+        unibilium \
     && :
 }
 

@@ -10,10 +10,6 @@
 	path = vim/pack/default/start/lightline.vim
 	url = https://github.com/itchyny/lightline.vim
     ignore = untracked
-[submodule "vim/bundle/python-syntax"]
-    path = vim/pack/default/start/python-syntax
-    url = https://github.com/vim-python/python-syntax.git
-    ignore = untracked
 [submodule "vim/bundle/fzf.vim"]
 	path = vim/pack/default/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git

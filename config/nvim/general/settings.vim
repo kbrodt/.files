@@ -21,6 +21,11 @@ set shiftwidth=4  " Insert 4 spaces on a tab
 set expandtab     " tabs are spaces, mainly because of python
 set smartindent   " Vim tries to do its best job to indent
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
+" autocmd BufReadPost,FileReadPost * normal zR
+
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype c setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2

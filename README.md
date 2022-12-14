@@ -104,7 +104,3 @@ curl -F "shorten=SOME_URL" http://0x0.st
 ## Games
 
 - [RTS `0 A.D.`](https://play0ad.com/)
-
-## TODO
-
-- [ ] [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)

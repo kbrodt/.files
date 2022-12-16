@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+
+export XAUTHORITY=/home/kbrodt/.Xauthority
+export DISPLAY=:0
+
+acpi -a | grep -q "off-line"
+BATTERY_CHARGING=$?
+BATTERY_LEVEL=`acpi -b | grep "Battery 0" | grep -P -o '[0-9]+(?=%)'`
+
+if [ $BATTERY_CHARGING -eq 1 ]; then
+    dunstify \
+        -a "ignore" \
+        -i "battery-charging" \
+        -h string:x-dunst-stack-tag:battery \
+        -t 5000 \
+        "Charging" \
+        "${BATTERY_LEVEL}% of battery charged."
+elif [ $BATTERY_CHARGING -eq 0 ]; then
+    dunstify \
+        -a "ignore" \
+        -i "battery" \
+        -h string:x-dunst-stack-tag:battery \
+        -t 5000 \
+        "Discharging" \
+        "${BATTERY_LEVEL}% of battery remaining."
+fi

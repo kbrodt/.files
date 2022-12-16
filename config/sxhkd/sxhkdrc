@@ -2,31 +2,68 @@
 super + {w, c}
     {qutebrowser, discord}
 
-# Mute microphone/volume
-super + {F7, F8}
-    amixer -q set {Capture, Master} toggle
+# Mute microphone
+super + F7
+    amixer set Capture toggle | tail -n1 | grep "\[on\]" ;\
+    ( \
+        [ $? -eq 0 ] \
+        && dunstify \
+            -a "ignore" \
+            -h string:x-dunst-stack-tag:volume \
+            -t 2000 \
+            "mic unmuted" \
+    ) || dunstify \
+        -a "ignore" \
+        -h string:x-dunst-stack-tag:volume \
+        -t 2000 \
+        "mic muted"
 
 # Mute volume
-XF86AudioMute
-    amixer -q set Master toggle
+{super + F8, XF86AudioMute}
+    amixer set Master toggle | tail -n1 | grep "\[on\]" ;\
+    ( \
+        [ $? -eq 0 ] \
+        && dunstify \
+            -a "ignore" \
+            -h string:x-dunst-stack-tag:volume \
+            -t 2000 \
+            "volume unmuted" \
+    ) || dunstify \
+            -a "ignore" \
+            -h string:x-dunst-stack-tag:volume \
+            -t 2000 \
+            "volume muted"
 
 # Decrease/Increase volume
 super + {F9, F10}
-    amixer -q set Master 5%{-,+} unmute
+    changevolume {-,+}
 XF86Audio{Lower,Raise}Volume
-    amixer -q set Master 5%{-,+} unmute
+    changevolume {-,+}
+
+# Play mpv music
+super + shift + F11
+    ps aux | grep '[m]pv' | grep -q '[-]-no-video';\
+    [ $? -eq 0 ] && mpv --shuffle --no-video $HOME/music > /dev/null 2>&1 &
+
+# Kill mpv music
+super + ctrl + F11
+    kill -9 $(ps aux | grep "[m]pv" | grep -v "[g]rep" | grep "[-]-no-video" | awk "\{print $2\}")
 
 # Play/pause audio
-super + F11
-    playerctl -a play-pause
-XF86AudioPlay
+{XF86AudioPlay, super + F11}
     playerctl -a play-pause
 
-# Prev/Next audio
-super + F12
-    playerctl previous
+# Prev/next audio
+{super + shift + F12, super + F12}
+    playerctl -a {previous, next}
 XF86Audio{Prev,Next}
-    playerctl {previous, next}
+    playerctl -a {previous, next}
+
+# Position +/- audio
+super + shift + {F9, F10}
+    playerctl -a {position 10-, position 10+}
+shift + XF86Audio{Lower,Raise}Volume
+    playerctl -a {position 10-, position 10+}
 
 # Screenshot
 super + s
@@ -56,3 +93,14 @@ super + shift + e
         | fold -w 240 -s \
         | dmenu -b -fn "monospace:size=16" -l 25 \
         | :
+
+
+# dunstctl commands
+ctrl + grave
+    dunstctl history-pop
+ctrl + space
+    dunstctl close
+ctrl + shift + space
+    dunstctl close-all
+ctrl + period
+    dunstctl context

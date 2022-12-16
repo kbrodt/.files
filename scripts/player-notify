@@ -1,0 +1,71 @@
+#!/usr/bin/env sh
+
+
+if ! ps aux | grep -q "[m]pv --shuffle --no-video $HOME/music"; then
+    mpv --shuffle --no-video $HOME/music 2>&1 &
+    sleep 0.5
+else
+    playerctl -s -p mpv $@
+    sleep 0.0085
+fi
+
+metadata=$(\
+    playerctl -s -p mpv \
+        metadata --format \
+            "title=[{{ title }}] \
+            artist_credit=[{{ artist_credit }}] \
+            artist=[{{ artist }}] \
+            album=[{{ album }}] \
+            original_year=[{{ original_year }}] \
+            year=[{{ year }}] \
+            player=[{{ playerName }}] \
+            status=[{{ status }}] \
+            arturl=[{{ mpris:artUrl }}] \
+            position=[{{ duration(position) }}] \
+            duration=[{{ duration(mpris:length) }}] \
+            url=[{{ xesam:url }}]" \
+)
+
+title=$(echo "${metadata}" | awk -F'[][]' -v RS="" '/title/ {print $2}' | awk 'length > 40{$0=substr($0,0,41)"..."}1')
+
+artist_credit=$(echo "${metadata}" | awk -F'[][]' '/artist_credit/ {print $4}')
+artist=$(echo "${metadata}" | awk -F'[][]' '/artist/ {print $6}')
+artist=${artist_credit:=${artist}}
+artist=${artist:="Unknown"}
+
+album=$(echo "${metadata}" | awk -F'[][]' '/album/ {print $8}')
+
+original_year=$(echo "${metadata}" | awk -F'[][]' '/original_year/ {print $10}')
+year=$(echo "${metadata}" | awk -F'[][]' '/year/ {print $12}')
+year=${original_year:=${year}}
+
+status=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/status/ {print $2}')
+
+duration=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/duration/ {print $2}')
+duration_seconds=$(echo "${duration}" | awk -F: 'NF==3 { printf("%s\n"), ($1 * 3600) + ($2 * 60) + $3 } NF==2 { print ($1 * 60) + $2 } NF==1 { printf("$s\n"), 0 + $1 }')
+
+position=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/position/ {print $2}')
+position_seconds=$(echo "${position}" | awk -F: 'NF==3 { printf("%s\n"), ($1 * 3600) + ($2 * 60) + $3 } NF==2 { print ($1 * 60) + $2 } NF==1 { printf("$s\n"), 0 + $1 }')
+
+position_percent=$(echo "${position_seconds} ${duration_seconds}" | awk '{ print ($1 / $2) * 100 }' | awk -F. '{ print $1 }')
+
+icon=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/arturl/ {print $2}')
+icon=${icon:="mpv"}
+
+summary=$(printf \
+    "%-7s: %s — %s" "${status}" "${artist}" "${album}" \
+)
+if [ -n "${year}" ]; then
+    summary=$(printf "%s (%s)" "${summary}" "${year}")
+else
+    summary=$(printf "%s" "${summary}")
+fi
+
+dunstify \
+    -a "ignore" \
+    -h string:x-dunst-stack-tag:player \
+    -h "int:value:${position_percent}" \
+    -t 5000 \
+    -i "${icon}" \
+    "${title}" \
+    "${summary}"

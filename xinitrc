@@ -12,6 +12,9 @@ slstatus &
 # Hide the mouse coursor after 3 seconds of inactivity
 unclutter -idle 3 &
 
+# run remind daemon and popup notifications
+remind -z -k'dunstify -t 0 %s' ~/.reminders/ &
+
 # Start pipewire
 sh ~/pipewire-pulse.sh &
 

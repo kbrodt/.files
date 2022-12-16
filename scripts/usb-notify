@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+
+export XAUTHORITY=/home/kbrodt/.Xauthority
+export DISPLAY=:0
+
+
+dunstify \
+    -a "ignore" \
+    -t 5000 \
+    "Device connected" \
+    "$1"
+

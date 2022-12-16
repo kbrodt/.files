@@ -30,7 +30,7 @@ bind-key x pb-delete
 
 browser "qutebrowser %u"
 macro , open-in-browser
-macro c set browser "echo %u | xclip -r -sel c"; open-in-browser; # set browser "qutebrowser %u"
+macro c set browser "echo %u | xclip -r -sel c"; open-in-browser; set browser "qutebrowser %u"
 macro v set browser "setsid -f mpv"; open-in-browser; set browser "qutebrowser %u"
 
 highlight feedlist "---.*---" yellow default bold
@@ -49,3 +49,6 @@ highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
 datetime-format "%d/%m/%Y"
+
+notify-format "%d new articles (%n unread articles, %f unread feeds)"
+notify-program "/usr/bin/dunstify"

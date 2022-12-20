@@ -24,17 +24,17 @@ Path ~/.local/share/email/gmail/
 Inbox ~/.local/share/email/gmail/INBOX
 SubFolders Verbatim
 
-Channel gmail
-Far :gmail-remote:
-Near :gmail-local:
-Patterns * ![Gmail]* ![Mailbox]*
-CopyArrivalDate yes
-# Automatically create missing mailboxes, both locally and on the server
-Create Both
-# Sync the movement of messages between folders and deletions, add after making sure the sync works
-Expunge Both
-# Save the synchronization state files in the relevant directory
-SyncState *
+#Channel gmail
+#Far :gmail-remote:
+#Near :gmail-local:
+#Patterns * ![Gmail]* ![Mailbox]*
+#CopyArrivalDate yes
+## Automatically create missing mailboxes, both locally and on the server
+#Create Both
+## Sync the movement of messages between folders and deletions, add after making sure the sync works
+#Expunge Both
+## Save the synchronization state files in the relevant directory
+#SyncState *
 
 Channel gmail-inbox
 Far :gmail-remote:"INBOX"
@@ -54,6 +54,7 @@ SyncState *
 
 Channel gmail-trash
 Far :gmail-remote:"[Gmail]/Bin"
+# Far :gmail-remote:"[Gmail]/&BBoEPgRABDcEOAQ9BDA-"
 Near :gmail-local:"Trash"
 CopyArrivalDate yes
 Create Both
@@ -62,6 +63,7 @@ SyncState *
 
 Channel gmail-spam
 Far :gmail-remote:"[Gmail]/Spam"
+# Far :gmail-remote:"[Gmail]/&BCEEPwQwBDw-"
 Near :gmail-local:"Spam"
 CopyArrivalDate yes
 Create Both
@@ -70,6 +72,7 @@ SyncState *
 
 Channel gmail-all
 Far :gmail-remote:"[Gmail]/All Mail"
+# Far :gmail-remote:"[Gmail]/&BBIEQQRP- &BD8EPgRHBEIEMA-"
 Near :gmail-local:"Archive"
 CopyArrivalDate yes
 Create Both
@@ -78,6 +81,7 @@ SyncState *
 
 Channel gmail-drafts
 Far :gmail-remote:"[Gmail]/Drafts"
+# Far :gmail-remote:"[Gmail]/&BCcENQRABD0EPgQyBDgEOgQ4-"
 Near :gmail-local:"Drafts"
 CopyArrivalDate yes
 Create Both
@@ -121,6 +125,7 @@ Channel yandex
 Far :yandex-remote:
 Near :yandex-local:
 Patterns *
+# Patterns "INBOX" "Archive" "Trash" "Spam" "Drafts" "Sent"
 CopyArrivalDate yes
 Create Both
 Expunge Both

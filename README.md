@@ -34,6 +34,9 @@ After clonning this repo, run `install` to set up the development environment.
 - [manage files on cloud storage `rclone`](https://rclone.org/)
 - [`isync`: free IMAP and MailDir mailbox synchronizer](https://isync.sourceforge.io/)
 - [`videogrep` searches through dialog in video](https://antiboredom.github.io/videogrep/)
+- [`rdrview` tool to extract the main content from a webpage](https://github.com/eafer/rdrview)
+- [`jq` json processor](https://stedolan.github.io/jq/)
+- [`pup` html processor](https://github.com/ericchiang/pup)
 
 ### GUI
 
@@ -72,6 +75,8 @@ After clonning this repo, run `install` to set up the development environment.
   - [`oshi.at`](https://github.com/somenonymous/OshiUpload)
 - [`yt-local` browser-based client for watching Youtube](https://git.sr.ht/~heckyel/yt-local)
 - [`syncthing` continuous file synchronization](https://syncthing.net/)
+- [`gotify` server for sending and receiving messages](https://gotify.net/)
+  - [cli client with `wscat`](https://github.com/gotify/server/issues/255)
 
 #### Not tested
 

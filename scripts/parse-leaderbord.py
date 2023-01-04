@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 
 TOPK = 10
-WIDTH = 16
+WIDTH_USER = 16
 WIDTH_SCORE = 13
 WIDTH_TIME = 13
 DATE_FORMAT = "%d %b %H:%M"
@@ -15,19 +15,19 @@ ME = "kbrodt"
 LB_PATH = fr"/tmp/competitions_lb.txt"
 
 
-def shorten(text):
-    if len(text) > WIDTH - 2:
-        text = text[:WIDTH - 4] + ".."
+def shorten(text, width):
+    if len(text) > width - 2:
+        text = text[:width - 4] + ".."
 
     return text
 
 
 def create_lb_table(result, url):
     user, score, date = result[0]
-    body = rf"<b>   {user:<{WIDTH}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}</b>\n"
+    body = rf"<b>   {user:<{WIDTH_USER}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}</b>\n"
     for i, res in enumerate(result[1:], start=1):
         user, score, date = res
-        _body = fr"{i:>2} {user:<{WIDTH}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}"
+        _body = fr"{i:>2} {user:<{WIDTH_USER}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}"
         if user == ME:
             _body = fr"<b>{_body}</b>"
 
@@ -48,10 +48,9 @@ def parse_aicrowd(url):
     table = soup.find(name="table", attrs={"class": "table"})
 
     header = table.find(name="thead")
-    header_cols = header.find_all(name="th")
-    _, _, user, score, _, _, date, *_ = header_cols
+    _, _, user, score, _, _, date, *_ = header.find_all(name="th")
     user = user.text.strip()
-    user = shorten(user)
+    user = shorten(user, WIDTH_USER)
     score = score.text.strip()
     date = date.text.strip()
     result = []
@@ -68,10 +67,10 @@ def parse_aicrowd(url):
             user = team
 
         user = user.text.strip()
-        user = shorten(user)
+        user = shorten(user, WIDTH_USER)
         score = float(score.text.strip())
         date = date.find(name="time")
-        date: datetime.datetime = datetime.datetime.strptime(date.text, '%a, %d %b %Y %H:%M')
+        date = datetime.datetime.strptime(date.text, "%a, %d %b %Y %H:%M")
         date = date.strftime(DATE_FORMAT)
 
         result.append((user, score, date))
@@ -86,10 +85,9 @@ def parse_drivendata(url):
     table = soup.find(name="table", attrs={"id": "leaderTable"})
 
     header = table.find(name="thead")
-    header_cols = header.find_all(name="th")
-    _, user, score, date, *_ = header_cols
+    _, user, score, date, *_ = header.find_all(name="th")
     user = user.text.strip()
-    user = shorten(user)
+    user = shorten(user, WIDTH_USER)
     _, score = [s.strip() for s in score.text.splitlines() if len(s.strip()) > 0]
     date = date.text.strip()
 
@@ -107,11 +105,42 @@ def parse_drivendata(url):
             user = team
 
         user = user.text.strip()
-        user = shorten(user)
+        user = shorten(user, WIDTH_USER)
         score = float(score.text.strip())
         date = date.text.strip()
-        date: datetime.datetime = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S')
+        date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
         date = date.strftime(DATE_FORMAT)
+
+        result.append((user, score, date))
+
+    return result
+
+
+def parse_codalab(url):
+    page = requests.get(url)
+    soup = BeautifulSoup(page.content, "html.parser")
+
+    table = soup.find(name="table", attrs={"class": "resultsTable dataTable"})
+    _, header, _, *row_elements = table.find_all(name="tr")
+    _, user, _, date, score, *_ = header.find_all(name="th")
+    user = user.text.strip()
+    user = shorten(user, WIDTH_USER)
+    score = score.text.strip()
+    date = date.text.strip()
+    date = shorten(date, WIDTH_TIME)
+
+    result = []
+    result.append((user, score, date))
+
+    for row_element in row_elements[:TOPK]:
+        _, user, _, date, score, *_ = row_element.find_all(name="td")
+
+        user = user.text.strip()
+        user = shorten(user, WIDTH_USER)
+        score = float(score.text.strip().split()[0])
+        date = date.text.strip()
+        date = datetime.datetime.strptime(date, "%m/%d/%y")
+        date = date.strftime(DATE_FORMAT[:-6])
 
         result.append((user, score, date))
 
@@ -124,6 +153,8 @@ def main():
         result = parse_aicrowd(url)
     elif "drivendata" in url:
         result = parse_drivendata(url)
+    elif "codalab" in url:
+        result = parse_codalab(url)
     else:
         return 1
 

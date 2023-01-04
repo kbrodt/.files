@@ -31,7 +31,7 @@ bind-key x pb-delete
 browser "qutebrowser %u"
 macro , open-in-browser
 macro c set browser "echo %u | xclip -r -sel c"; open-in-browser; set browser "qutebrowser %u"
-macro v set browser "setsid -f mpv"; open-in-browser; set browser "qutebrowser %u"
+macro v set browser "setsid -f mpv --really-quiet --no-terminal"; open-in-browser; set browser "qutebrowser %u"
 
 highlight feedlist "---.*---" yellow default bold
 highlight feedlist "---.*" yellow default bold

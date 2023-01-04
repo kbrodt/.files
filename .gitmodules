@@ -17,9 +17,6 @@
 [submodule "zsh/plugins/fast-syntax-highlighting"]
 	path = zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting
-[submodule "vim/pack/default/start/vim-markdown"]
-	path = vim/pack/default/start/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "vim/pack/default/start/vimwiki"]
 	path = vim/pack/default/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git

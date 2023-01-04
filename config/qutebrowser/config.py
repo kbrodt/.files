@@ -2267,11 +2267,11 @@ c.url.searchengines["w"] = "https://www.wiby.me/search?q={}"
 # config.bind('yy', 'yank')
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
-config.bind(",a", "spawn mpv --no-video {url}")
-config.bind(",V", "spawn youtube-dl -ciw -o ~/dl/%(title)s.%(ext)s {url}")
+config.bind(",a", "spawn mpv --no-video --really-quiet --no-terminal {url}")
+config.bind(",V", "spawn yt-dlp -ciw -o ~/dl/%(title)s.%(ext)s {url}")
 config.bind(
     ",A",
-    "spawn youtube-dl -f \"bestaudio/best\" -ciw -o ~/dl/%(title)s.%(ext)s"
+    "spawn yt-dlp -f \"bestaudio/best\" -ciw -o ~/dl/%(title)s.%(ext)s"
     " --extract-audio --audio-quality 0 --audio-format mp3 {url}",
 )
 config.bind(",m", "spawn umpv {url}")

@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+
+export DISPLAY=:0
+export XAUTHORITY=~/.Xauthority
+
+while read url; do
+    python $HOME/.local/bin/parse-leaderbord.py "${url}" \
+        && dunstify \
+            -a "kaggle" \
+            -t 0 \
+            "${url}" \
+            "$(jq -r "select(.url==\"${url}\") | .body" /tmp/competitions_lb.txt)" \
+
+done < $HOME/.local/share/competition_links.txt

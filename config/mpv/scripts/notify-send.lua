@@ -1,11 +1,17 @@
 local utils = require "mp.utils"
 
-local cover_filenames = { "folder.jpg", "folder.png", "front.jpg", "front.png",
-                          "Folder.jpg", "Folder.png", "Front.jpg", "Front.png",
-                          "cover.png", "cover.jpg", "cover.jpeg",
-                          "Cover.png", "Cover.jpg", "Cover.jpeg",
-                          "Art.jpg", "art.jpg", "Art.png", "Art.jpg",
-                          "Album.jpg", "album.jpg", "Album.png", "album.png" }
+local cover_filenames = {
+    "folder", "Folder",
+    "front", "Front",
+    "cover", "Cover",
+    "Art", "art",
+    "Album", "album",
+}
+local cover_extenstions = {
+    ".png", ".PNG",
+    ".jpg", ".JPG",
+    ".jpeg", ".JPEG",
+}
 
 function notify(summary, body, options, position_percent)
     if summary == "" and body == "" then
@@ -26,6 +32,8 @@ function notify(summary, body, options, position_percent)
         "string:x-dunst-stack-tag:player",
         "-h",
         string.format("int:value:%d", position_percent),
+        "-t",
+        "5000",
         unpack(option_args),
         summary,
         body,
@@ -86,10 +94,15 @@ function find_cover(dir)
     --    end
     --end
 
-    for _, file in ipairs(cover_filenames) do
-        local path = utils.join_path(dir, file)
-        if file_exists(path) then
-            return path
+    for _, d in ipairs({".", "..", "scans", "Scans", "../scans", "../Scans"}) do
+        for _, file in ipairs(cover_filenames) do
+            for _, ext in ipairs(cover_extenstions) do
+                local file_ext = file..ext
+                local path = utils.join_path(utils.join_path(dir, d), file_ext)
+                if file_exists(path) then
+                    return path
+                end
+            end
         end
     end
 
@@ -154,6 +167,33 @@ function notify_current_media_p(_, _)
     notify_current_media()
 end
 
+function notify_current_media_v(_, _)
+    notify_current_media()
+
+    local volume = tonumber(mp.get_property("volume"))
+    local body = "volume"
+    if volume == 0 then
+        body = string.format("%s muted", body)
+    else
+        body = string.format("%s: %d%%", body, volume)
+    end
+
+    mp.command_native({
+        "run",
+        "dunstify",
+        "-a",
+        "ignore",
+        "-h",
+        "string:x-dunst-stack-tag:player-volume",
+        "-h",
+        string.format("int:value:%d", volume),
+        "-t",
+        "4975",
+        body,
+    })
+end
+
 mp.register_event("file-loaded", notify_current_media)
 mp.register_event("seek", notify_current_media)
 mp.observe_property("pause", "bool", notify_current_media_p)
+mp.observe_property("volume", "string", notify_current_media_v)

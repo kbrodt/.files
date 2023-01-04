@@ -1,30 +1,36 @@
 #!/usr/bin/env sh
 
 
-set -euo pipefail
+# set -euo pipefail
 
 
-amixer -q set Master 5%"${@}" unmute
-
-msgTag="volume"
-
-volume="$(amixer get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"
-mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
-if [ $volume == 0 ] || [ "$mute" == "off" ]; then
-    # Show the sound muted notification
-    dunstify \
-        -a "ignore" \
-        -t 2000 \
-        -i audio-volume-muted \
-        -h string:x-dunst-stack-tag:$msgTag \
-        "volume muted"
+ps aux | grep "[m]pv" | grep -q "[-]-no-video"
+if [ $? -eq 0 ]; then
+    [ "${1}" = "+" ] && amixer -q set Master unmute
+    playerctl -a volume 0.05"${1}"
 else
-    # Show the volume notification
-    dunstify \
-        -a "ignore" \
-        -t 2000 \
-        -i audio-volume-high \
-        -h string:x-dunst-stack-tag:$msgTag \
-        -h int:value:"$volume" \
-        "volume: ${volume}%"
+    amixer -q set Master 5%"${1}" unmute
+
+    msgTag="volume"
+
+    volume="$(amixer get Master | tail -1 | awk '{print $4}' | sed 's/[^0-9]*//g')"
+    mute="$(amixer get Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
+    if [ $volume == 0 ] || [ "$mute" == "off" ]; then
+        # Show the sound muted notification
+        dunstify \
+            -a "ignore" \
+            -t 2000 \
+            -i audio-volume-muted \
+            -h string:x-dunst-stack-tag:$msgTag \
+            "volume muted"
+    else
+        # Show the volume notification
+        dunstify \
+            -a "ignore" \
+            -t 2000 \
+            -i audio-volume-high \
+            -h string:x-dunst-stack-tag:$msgTag \
+            -h int:value:"$volume" \
+            "volume: ${volume}%"
+    fi
 fi

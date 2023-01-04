@@ -2,11 +2,11 @@
 
 
 if ! ps aux | grep -q "[m]pv --shuffle --no-video $HOME/music"; then
-    mpv --shuffle --no-video $HOME/music 2>&1 &
+    mpv --shuffle --no-video $HOME/music > /dev/null 2>&1 &
     sleep 0.5
 else
     playerctl -s -p mpv $@
-    sleep 0.0085
+    sleep 0.1
 fi
 
 metadata=$(\
@@ -49,8 +49,52 @@ position_seconds=$(echo "${position}" | awk -F: 'NF==3 { printf("%s\n"), ($1 * 3
 
 position_percent=$(echo "${position_seconds} ${duration_seconds}" | awk '{ print ($1 / $2) * 100 }' | awk -F. '{ print $1 }')
 
+url=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/url/ {print $2}' | tr -d '\n')
+
 icon=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/arturl/ {print $2}')
 icon=${icon:="mpv"}
+
+iconcheck=$(expr "${icon}" : "http.*://")
+# if urlcheck not equal to 0 its a http link
+if [ "${iconcheck}" -ne 0 ]; then
+  # check if arturl is empty
+  if [ -z "${arturl}" ]; then
+    imageurl=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/arturl/ {print $2}' | sed 's#file://##')
+    curltmp=$(mktemp /tmp/playerctlXXX --suffix=.jpg)
+    imagetmp=$(mktemp /tmp/playerctlXXX --suffix=.jpg)
+    curl "${imageurl}" -o "${curltmp}" 2>/dev/null
+    convert "${curltmp}" -resize x120 "${imagetmp}"
+    icon="${imagetmp}" # set icon to ffmpeg thumbail
+  else
+    imagetmp=$(mktemp /tmp/playerctlXXX --suffix=.jpg)
+    convert "${icon}" -resize x120 "${imagetmp}"
+  fi
+fi
+
+# extract thumbnail from video
+thumbnail () {
+  ffmpeg \
+  -hide_banner \
+  -stats -v panic \
+  -ss "${position}" \
+  -y \
+  -i "${url}" \
+  -q:v 2 -f image2 \
+  -vframes 1 \
+  -filter:v scale="-1:120" \
+  "${output}" 2>/dev/null
+}
+
+#urlcheck=$(expr "${url}" : "file://")
+#echo $urlcheck
+## if urlcheck equals 7 matches file://
+#if [ "${urlcheck}" -eq 7 ]; then
+#  # remove file:// replace %20 with a space and remove new line
+#  url=$(echo "${metadata}" | awk -F'[][]' -v RS=" " '/url/ {print $2}' | sed 's#file://##;s#%5B#[#;s#%5D#]#;s#%20#\ #g' | tr -d '\n')
+#  output=$(mktemp /tmp/playerctlXXX --suffix=.png)
+#  thumbnail # ffmpeg thumbnail function
+#  icon="${output}" # set icon to ffmpeg thumbail
+#fi
 
 summary=$(printf \
     "%-7s: %s — %s" "${status}" "${artist}" "${album}" \
@@ -60,6 +104,7 @@ if [ -n "${year}" ]; then
 else
     summary=$(printf "%s" "${summary}")
 fi
+
 
 dunstify \
     -a "ignore" \

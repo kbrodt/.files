@@ -14,10 +14,6 @@ if [ ! -x "$(command -v nvim)" ]; then
 
     cd "$NEOVIM"
 
-    # mkdir -p build
-    # cd build
-    # cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${HOME}"/.local/nvim
-    # make -j$((`nproc`+1))
     make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="${HOME}"/.local/nvim
     make install
 
@@ -29,10 +25,26 @@ elif [ -d "$NEOVIM" ]; then  # update
     cd "$NEOVIM"
     git pull
 
-    # mkdir -p build
-    # cd build
-    # cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${HOME}"/.local/nvim
-    # make -j$((`nproc`+1))
     make CMAKE_BUILD_TYPE=Release CMAKE_INSTALL_PREFIX="${HOME}"/.local/nvim
     make install
 fi
+
+
+# plugins
+
+PLUGIN_DIR=$HOME/.local/share/nvim/site/pack/default/start
+mkdir -p $PLUGIN_DIR
+cd $PLUGIN_DIR
+
+for repo in \
+    https://github.com/hrsh7th/cmp-buffer.git \
+    https://github.com/hrsh7th/cmp-nvim-lsp-signature-help.git \
+    https://github.com/hrsh7th/cmp-path \
+    https://github.com/nvim-treesitter/nvim-treesitter.git \
+    ; do
+    git clone \
+        --depth 1 \
+        "${repo}" \
+
+    [ $? -ne 0 ] && cd $(basename "${repo}" | cut -d'.' -f 1) && git pull && cd ..
+done

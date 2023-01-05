@@ -42,9 +42,13 @@ for repo in \
     https://github.com/hrsh7th/cmp-path \
     https://github.com/nvim-treesitter/nvim-treesitter.git \
     ; do
-    git clone \
-        --depth 1 \
-        "${repo}" \
+    repo_dir=$(basename "${repo}" | cut -d'.' -f 1)
+    if [ -d "${repo_dir}" ]; then
+        cd "${repo_dir}" && git pull && cd ..
+    else
+        git clone \
+            --depth 1 \
+            "${repo}" \
 
-    [ $? -ne 0 ] && cd $(basename "${repo}" | cut -d'.' -f 1) && git pull && cd ..
+    fi
 done

@@ -24,9 +24,12 @@ def shorten(text, width):
 
 def create_lb_table(result, url):
     user, score, date = result[0]
+    user = shorten(user, WIDTH_USER)
+    date = shorten(date, WIDTH_TIME + 4)
     body = rf"<b>   {user:<{WIDTH_USER}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}</b>\n"
     for i, res in enumerate(result[1:], start=1):
         user, score, date = res
+        user = shorten(user, WIDTH_USER)
         _body = fr"{i:>2} {user:<{WIDTH_USER}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}"
         if user == ME:
             _body = fr"<b>{_body}</b>"
@@ -50,7 +53,6 @@ def parse_aicrowd(url):
     header = table.find(name="thead")
     _, _, user, score, _, _, date, *_ = header.find_all(name="th")
     user = user.text.strip()
-    user = shorten(user, WIDTH_USER)
     score = score.text.strip()
     date = date.text.strip()
     result = []
@@ -67,7 +69,6 @@ def parse_aicrowd(url):
             user = team
 
         user = user.text.strip()
-        user = shorten(user, WIDTH_USER)
         score = float(score.text.strip())
         date = date.find(name="time")
         date = datetime.datetime.strptime(date.text, "%a, %d %b %Y %H:%M")
@@ -87,7 +88,6 @@ def parse_drivendata(url):
     header = table.find(name="thead")
     _, user, score, date, *_ = header.find_all(name="th")
     user = user.text.strip()
-    user = shorten(user, WIDTH_USER)
     _, score = [s.strip() for s in score.text.splitlines() if len(s.strip()) > 0]
     date = date.text.strip()
 
@@ -105,7 +105,6 @@ def parse_drivendata(url):
             user = team
 
         user = user.text.strip()
-        user = shorten(user, WIDTH_USER)
         score = float(score.text.strip())
         date = date.text.strip()
         date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
@@ -124,10 +123,8 @@ def parse_codalab(url):
     _, header, _, *row_elements = table.find_all(name="tr")
     _, user, _, date, score, *_ = header.find_all(name="th")
     user = user.text.strip()
-    user = shorten(user, WIDTH_USER)
     score = score.text.strip()
     date = date.text.strip()
-    date = shorten(date, WIDTH_TIME)
 
     result = []
     result.append((user, score, date))
@@ -136,12 +133,28 @@ def parse_codalab(url):
         _, user, _, date, score, *_ = row_element.find_all(name="td")
 
         user = user.text.strip()
-        user = shorten(user, WIDTH_USER)
         score = float(score.text.strip().split()[0])
         date = date.text.strip()
         date = datetime.datetime.strptime(date, "%m/%d/%y")
         date = date.strftime(DATE_FORMAT[:-6])
 
+        result.append((user, score, date))
+
+    return result
+
+
+def parse_vkcup(url):
+    page = requests.get(url)
+    lb = json.loads(page.content)
+    lb = lb["results"]
+
+    result = []
+    result.append(("User", "Score", ""))
+    for row_element in lb[:TOPK]:
+        user = row_element["user"]["login"]
+        score = float(row_element["score"])
+        score = f"{score:.5f}"
+        date = ""
         result.append((user, score, date))
 
     return result
@@ -155,6 +168,8 @@ def main():
         result = parse_drivendata(url)
     elif "codalab" in url:
         result = parse_codalab(url)
+    elif "cups" in url:
+        result = parse_vkcup(url)
     else:
         return 1
 

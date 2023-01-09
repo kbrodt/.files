@@ -6,8 +6,8 @@ set -o errexit    # exit when command fails
 
 installubuntu() {
     : \
-    && sudo apt-get update \
-    && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    && apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         --no-install-recommends \
         ninja-build \
         gettext \
@@ -20,24 +20,14 @@ installubuntu() {
         pkg-config \
         unzip \
         curl \
-        libuv \
-        libluv \
-        libtermkey \
-        libvterm \
-        luajit \
-        lua-lpeg \
-        lua-mpack \
-        msgpack-c \
-        tree-sitter \
-        unibilium \
-    && sudo apt-get clean \
+    && apt-get clean \
     && :
 }
 
 installarch() {
     : \
-    && sudo pacman -Sy \
-    && sudo pacman -S \
+    && pacman -Sy \
+    && pacman -S \
         base-devel \
         cmake \
         unzip \

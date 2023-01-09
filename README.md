@@ -78,6 +78,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [`gotify` server for sending and receiving messages](https://gotify.net/)
   - [cli client with `wscat`](https://github.com/gotify/server/issues/255)
 - [`rtsp` server to publish live video streams](https://github.com/aler9/rtsp-simple-server)
+- [`jeyllyfin` to control of media](https://jellyfin.org/)
 
 #### Not tested
 

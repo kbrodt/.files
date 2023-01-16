@@ -64,15 +64,22 @@ def parse_aicrowd(url):
         _, _, user, score, _, _, date, *_ = row_element.find_all(name="td")
         team = user.find(name="span", attrs={"class": "reputation-score truncate"})
         if team is None:
-            user = user.find(name="span", attrs={"class": "text-link"})
+            _user = user.find(name="span", attrs={"class": "text-link"})
+            if _user is None:
+                user = user.find(name="mark")
+            else:
+                user = _user
         else:
             user = team
 
         user = user.text.strip()
         score = float(score.text.strip())
         date = date.find(name="time")
-        date = datetime.datetime.strptime(date.text, "%a, %d %b %Y %H:%M")
-        date = date.strftime(DATE_FORMAT)
+        if date is None:
+            date = ""
+        else:
+            date = datetime.datetime.strptime(date.text, "%a, %d %b %Y %H:%M")
+            date = date.strftime(DATE_FORMAT)
 
         result.append((user, score, date))
 

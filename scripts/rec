@@ -67,6 +67,18 @@ case "${MODE}" in
             ~/records/$(date +%s).mkv \
 
         ;;
+    fov)
+        w=$(xrandr | grep " connected primary" | grep -oP '\d+x\d+' | awk -Fx '{print $1}')
+        h=$(xrandr | grep " connected primary" | grep -oP '\d+x\d+' | awk -Fx '{print $2}')
+        ffmpeg \
+            -f x11grab \
+            -framerate 30 \
+            -r 30 \
+            -video_size ${w}x${h} \
+            -i :0.0+0,0 \
+            ~/records/$(date +%s).mkv \
+
+        ;;
     *)
         ffmpeg \
             -f x11grab \

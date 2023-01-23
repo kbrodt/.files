@@ -51,7 +51,14 @@ def parse_aicrowd(url):
     table = soup.find(name="table", attrs={"class": "table"})
 
     header = table.find(name="thead")
-    _, _, user, score, _, _, date, *_ = header.find_all(name="th")
+    ths = header.find_all(name="th")
+    if len(ths) == 9:
+        _, _, user, score, _, _, date, *_ = ths
+    elif len(ths) == 8:
+        _, _, user, score, _, date, *_ = ths
+    else:
+        raise SystemExit(1)
+
     user = user.text.strip()
     score = score.text.strip()
     date = date.text.strip()
@@ -61,7 +68,12 @@ def parse_aicrowd(url):
     tbody_element = table.find(name="tbody")
     row_elements = tbody_element.find_all(name="tr")
     for row_element in row_elements[:TOPK]:
-        _, _, user, score, _, _, date, *_ = row_element.find_all(name="td")
+        tds = row_element.find_all(name="td")
+        if len(tds) == 9:
+            _, _, user, score, _, _, date, *_ = tds
+        else:
+            _, _, user, score, _, date, *_ = tds
+
         team = user.find(name="span", attrs={"class": "reputation-score truncate"})
         if team is None:
             _user = user.find(name="span", attrs={"class": "text-link"})

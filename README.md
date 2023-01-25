@@ -24,6 +24,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [RSS feed reader `newsboat`](https://newsboat.org/)
 - [`profanity` XMPP client](https://profanity-im.github.io/)
 - [`dunst` lightweight notification daemon](https://dunst-project.org/)
+- [`tmate` instant terminal sharing](https://tmate.io/)
 
 ### CLI
 

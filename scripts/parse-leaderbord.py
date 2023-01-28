@@ -107,7 +107,7 @@ def parse_drivendata(url):
     header = table.find(name="thead")
     _, user, score, date, *_ = header.find_all(name="th")
     user = user.text.strip()
-    _, score = [s.strip() for s in score.text.splitlines() if len(s.strip()) > 0]
+    *_, score = [s.strip() for s in score.text.splitlines() if len(s.strip()) > 0]
     date = date.text.strip()
 
     result = []

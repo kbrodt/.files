@@ -52,6 +52,10 @@ function pvenv() {
     fi
 }
 
+function rem3() {
+    rem -m -p3 $1 | rem2ps | ps2pdf - | zathura -
+}
+
 # Colorize commands when possible.
 alias \
 	la="ls -a --color=auto --group-directories-first" \
@@ -62,4 +66,3 @@ alias \
 	diff="diff --color=auto" \
 	cal="cal -m" \
     pv=pvenv \
-    rem3="rem -m -p3 | rem2ps | ps2pdf - | zathura -" \

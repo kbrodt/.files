@@ -4,6 +4,7 @@
         "no-background": true,
         "filename": true,
         "scalars": "RGBA",
+        "light-intensity": 8,
         "comp": -2
     }
 }

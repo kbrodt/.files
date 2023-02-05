@@ -53,7 +53,8 @@ super + shift + F11
 
 # Kill mpv music
 super + ctrl + F11
-    kill -9 $(ps aux | grep "[m]pv" | grep -v "[g]rep" | grep "[-]-no-video" | awk '\{print $2\}')
+    kill -9 $(ps aux | grep "[m]pv" | grep -v "[g]rep" | grep "[-]-no-video" | awk '\{print $2\}'); \
+    [ $? -eq 0 ] && (dunstify -a "ignore" "player killed")
 
 # Play/pause audio
 {XF86AudioPlay, super + F11}

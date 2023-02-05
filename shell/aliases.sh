@@ -30,10 +30,10 @@ ex ()
 
 # settings that you pretty much just always are going to want.
 alias \
-	cp="cp -i" \
-	mv="mv -i" \
-	rm="rm -I" \
-	mkd="mkdir -p" \
+    cp="cp -i" \
+    mv="mv -i" \
+    rm="rm -I" \
+    mkd="mkdir -p" \
     df="df -h" \
 
 # navigation
@@ -53,16 +53,39 @@ function pvenv() {
 }
 
 function rem3() {
-    rem -m -p3 $1 | rem2ps | ps2pdf - | zathura -
+    case $1 in
+        ps)
+            rem -m -p3 $2 | rem2ps -c3 -m A4 | ps2pdf - | zathura -
+            ;;
+
+        html)
+            rem -m -pp3 $2 | perl ~/soft/remind-04.02.02/rem2html/rem2html > ~/vimwiki/cal.html
+            ;;
+
+        *)
+            rem2pdf_prefix=~/soft/remind-04.02.02/rem2pdf
+            rem -m -pp3 $1 \
+                | PERL5LIB=$rem2pdf_prefix/lib/ $rem2pdf_prefix/bin/rem2pdf \
+                    -m A4 \
+                    -c3 \
+                    --margin-top=9 \
+                    --margin-bottom=9 \
+                    --margin-left=9 \
+                    --margin-right=9 \
+                    - \
+                | zathura - \
+                | :
+            ;;
+    esac
 }
 
 # Colorize commands when possible.
 alias \
-	la="ls -a --color=auto --group-directories-first" \
-	ll="ls -l --color=auto --group-directories-first" \
+    la="ls -a --color=auto --group-directories-first" \
+    ll="ls -l --color=auto --group-directories-first" \
     l.="listdot" \
-	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	cal="cal -m" \
+    ls="ls -hN --color=auto --group-directories-first" \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    cal="cal -m" \
     pv=pvenv \

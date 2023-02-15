@@ -20,6 +20,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [TODO list manager `taskwarrior`](https://taskwarrior.org/)
 - [mail reader `neomutt`](https://neomutt.org/)
 - [sophisticated calendar and alarm `remind`](https://dianne.skoll.ca/projects/remind/)
+- [`vcal` parser for {V,I}Calendar](https://waynemorrison.com/software/vcal)
 - [keyboard-focused browser `qutebrowser`](https://qutebrowser.org/)
 - [RSS feed reader `newsboat`](https://newsboat.org/)
 - [`profanity` XMPP client](https://profanity-im.github.io/)

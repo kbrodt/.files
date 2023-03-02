@@ -2349,8 +2349,8 @@ config.bind(
 # config.bind('<Tab>', 'completion-item-focus next', mode='command')
 # config.bind('<Up>', 'completion-item-focus --history prev', mode='command')
 
-config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
-config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
+config.bind('<Ctrl-n>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-p>', 'completion-item-focus prev', mode='command')
 
 ## Bindings for hint mode
 # config.bind('<Ctrl-B>', 'hint all tab-bg', mode='hint')

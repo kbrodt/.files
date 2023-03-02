@@ -49,3 +49,7 @@ noremap <A-x> <C-a>
 map gn :bn<cr>
 map gp :bp<cr>
 map gw :bdel<cr>
+
+" turn off search highlight
+vnoremap <C-h> :nohlsearch<cr>
+nnoremap <C-h> :nohlsearch<cr>

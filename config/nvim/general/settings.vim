@@ -104,10 +104,6 @@ set smartcase
 set incsearch " Enable searching as you type, rather than waiting till you press enter.
 set hlsearch  " highlight matches
 
-" turn off search highlight
-vnoremap <C-h> :nohlsearch<cr>
-nnoremap <C-h> :nohlsearch<cr>
-
 " Ignore files for completion
 set wildignore+=*/.git/*,*/tmp/*,*.swp
 

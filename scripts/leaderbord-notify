@@ -4,14 +4,16 @@
 export DISPLAY=:0
 export XAUTHORITY=~/.Xauthority
 
+out_lb=/tmp/competitions_lb.txt
+
 while read line; do
     d=$(date -d $(echo $line | cut -d' ' -f 1) +"%b %-d, %Y, %I:%M %P %Z")
     url=$(echo $line | cut -d' ' -f 2)
-    python $HOME/.local/bin/parse-leaderbord.py "${url}" \
+    python $HOME/.local/bin/parse-leaderbord.py "${url}" "${out_lb}" \
         && dunstify \
             -a "kaggle" \
             -t 0 \
             "${d} ${url}" \
-            "$(jq -r "select(.url==\"${url}\") | .body" /tmp/competitions_lb.txt)" \
+            "$(jq -r "select(.url==\"${url}\") | .body" "${out_lb}")" \
 
 done < $HOME/.local/share/competition_links.txt

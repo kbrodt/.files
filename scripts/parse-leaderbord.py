@@ -22,7 +22,7 @@ def shorten(text, width):
     return text
 
 
-def create_lb_table(result, url):
+def format_lb(result, url):
     user, score, date = result[0]
     user = shorten(user, WIDTH_USER)
     date = shorten(date, WIDTH_TIME + 4)
@@ -126,8 +126,9 @@ def parse_drivendata(url):
         user = user.text.strip()
         score = float(score.text.strip())
         date = date.text.strip()
-        date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
-        date = date.strftime(DATE_FORMAT)
+        if len(date) > 0:
+            date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+            date = date.strftime(DATE_FORMAT)
 
         result.append((user, score, date))
 
@@ -179,8 +180,7 @@ def parse_vkcup(url):
     return result
 
 
-def main():
-    url = sys.argv[1]
+def parse_leaderbord(url):
     if "aicrowd" in url:
         result = parse_aicrowd(url)
     elif "drivendata" in url:
@@ -190,18 +190,20 @@ def main():
     elif "cups" in url:
         result = parse_vkcup(url)
     else:
-        return 1
+        return []
 
-    result = create_lb_table(result, url)
+    return result
 
-    ret = 1
-    if not os.path.exists(LB_PATH):
-        ret = 0
-        with open(LB_PATH, "w") as f:
+
+def save_lb(result, lb_path):
+    errno = 1
+    if not os.path.exists(lb_path):
+        errno = 0
+        with open(lb_path, "w") as f:
             json.dump(result, f)
             f.write("\n")
 
-    with open(LB_PATH, "r") as f:
+    with open(lb_path, "r") as f:
         results = [
             json.loads(line)
             for line in f
@@ -211,10 +213,10 @@ def main():
         if result["url"] == result_old["url"]:
             break
     else:
-        with open(LB_PATH, "a") as f:
+        with open(lb_path, "a") as f:
             json.dump(result, f)
             f.write("\n")
-        ret = 0
+        errno = 0
 
     for result_old in results:
         if result["url"] != result_old["url"]:
@@ -224,15 +226,38 @@ def main():
             continue
 
         result_old["body"] = result["body"]
-        ret = 0
-        with open(LB_PATH, "w") as f:
+        errno = 0
+        with open(lb_path, "w") as f:
             for result in results:
                 json.dump(result, f)
                 f.write("\n")
 
         break
 
-    return ret
+    return errno
+
+
+def main():
+    url = sys.argv[1]
+    result = parse_leaderbord(url)
+
+    errno = 1
+    if len(result) == 0:
+        return errno
+
+    if len(sys.argv) < 3:
+        for u, l, d in result:
+            print(f"{u:<{WIDTH_USER}}\t{l:<{WIDTH_SCORE}}\t{d:<{WIDTH_TIME}}")
+
+        errno = 0
+
+        return errno
+
+    result = format_lb(result, url)
+    lb_path = sys.argv[2]
+    errno = save_lb(result, lb_path)
+
+    return errno
 
 
 if __name__ == "__main__":

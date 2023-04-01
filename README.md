@@ -39,6 +39,8 @@ After clonning this repo, run `install` to set up the development environment.
 - [`rdrview` tool to extract the main content from a webpage](https://github.com/eafer/rdrview)
 - [`jq` json processor](https://stedolan.github.io/jq/)
 - [`pup` html processor](https://github.com/ericchiang/pup)
+- [`lsix` ls for images in terminal](https://github.com/hackerb9/lsix)
+- [`vv` image viewer for terminals](https://github.com/hackerb9/vv)
 
 ### GUI
 
@@ -118,5 +120,9 @@ curl -F "shorten=SOME_URL" http://0x0.st
 
 ## Wayland
 
-- [`Hyperland` dynamic tiling compositor](https://hyprland.org/)
+- [`Hyprland` dynamic tiling compositor](https://hyprland.org/)
+- [`waybar` bar](https://github.com/Alexays/Waybar)
 - [`foot` terminal emulator](https://codeberg.org/dnkl/foot)
+- [`hyprpaper` wallpaper utility for Hyprland](https://github.com/hyprwm/hyprpaper)
+- [`mpvpaper` animated wallpaper](https://github.com/GhostNaN/mpvpaper)
+- [`swww` efficient animated wallpaper](https://github.com/Horus645/swww)

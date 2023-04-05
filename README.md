@@ -62,6 +62,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [`weylus` tablet into a graphic touch screen](https://github.com/H-M-H/Weylus)
 - [`ventoy` bootable USB](https://www.ventoy.net/en/index.html)
 - [`qemu` machine emulator](https://www.qemu.org/)
+- [`czkawka` removes unnecessary files](https://github.com/qarmin/czkawka)
 
 ### server
 

@@ -84,6 +84,7 @@ After clonning this repo, run `install` to set up the development environment.
   - [cli client with `wscat`](https://github.com/gotify/server/issues/255)
 - [`rtsp` server to publish live video streams](https://github.com/aler9/rtsp-simple-server)
 - [`jeyllyfin` to control of media](https://jellyfin.org/)
+- [`yakforms` forms](https://yakforms.org/)
 
 #### Not tested
 

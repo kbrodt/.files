@@ -63,6 +63,8 @@ After clonning this repo, run `install` to set up the development environment.
 - [`ventoy` bootable USB](https://www.ventoy.net/en/index.html)
 - [`qemu` machine emulator](https://www.qemu.org/)
 - [`czkawka` removes unnecessary files](https://github.com/qarmin/czkawka)
+- [`screensy` screen sharing](https://github.com/screensy/screensy)
+- [`tmpfiles` file sharing](https://tmpfiles.org/)
 
 ### server
 
@@ -125,6 +127,12 @@ curl -F "shorten=SOME_URL" http://0x0.st
 - [`Hyprland` dynamic tiling compositor](https://hyprland.org/)
 - [`waybar` bar](https://github.com/Alexays/Waybar)
 - [`foot` terminal emulator](https://codeberg.org/dnkl/foot)
+- ['wl-clipboard'](https://github.com/bugaevc/wl-clipboard)
 - [`hyprpaper` wallpaper utility for Hyprland](https://github.com/hyprwm/hyprpaper)
 - [`mpvpaper` animated wallpaper](https://github.com/GhostNaN/mpvpaper)
 - [`swww` efficient animated wallpaper](https://github.com/Horus645/swww)
+
+## F-Droid
+
+- [`SshDaemon` transfer files to/from home](https://f-droid.org/en/packages/com.daemon.ssh/)
+- [`Termux` terminal emulator](https://termux.dev/en/)

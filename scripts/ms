@@ -12,11 +12,19 @@ case "${MODE}" in
             --output eDP-1 --auto --pos 0x964 \
             --output HDMI-1 --primary --mode 1920x1080 --auto --pos 1366x0 \
 
+        hyprctl --batch \
+            "keyword monitor HDMI-A-1,1920x1080@60,1366x0,1; \
+             keyword monitor eDP-1,1366x768@60,0x964,1" \
+
         ;;
     4k)
         xrandr \
             --output eDP-1 --auto --pos 2560x1200 \
             --output HDMI-1 --primary --mode 2560x1600 --auto --pos 0x0 \
+
+        hyprctl --batch \
+            "keyword monitor HDMI-A-1,2560x1600@60,0x0,1; \
+             keyword monitor eDP-1,1366x768@60,2560x1200,1" \
 
         for s in $(seq 20 24); do
             xsetwacom --set ""${s}"" MapToOutput HDMI-1
@@ -28,11 +36,19 @@ case "${MODE}" in
             --output eDP-1 --off \
             --output HDMI-1 --primary --mode 1920x1080 --auto \
 
+        hyprctl --batch \
+            "keyword monitor HDMI-A-1,1920x1080@60,0x0,1; \
+             keyword monitor eDP-1,disable" \
+
         ;;
     *)
         xrandr \
             --output eDP-1 --primary --auto \
             --output HDMI-1 --off \
+
+        hyprctl --batch \
+            "keyword monitor HDMI-A-1,disable; \
+             keyword monitor eDP-1,1366x768@60,0x0,1" \
 
         ;;
 esac

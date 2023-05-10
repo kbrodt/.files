@@ -29,6 +29,7 @@ set nofoldenable
 autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype c setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
 
 " UI config

@@ -65,6 +65,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [`czkawka` removes unnecessary files](https://github.com/qarmin/czkawka)
 - [`screensy` screen sharing](https://github.com/screensy/screensy)
 - [`tmpfiles` file sharing](https://tmpfiles.org/)
+- [`kdeconnect` file sharing between devices](https://kdeconnect.kde.org/)
 
 ### server
 

@@ -1,10 +1,12 @@
 {
-    ".*": {
+    "global": {
         "resolution": "1200,800",
         "no-background": true,
         "filename": true,
         "scalars": "RGBA",
-        "light-intensity": 30,
         "comp": -2
+    },
+    ".*gl(tf|b)": {
+        "light-intensity": 30
     }
 }

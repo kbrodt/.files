@@ -1,0 +1,58 @@
+theme = "gruvbox_dark_hard"
+
+[editor]
+line-number = "relative"
+true-color = true
+cursorline = true
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+rulers = [80]
+bufferline = "always"
+
+[editor.statusline]
+left = [
+    "mode",
+    "spinner",
+    "file-name",
+    "file-modification-indicator",
+  ]
+center = []
+right = [
+    "diagnostics",
+    "selections",
+    "file-encoding",
+    "file-line-ending",
+    "file-type",
+    "position-percentage",
+    "position",
+  ]
+separator = "|"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+enable = true
+display-messages = true
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.search]
+smart-case = false
+
+[editor.file-picker]
+hidden = false
+
+[editor.whitespace]
+render = "all"
+
+[keys.normal]
+g = { w = ":buffer-close"}
+"n" = ["search_next", "align_view_center"]
+"N" = ["search_prev", "align_view_center"]
+
+[keys.insert]
+"C-c" = "normal_mode"     # Maps Alt-X to enter normal mode

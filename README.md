@@ -26,6 +26,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [`profanity` XMPP client](https://profanity-im.github.io/)
 - [`dunst` lightweight notification daemon](https://dunst-project.org/)
 - [`tmate` instant terminal sharing](https://tmate.io/)
+- [`helix` post-modern tect editor](https://helix-editor.com/)
 
 ### CLI
 

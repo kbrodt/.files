@@ -1,0 +1,7 @@
+[[language]]
+name = "python"
+# roots = ["pyproject.toml"]
+# formatter = { command = "black", args = ["--quiet", "-"] }
+# language-server = { command = "pylsp", args = ["--stdio"] }
+# config = {}
+# auto-format = true

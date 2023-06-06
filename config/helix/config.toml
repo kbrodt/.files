@@ -1,4 +1,4 @@
-theme = "gruvbox_dark_hard"
+theme = "gruvbox"
 
 [editor]
 line-number = "relative"
@@ -53,6 +53,8 @@ render = "all"
 g = { w = ":buffer-close"}
 "n" = ["search_next", "align_view_center"]
 "N" = ["search_prev", "align_view_center"]
+"C-y" = "scroll_up"
+"C-e" = "scroll_down"
 
 [keys.insert]
 "C-c" = "normal_mode"     # Maps Alt-X to enter normal mode

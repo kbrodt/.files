@@ -1,6 +1,6 @@
 # Keyboard layout
 # setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle
-setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle,win:swapcaps
+setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle,caps:super
 # xbindkeys
 sxhkd &
 

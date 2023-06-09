@@ -58,4 +58,3 @@ let g:VM_maps = {}
 let g:VM_maps["Exit"] = '<C-C>'   " quit VM
 
 nmap <C-j> <C-Down>
-nmap <C-k> <C-Up>

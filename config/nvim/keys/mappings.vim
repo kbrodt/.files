@@ -2,10 +2,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " split navigation
-nnoremap <c-j> <c-w><c-j>
-nnoremap <c-k> <c-w><c-k>
-nnoremap <c-l> <c-w><c-l>
-nnoremap <c-h> <c-w><c-h>
+" nnoremap <c-j> <c-w><c-j>
+" nnoremap <c-k> <c-w><c-k>
+" nnoremap <c-l> <c-w><c-l>
+" nnoremap <c-h> <c-w><c-h>
 
 " (shift)tab (de)indents code
 nnoremap >> >>_
@@ -50,11 +50,28 @@ map gn :bn<cr>
 map gp :bp<cr>
 map gw :bdel<cr>
 
+map <Leader>ee :20Lexplore<cr>
+
 " turn off search highlight
 vnoremap <C-h> :nohlsearch<cr>
 nnoremap <C-h> :nohlsearch<cr>
 
+" visual-multi
 let g:VM_maps = {}
 let g:VM_maps["Exit"] = '<C-C>'   " quit VM
 
 nmap <C-j> <C-Down>
+nmap <C-k> <C-Up>
+
+" quickfix
+" Show/hide the quickfix window
+nnoremap <Leader>co :copen<CR>
+nnoremap <Leader>cc :cclose<CR>
+" Show prev/next error from quickfix
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+
+augroup quickfix_group
+  autocmd!
+  autocmd filetype qf setlocal errorformat+=%f\|%l\ col\ %c\|%m
+augroup END

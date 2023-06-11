@@ -15,4 +15,5 @@ if has('nvim')
     luafile $HOME/.config/nvim/lua/lsp-config.lua
     luafile $HOME/.config/nvim/lua/nvim-cmp.lua
     luafile $HOME/.config/nvim/lua/treesitter.lua
+    luafile $HOME/.config/nvim/lua/telescope_config.lua
 endif

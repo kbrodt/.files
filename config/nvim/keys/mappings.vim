@@ -75,3 +75,6 @@ augroup quickfix_group
   autocmd!
   autocmd filetype qf setlocal errorformat+=%f\|%l\ col\ %c\|%m
 augroup END
+
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow

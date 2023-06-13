@@ -1,3 +1,3 @@
 if !exists("current_compiler")
-  compiler sh
+    compiler sh
 endif

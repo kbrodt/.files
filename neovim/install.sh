@@ -41,10 +41,12 @@ for repo in \
     https://github.com/hrsh7th/cmp-nvim-lsp-signature-help.git \
     https://github.com/hrsh7th/cmp-path \
     https://github.com/nvim-treesitter/nvim-treesitter.git \
+    https://github.com/nvim-lua/plenary.nvim.git \
     https://github.com/nvim-telescope/telescope.nvim.git \
     https://github.com/mg979/vim-visual-multi.git \
     ; do
-    repo_dir=$(basename "${repo}" | cut -d'.' -f 1)
+    repo_dir=$(basename "${repo}" | sed "s/\.git$//")
+    echo $repo_dir
     if [ -d "${repo_dir}" ]; then
         cd "${repo_dir}" && git pull && cd ..
     else

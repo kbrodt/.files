@@ -52,6 +52,8 @@ map gw :bdel<cr>
 
 map <Leader>ee :20Lexplore<cr>
 
+map <Leader>m :make<cr>
+
 " turn off search highlight
 vnoremap <C-h> :nohlsearch<cr>
 nnoremap <C-h> :nohlsearch<cr>
@@ -70,6 +72,8 @@ nnoremap <Leader>cc :cclose<CR>
 " Show prev/next error from quickfix
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
 
 augroup quickfix_group
   autocmd!

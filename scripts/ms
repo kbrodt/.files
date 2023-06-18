@@ -9,8 +9,8 @@ MODE="${1}"
 case "${MODE}" in
     fhd)
         xrandr \
-            --output eDP-1 --auto --pos 0x964 \
-            --output HDMI-1 --primary --mode 1920x1080 --auto --pos 1366x0 \
+            --output eDP-1 --auto --scale 1x1 --pos 0x964 \
+            --output HDMI-1 --primary --auto --mode 1920x1080 --scale 1x1 --pos 1366x0 \
 
         hyprctl --batch \
             "keyword monitor HDMI-A-1,1920x1080@60,1366x0,1; \
@@ -19,8 +19,8 @@ case "${MODE}" in
         ;;
     4k)
         xrandr \
-            --output eDP-1 --auto --pos 2560x1200 \
-            --output HDMI-1 --primary --mode 2560x1600 --auto --pos 0x0 \
+            --output eDP-1 --auto --scale 1x1 --pos 2560x1200 \
+            --output HDMI-1 --primary --auto --mode 2560x1600 --scale 1x1 --pos 0x0 \
 
         hyprctl --batch \
             "keyword monitor HDMI-A-1,2560x1600@60,0x0,1; \
@@ -33,18 +33,30 @@ case "${MODE}" in
         ;;
     off)
         xrandr \
-            --output eDP-1 --off \
-            --output HDMI-1 --primary --mode 1920x1080 --auto \
+            --output eDP-1 --off --auto \
+            --output HDMI-1 --primary --auto --mode 1920x1080 --scale 1x1 \
 
         hyprctl --batch \
             "keyword monitor HDMI-A-1,1920x1080@60,0x0,1; \
              keyword monitor eDP-1,disable" \
 
         ;;
+    mirror)
+        xrandr \
+            --output eDP-1 --auto --mode 1366x768 --scale 1x1 \
+            --output HDMI-1 --auto --same-as eDP-1 --mode 1920x1080 --scale 0.711x0.711 \
+
+        ;;
+    mirrorfhd)
+        xrandr \
+            --output eDP-1 --auto --mode 1366x768 --scale 1.405x1.405 \
+            --output HDMI-1 --same-as eDP-1 --auto --mode 1920x1080 --scale 1x1 \
+
+        ;;
     *)
         xrandr \
-            --output eDP-1 --primary --auto \
-            --output HDMI-1 --off \
+            --output eDP-1 --primary --auto --scale 1x1 \
+            --output HDMI-1 --off --auto \
 
         hyprctl --batch \
             "keyword monitor HDMI-A-1,disable; \

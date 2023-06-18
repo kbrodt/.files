@@ -2,107 +2,245 @@
 
 # screencasts
 
+set -euo pipefail
 
-MODE="${1}"
 
+camera () {
+    declare -A camera_devices
+    for dev in $(find /dev -iname 'video*' -printf "%f\n"); do
+        v4l2-ctl \
+            --list-formats \
+            --device /dev/${dev} \
+                | grep -qE '\[[0-9]\]' \
+        && camera_devices+=([$(cat /sys/class/video4linux/${dev}/name)]=/dev/${dev})
+
+    done
+
+    camera_devices["none"]=""
+    result=$(printf "%s\n" "${!camera_devices[@]}" | dmenu -p "Choose camera" -l ${#camera_devices[@]})
+    camera_device="${camera_devices[${result}]}"
+    if [ -n "${camera_device}" ]; then
+        printf "%s " "${camera_device}"
+    fi
+}
+
+screensize () {
+    declare -A windows
+    for line in $(
+        xrandr --listmonitors \
+            | sed \
+                '1,1d;
+                s/.* \([[:digit:]]\+\)\/[[:digit:]]\+x\([[:digit:]]\+\)\/[[:digit:]]\++\(.*\) \(.*\)/\4|\1x\2|\3/g'
+    ); do
+        monitor_name=$(echo $line | cut -d "|" -f 1)
+        monitor_size=$(echo $line | cut -d "|" -f 2-)
+        windows+=(["${monitor_name}"]="${monitor_size}")
+    done
+
+    windows+=(
+        ["Window"]=""
+        ["none"]=""
+    )
+    window=$(printf "%s\n" "${!windows[@]}" | dmenu -p "Choose window" -l ${#windows[@]})
+    case "${window}" in
+        fullscreen)
+            printf "%s " \
+                -video_size $(xwininfo -root | awk '/-geo/{print $2}' | cut -d'+' -f 1) \
+                -i :0.0+0,0 \
+
+            ;;
+        window)
+            printf "%s " $(xwininfo \
+                | gawk \
+                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
+                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
+                | tac) \
+
+            ;;
+        none)
+
+            ;;
+        *)
+            window="${windows[${window}]}"
+            monitor_size=$(echo "${window}" | cut -d "|" -f 1)
+            monitor_shift=$(echo "${window}" | cut -d "|" -f 2 | tr '+' ',')
+            printf "%s " \
+                -video_size "${monitor_size}" \
+                -i :0.0+"${monitor_shift}" \
+
+            ;;
+    esac
+}
+
+recordscreen () {
+    screen_device=$(screensize)
+    if [ ! -z "${screen_device}" ]; then
+        args=(
+            -f x11grab
+            -framerate 30
+            -r 30
+            -thread_queue_size 1024
+            -probesize 42M
+        )
+        printf "%s " "${args[@]}" "${screen_device}"
+    fi
+}
+
+recordmicro () {
+    if [ $(echo -e "yes\nno" | dmenu -p "Record micro?" -l 2) = "yes" ]; then
+        args=(
+            -f alsa
+            -ac 2
+            -sample_rate 44100
+            -thread_queue_size 1024
+            -i default
+        )
+        printf "%s " "${args[@]}"
+    fi
+}
+
+recordcamera () {
+    camera_device=$(camera)
+    if [ ! -z "${camera_device}" ]; then
+        args=(
+            -f v4l2
+            -framerate 30
+            -r 30
+            -thread_queue_size 1024
+            -input_format yuyv422
+            -pixel_format uyvy422
+            -video_size "${camera_size}"
+            -i "${camera_device}"
+        )
+        printf "%s " "${args[@]}"
+    fi
+}
+
+MODE=1 #"${1}"
+
+camera_size="320x240"
+video_codecs_array=(
+    libx264
+    #h264_vaapi
+    #h264_qsv
+)
+if [ ${#video_codecs_array[@]} -gt 1 ]; then
+    video_codec=$(printf "%s\n" "${video_codecs_array[@]}" | dmenu -p "Choose video codec" -l ${#video_codecs_array[@]})
+else
+    video_codec="${video_codecs_array[0]}"
+fi
 
 case "${MODE}" in
-    mic)
-        ffmpeg \
-            -f x11grab \
-            -framerate 30 \
-            -r 30 \
-            $(xwininfo \
-                | gawk \
-                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
-                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
-                | tac) \
-            -f alsa \
-            -thread_queue_size 1024 \
-            -channels 1 \
-            -sample_rate 48000 \
-            -i default \
-            ~/records/$(date +%s).mkv \
-
-            # alsa_input.usb-Microsoft_Microsoft___LifeCam_HD-3000-02.mono-fallback
-            # alsa_input.pci-0000_00_1b.0.analog-stereo
-
-        ;;
-    cam)
-        ffmpeg \
-            -f x11grab \
-            -thread_queue_size 64 \
-            -framerate 30 \
-            -r 30 \
-            $(xwininfo \
-                | gawk \
-                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
-                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
-                | tac) \
-            -f alsa \
-            -thread_queue_size 1024 \
-            -channels 1 \
-            -sample_rate 44100 \
-            -i default \
-            -f v4l2 \
-            -thread_queue_size 64 \
-            -video_size 240x160 \
-            -framerate 25 \
-            -i /dev/video0 \
-            -filter_complex 'overlay=main_w-overlay_w-10:10:format=yuv444' \
-            -vcodec libx264 \
-            -preset ultrafast \
-            -qp 0 \
-            -pix_fmt yuv444p \
-            ~/records/$(date +%s).mkv \
-
-        ;;
-    ov)
-        ffmpeg \
-            -f x11grab \
-            -framerate 30 \
-            -r 30 \
-            $(xwininfo \
-                | gawk \
-                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
-                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
-                | tac) \
-            ~/records/$(date +%s).mkv \
-
-        ;;
-    fov)
-        w=$(xrandr | grep " connected primary" | grep -oP '\d+x\d+' | awk -Fx '{print $1}')
-        h=$(xrandr | grep " connected primary" | grep -oP '\d+x\d+' | awk -Fx '{print $2}')
-        ffmpeg \
-            -f x11grab \
-            -framerate 30 \
-            -r 30 \
-            -video_size ${w}x${h} \
-            -i :0.0+0,0 \
-            ~/records/$(date +%s).mkv \
-
-        ;;
     *)
+        rs=$(recordscreen)
+        rm=$(recordmicro)
+        if [ -z "${rs}" ]; then
+            camera_size="1200x720"
+        fi
+        rc=$(recordcamera)
+        additionalargs=()
+        outargs=()
+        if [ ! -z "${rs}" ]; then  # screen
+            if [ ! -z "${rc}" ]; then  # camera
+                if [ ! -z "${rm}" ]; then  # micro
+                    additionalargs+=(
+                        -filter_complex
+                        '"[0:v]setpts=PTS-STARTPTS[bg];
+                          [2:v]setpts=PTS-STARTPTS[fg];
+                          [bg][fg]overlay=main_w-overlay_w-10:main_h-overlay_h-10:format=yuv444[v]"'
+                        -map '"[v]"'
+                        -map 1:a
+                    )
+                else  # no micro
+                    additionalargs+=(
+                        -filter_complex
+                        '"[0:v]setpts=PTS-STARTPTS[bg];
+                          [1:v]setpts=PTS-STARTPTS[fg];
+                          [bg][fg]overlay=main_w-overlay_w-10:main_h-overlay_h-10:format=yuv444[v]"'
+                        -map '"[v]"'
+                    )
+                fi
+            else  # no camera
+                additionalargs+=(-vf "format=yuv444p")
+            fi
+
+            outargs+=(
+                -c:v "${video_codec}"
+                -preset ultrafast
+                #-b:v 3000k
+                #-maxrate 3000k <- use this for stream
+                #-bufsize 6000k <- use this for stream
+                -g 60
+                -qp 0
+            )
+        elif [ ! -z "${rc}" ]; then  # no screen, but camera
+            additionalargs+=(-vf "format=yuv444p")
+            outargs+=(
+                -c:v "${video_codec}"
+                -preset ultrafast
+                #-b:v 3000k
+                #-maxrate 3000k <- use this for stream
+                #-bufsize 6000k <- use this for stream
+                -g 60
+                -qp 0
+            )
+        fi
+
+        if [ ! -z "${rm}" ]; then  # micro
+            outargs+=(
+                -c:a aac
+                -b:a 160k
+                -ar 44100
+            )
+        fi
+
+        #outargs+=(-threads 4)
+
+        eval \
+            $(printf "%s " \
+                "ffmpeg" \
+                $rs \
+                $rm \
+                $rc \
+                ${additionalargs[@]}) \
+                ${outargs[@]} \
+            ~/records/$(date +%s).mkv \
+
+        # alsa_input.usb-Microsoft_Microsoft___LifeCam_HD-3000-02.mono-fallback
+        # alsa_input.pci-0000_00_1b.0.analog-stereo
+
+        ;;
+    # windowscreen, video + micro + app audio
+    full)
         ffmpeg \
             -f x11grab \
             -framerate 30 \
             -r 30 \
-            $(xwininfo \
-                | gawk \
-                    'match($0, /-geometry ([0-9]+x[0-9]+)./, a) { print "-video_size " a[1] };
-                     match($0, /Corners:  (\+[0-9]+)\+([0-9]+)./, a) { print "-i " a[1] "," a[2]}' \
-                | tac) \
+            -thread_queue_size 1024 \
+            -probesize 42M \
+            $(screensize) \
             -f pulse \
             -i alsa_output.pci-0000_00_1b.0.analog-stereo.monitor \
             -f alsa \
+            -ac 2 \
+            -sample_rate 44100 \
             -thread_queue_size 1024 \
-            -channels 2 \
-            -sample_rate 48000 \
             -i alsa_input.pci-0000_00_1b.0.analog-stereo \
-            -filter_complex "[1:a][2:a] amix=inputs=2 [a]" \
-            -threads 3 \
+            -filter_complex "[1:a][2:a]amix=inputs=2[a]" \
             -map 0:v \
             -map "[a]" \
+            -c:v "${video_codec}" \
+            -preset ultrafast \
+            -b:v 3000k \
+            `#-maxrate 3000k <- use this for stream` \
+            `#-bufsize 6000k <- use this for stream` \
+            -g 60 \
+            -qp 0 \
+            -pix_fmt yuv444p \
+            -c:a aac \
+            -b:a 160k \
+            -ar 44100 \
+            -threads 4 \
             ~/records/$(date +%s).mkv \
 
         ;;

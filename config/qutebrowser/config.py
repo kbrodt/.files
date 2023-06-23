@@ -2033,6 +2033,7 @@ c.session.lazy_restore = True
 c.url.searchengines["g"] = "https://www.google.com/search?q={}"
 c.url.searchengines["yt"] = "https://www.youtube.com/search?q={}"
 c.url.searchengines["w"] = "https://www.wiby.me/search?q={}"
+c.url.searchengines["sh"] = "https://www.sci-hub.ru/{}"
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl

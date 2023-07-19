@@ -25,6 +25,7 @@ def shorten(text, width):
 def format_lb(result, url):
     user, score, date = result[0]
     user = shorten(user, WIDTH_USER)
+    score = shorten(score, WIDTH_SCORE)
     date = shorten(date, WIDTH_TIME + 4)
     body = rf"<b>   {user:<{WIDTH_USER}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}</b>\n"
     for i, res in enumerate(result[1:], start=1):
@@ -105,10 +106,11 @@ def parse_drivendata(url):
     table = soup.find(name="table", attrs={"id": "leaderTable"})
 
     header = table.find(name="thead")
-    _, user, score, date, *_ = header.find_all(name="th")
+    _, _, user, score, *_ = header.find_all(name="th")
     user = user.text.strip()
-    *_, score = [s.strip() for s in score.text.splitlines() if len(s.strip()) > 0]
-    date = date.text.strip()
+    score = score.find(name="span", attrs={"class": "popover-metric tooltip-underline"})
+    score = " ".join(s.strip() for s in score.text.split())
+    date = "Timestamp"
 
     result = []
     result.append((user, score, date))
@@ -116,18 +118,18 @@ def parse_drivendata(url):
     tbody_element = table.find(name="tbody")
     row_elements = tbody_element.find_all(name="tr")
     for row_element in row_elements[:TOPK]:
-        _, user, score, date, *_ = row_element.find_all(name="td")
-        team = user.find(name="span", attrs={"class": "team-item"})
+        _, _, user_date, score, *_ = row_element.find_all(name="td")
+        date = user_date.find(name="div", attrs={"class": "d-inline-flex"}).get("title")
+        team = user_date.find(name="span", attrs={"title": "This is a team"})
         if team is None:
-            user = user.find(name="a")
+            user = user_date.find(name="a")
         else:
             user = team
 
         user = user.text.strip()
         score = float(score.text.strip())
-        date = date.text.strip()
         if len(date) > 0:
-            date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
+            date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S %Z")
             date = date.strftime(DATE_FORMAT)
 
         result.append((user, score, date))
@@ -183,7 +185,7 @@ def parse_vkcup(url):
 def parse_leaderbord(url):
     if "aicrowd" in url:
         result = parse_aicrowd(url)
-    elif "drivendata" in url:
+    elif "drivendata" in url or "prizechallenge.aisingapore":
         result = parse_drivendata(url)
     elif "codalab" in url:
         result = parse_codalab(url)

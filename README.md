@@ -43,6 +43,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [`lsix` ls for images in terminal](https://github.com/hackerb9/lsix)
 - [`vv` image viewer for terminals](https://github.com/hackerb9/vv)
 - [`woof` web offer one file share](http://www.home.unix-ag.org/simon/woof.html)
+- [`webtorrent` streaming torrent client](https://github.com/webtorrent/webtorrent)
 
 ### GUI
 

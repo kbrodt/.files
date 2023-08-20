@@ -3,6 +3,7 @@ application/pdf; pdftotext -layout -l 10 -nopgbrk /dev/stdin -; copiousoutput
 
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice %s
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s;
+application/vnd.openxmlformats-officedocument.presentationml.presentation; libreoffice %s;
 
 audio/*; mpv --no-video %s;
 image/*; sxiv %s;

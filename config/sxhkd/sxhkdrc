@@ -44,11 +44,11 @@ XF86Audio{Lower,Raise}Volume
 super + shift + F11
     ps aux | grep '[m]pv' | grep -q '[-]-no-video'; \
     a=$?; \
-    [ $a -eq 1 ] && mpv -\-shuffle -\-no-video $(find $HOME/music -maxdepth 1 -type d | sort | dmenu -p "Choose music:" -l 20) > /dev/null 2>&1; \
+    [ $a -eq 1 ] && mpv -\-shuffle -\-no-video "$(find $HOME/music -maxdepth 1 -type d | sort | dmenu -p "Choose music:" -l 20)" > /dev/null 2>&1; \
     [ $a -eq 0 ] \
         && (\
             m=$(find $HOME/music -maxdepth 1 -type d | sort | dmenu -p "Choose music:" -l 20); \
-            [ $? -eq 0 ] && kill -9 $(ps aux | grep "[m]pv" | grep -v "[g]rep" | grep "[-]-no-video" | awk '\{print $2\}') && mpv -\-shuffle -\-no-video $m > /dev/null 2>&1 \
+            [ $? -eq 0 ] && kill -9 $(ps aux | grep "[m]pv" | grep -v "[g]rep" | grep "[-]-no-video" | awk '\{print $2\}') && mpv -\-shuffle -\-no-video "${m}" > /dev/null 2>&1 \
         )
 
 # Kill mpv music

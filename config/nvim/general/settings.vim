@@ -32,6 +32,7 @@ autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype lua setlocal expandtab tabstop=2 shiftwidth=2
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype vimwiki setlocal expandtab tabstop=2 shiftwidth=2
 
 " UI config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -89,6 +89,7 @@ super + e
         | xclip -sel cb -i -f \
         | fold -w 240 -s \
         | dmenu -b -fn "monospace:size=16" -l 25 \
+        | xclip -i -sel p \
         | :
 
 super + shift + e
@@ -99,8 +100,8 @@ super + shift + e
         | xclip -sel cb -i -f \
         | fold -w 240 -s \
         | dmenu -b -fn "monospace:size=16" -l 25 \
+        | xclip -i -sel p \
         | :
-
 
 # dunstctl commands
 ctrl + grave

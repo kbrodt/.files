@@ -37,6 +37,7 @@ mkdir -p $PLUGIN_DIR
 cd $PLUGIN_DIR
 
 for repo in \
+    https://github.com/SirVer/ultisnips.git \
     https://github.com/hrsh7th/cmp-buffer.git \
     https://github.com/hrsh7th/cmp-nvim-lsp-signature-help.git \
     https://github.com/hrsh7th/cmp-path \

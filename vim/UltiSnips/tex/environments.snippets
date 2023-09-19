@@ -1,0 +1,185 @@
+global !p
+from helper import (
+	create_table,
+	add_row,
+)
+endglobal
+
+
+snippet abs "abstract environment" bA
+\begin{abstract}
+	${0:${VISUAL}}
+.\end{abstract}
+endsnippet
+
+snippet ali "Align" bA
+\begin{align*}
+	${0:${VISUAL}}
+.\end{align*}
+endsnippet
+
+snippet beg "begin{} / end{}" bA
+\\begin{$1}
+	${0:${VISUAL:}}
+\\end{$1}
+endsnippet
+
+snippet case "cases" b
+\begin{cases}
+	${0:${VISUAL}}
+\end{cases}
+endsnippet
+
+snippet cnt "Center" bA
+\begin{center}
+	${0:${VISUAL}}
+\end{center}
+endsnippet
+
+snippet corl "Corollary" bA
+\begin{corollary}[$1]
+\label{corl:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL:}}
+\end{corollary}
+endsnippet
+
+snippet conc "Conclusion" bA
+\begin{conclusion}[$1]
+\label{conc:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	$0${VISUAL}
+\end{conclusion}
+endsnippet
+
+snippet def "Definition" bA
+\begin{definition}[$1]
+\label{def:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL:}}
+\end{definition}
+endsnippet
+
+snippet desc "Description" bA
+\begin{description}
+	\item[$1] ${0:${VISUAL:}}
+\end{description}
+endsnippet
+
+snippet enum "Enumerate" bA
+\begin{enumerate}
+	\item ${0:${VISUAL:}}
+\end{enumerate}
+endsnippet
+
+snippet eg "Example" bA
+\begin{eg}[$1]
+	${0:${VISUAL:}}
+\end{eg}
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${1:htpb}]
+	\centering
+	${2:\includegraphics[width=0.8\textwidth]{$3}}
+	\caption{${4:$3}}
+	\label{fig:${5:${3/\W+/-/g}}}
+\end{figure}
+endsnippet
+
+snippet tab "tabular / array environment" b
+\begin{${1:t}${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${2:c}}
+$0${2/(?<=.)(c|l|r)|./(?1: & )/g}
+\end{$1${1/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
+endsnippet
+
+snippet table "Table environment" b
+\begin{table}[${1:htpb}]
+	\centering
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+	\begin{${4:t}${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}{${5:c}}
+		$0${5/(?<=.)(c|l|r)|./(?1: & )/g}
+	\end{$4${4/(t)$|(a)$|(.*)/(?1:abular)(?2:rray)/}}
+\end{table}
+endsnippet
+
+snippet item "Itemize" bA
+\begin{itemize}
+	\item ${0:${VISUAL:}}
+\end{itemize}
+endsnippet
+
+snippet nte "Note" bA
+\begin{note}[$1]
+\label{note:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL:}}
+\end{note}
+endsnippet
+
+snippet notion "Notation" bA
+\begin{notation}[$1]
+\label{nota:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	$0${VISUAL}
+\end{notation}
+endsnippet
+
+snippet prob "Problem" bA
+\begin{problem}[$1]
+\label{prob:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL:}}
+\end{problem}
+endsnippet
+
+snippet prf "Proof" bA
+\begin{proof}
+	${0:${VISUAL:}}
+\end{proof}
+endsnippet
+
+snippet prop "Proposition" bA
+\begin{prop}[$1]
+\label{prop:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL:}}
+\end{prop}
+endsnippet
+
+snippet post "postulate" bi
+\begin{postulate}[$1]
+\label{prop:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL}}
+\end{postulate}
+endsnippet
+
+snippet rem "Remark" b
+\begin{remark}
+	${0:${VISUAL:}}
+\end{remark}
+endsnippet
+
+snippet thrm "Theorem" bA
+\begin{theorem}[$1]
+\label{theorem:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL:}}
+\end{theorem}
+endsnippet
+
+snippet lemma "Lemma" bA
+\begin{lemma}[$1]
+\label{lemma:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+	${0:${VISUAL:}}
+\end{lemma}
+endsnippet
+
+snippet verb "Verbatim" b
+\begin{verbatim}
+	${0:${VISUAL:}}
+\end{verbatim}
+endsnippet
+
+# Tables
+
+pre_expand "create_table(snip, env='tabular')"
+snippet "gentab(\d+)x(\d+)" "Generate tabular of *width* by *height*" r
+endsnippet
+
+pre_expand "add_row(snip)"
+snippet "tr(\d+)" "Add table row of dimension ..." r
+endsnippet

@@ -55,6 +55,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [Vector graphics editor `inkscape`](https://inkscape.org/)
 - [Image editor `gimp`](https://www.gimp.org/)
 - [`dragon` drag-on-drop source/sink](https://github.com/mwh/dragon)
+- [`kdenlive` video editor](https://kdenlive.org/en/)
 
 ### etc
 

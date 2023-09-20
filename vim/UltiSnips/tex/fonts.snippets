@@ -1,9 +1,9 @@
-snippet hr "href" i
-\href{${1:url}}{${2:${VISUAL:}}}$0
+snippet hr "href" wA
+\href{${1:url}}{${2:${VISUAL}}}
 endsnippet
 
-snippet hl "highlight" i
-\sethlcolor{${1:yellow}}\hl{${2:${VISUAL:}}}$0
+snippet hl "highlight" wA
+\sethlcolor{${1:yellow}}\hl{${2:${VISUAL}}}
 endsnippet
 
 priority 100
@@ -11,31 +11,31 @@ snippet ... "ldots" iA
 \ldots
 endsnippet
 
-snippet sv "verbatim" iA
-\verb|$1|$0
+snippet tve "verbatim" wA
+\verb|${1:${VISUAL}}|
 endsnippet
 
 # Snippet for italic font
-snippet tit "The \textit{} command for italic font" iA
-\textit{${1:${VISUAL:}}}$0
+snippet tit "The \textit{} command for italic font" wA
+\textit{${1:${VISUAL}}}
 endsnippet
 
 # Snippet for bold font
-snippet tbf "The \textbf{} command for bold font" iA
-\textbf{${1:${VISUAL:}}}$0
+snippet tbf "The \textbf{} command for bold font" wA
+\textbf{${1:${VISUAL}}}
 endsnippet
 
 # Snippet for emphasising text
-snippet tem "The \textem{} command for emphasising text" i
-\emph{${1:${VISUAL:}}}$0
+snippet tem "The \textem{} command for emphasising text" wA
+\emph{${1:${VISUAL}}}
 endsnippet
 
 # Snippet for overlined text
-snippet tov "The \overline{} command for overlined text" i
-\overline{${1:${VISUAL:}}}$0
+snippet tol "The \overline{} command for overlined text" wA
+\overline{${1:${VISUAL}}}
 endsnippet
 
 # Snippet for underlined text
-snippet tun "The \underline{} command for underlined text" i
-\underline{${1:${VISUAL:}}}$0
+snippet tul "The \underline{} command for underlined text" wA
+\underline{${1:${VISUAL}}}
 endsnippet

@@ -1,7 +1,7 @@
 global !p
 from helper import (
-	create_table,
 	add_row,
+	create_table,
 )
 endglobal
 
@@ -20,14 +20,8 @@ endsnippet
 
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
-	${0:${VISUAL:}}
-\\end{$1}
-endsnippet
-
-snippet case "cases" b
-\begin{cases}
 	${0:${VISUAL}}
-\end{cases}
+\\end{$1}
 endsnippet
 
 snippet cnt "Center" bA
@@ -39,7 +33,7 @@ endsnippet
 snippet corl "Corollary" bA
 \begin{corollary}[$1]
 \label{corl:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{corollary}
 endsnippet
 
@@ -53,25 +47,25 @@ endsnippet
 snippet def "Definition" bA
 \begin{definition}[$1]
 \label{def:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{definition}
 endsnippet
 
 snippet desc "Description" bA
 \begin{description}
-	\item[$1] ${0:${VISUAL:}}
+	\item[$1] ${0:${VISUAL}}
 \end{description}
 endsnippet
 
 snippet enum "Enumerate" bA
 \begin{enumerate}
-	\item ${0:${VISUAL:}}
+	\item ${0:${VISUAL}}
 \end{enumerate}
 endsnippet
 
 snippet eg "Example" bA
 \begin{eg}[$1]
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{eg}
 endsnippet
 
@@ -103,14 +97,14 @@ endsnippet
 
 snippet item "Itemize" bA
 \begin{itemize}
-	\item ${0:${VISUAL:}}
+	\item ${0:${VISUAL}}
 \end{itemize}
 endsnippet
 
 snippet nte "Note" bA
 \begin{note}[$1]
 \label{note:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{note}
 endsnippet
 
@@ -124,20 +118,20 @@ endsnippet
 snippet prob "Problem" bA
 \begin{problem}[$1]
 \label{prob:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{problem}
 endsnippet
 
 snippet prf "Proof" bA
 \begin{proof}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{proof}
 endsnippet
 
 snippet prop "Proposition" bA
 \begin{prop}[$1]
 \label{prop:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{prop}
 endsnippet
 
@@ -150,7 +144,7 @@ endsnippet
 
 snippet rem "Remark" b
 \begin{remark}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{remark}
 endsnippet
 
@@ -164,13 +158,13 @@ endsnippet
 snippet lemma "Lemma" bA
 \begin{lemma}[$1]
 \label{lemma:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{lemma}
 endsnippet
 
 snippet verb "Verbatim" b
 \begin{verbatim}
-	${0:${VISUAL:}}
+	${0:${VISUAL}}
 \end{verbatim}
 endsnippet
 

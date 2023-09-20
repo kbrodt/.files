@@ -27,8 +27,12 @@ def add_row(snip):
 
 
 def create_matrix(snip, env="matrix"):
-    rows = snip.buffer[snip.line].split('x')[0]
-    cols = snip.buffer[snip.line].split('x')[1]
+    if env == "cases":
+        rows = snip.buffer[snip.line]
+        cols = "2"
+    else:
+        rows = snip.buffer[snip.line].split('x')[0]
+        cols = snip.buffer[snip.line].split('x')[1]
     int_val = lambda string: int(''.join(s for s in string if s.isdigit()))
     rows = int_val(rows)
     cols = int_val(cols)

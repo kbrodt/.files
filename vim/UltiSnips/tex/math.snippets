@@ -19,24 +19,8 @@ endsnippet
 
 snippet dm "Math" wA
 \[
-${1:${VISUAL:}}
+${1:${VISUAL}}
 .\] $0
-endsnippet
-
-# env
-
-context "math()"
-snippet arr "Array" bA
-\begin{array}{${1:cc}}
-$0${1/((?<=.)c|l|r)|./(?1: & )/g}
-.\end{array}
-endsnippet
-
-context "math()"
-snippet case "cases" wA
-\begin{cases}
-	$1
-\end{cases}
 endsnippet
 
 # Subscripts
@@ -63,19 +47,19 @@ endsnippet
 
 context "math()"
 snippet ub "underbrace" i
-\underbrace{${1:${VISUAL:}}}_{$0}
+\underbrace{${1:${VISUAL}}}_{$0}
 endsnippet
 
 context "math()"
 snippet ob "overbrace" i
-\overbrace{${1:${VISUAL:}}}_{$0}
+\overbrace{${1:${VISUAL}}}_{$0}
 endsnippet
 
 # Powers
 
 context "math()"
 snippet sq "\sqrt{}" iA
-\sqrt{${1:${VISUAL:}}} $0
+\sqrt{${1:${VISUAL}}} $0
 endsnippet
 
 context "math()"
@@ -118,7 +102,7 @@ endsnippet
 
 context "math()"
 snippet / "Fraction" i
-\\frac{${VISUAL:}}{$1}$0
+\\frac{${VISUAL}}{$1}$0
 endsnippet
 
 context "math()"
@@ -145,7 +129,7 @@ endsnippet
 # sympy
 
 snippet sympy "sympyblock " w
-sympy ${1:${VISUAL:}} sympy$0
+sympy ${1:${VISUAL}} sympy$0
 endsnippet
 
 priority 10000
@@ -182,7 +166,7 @@ endsnippet
 priority 10
 context "math()"
 snippet "bar" "bar" riA
-\overline{${1:${VISUAL:}}}$0
+\overline{${1:${VISUAL}}}$0
 endsnippet
 
 priority 100
@@ -194,7 +178,7 @@ endsnippet
 priority 10
 context "math()"
 snippet "hat" "hat" riA
-\hat{${1:${VISUAL:}}}$0
+\hat{${1:${VISUAL}}}$0
 endsnippet
 
 priority 100
@@ -211,60 +195,33 @@ endsnippet
 # matrices
 
 context "math()"
+pre_expand "create_matrix(snip, env='cases')"
+snippet "cases(\d+)" "Generate cases of by *height*" r
+endsnippet
+
+context "math()"
 pre_expand "create_table(snip, env='array')"
-snippet "genarr(\d+)x(\d+)" "Generate array of *width* by *height*" r
+snippet "arr(\d+)x(\d+)" "Generate array of *width* by *height*" r
 endsnippet
 
 context "math()"
 pre_expand "create_matrix(snip, env='matrix')"
-snippet "genmat(\d+)x(\d+)" "Generate matrix of *width* by *height*" r
+snippet "mat(\d+)x(\d+)" "Generate matrix of *width* by *height*" r
 endsnippet
 
 context "math()"
 pre_expand "create_matrix(snip, env='pmatrix')"
-snippet "genpmat(\d+)x(\d+)" "Generate pmatrix of *width* by *height*" r
+snippet "matp(\d+)x(\d+)" "Generate pmatrix of *width* by *height*" r
 endsnippet
 
 context "math()"
 pre_expand "create_matrix(snip, env='bmatrix')"
-snippet "genbmat(\d+)x(\d+)" "Generate bmatrix of *width* by *height*" r
+snippet "matb(\d+)x(\d+)" "Generate bmatrix of *width* by *height*" r
 endsnippet
 
 context "math()"
 pre_expand "create_matrix(snip, env='vmatrix')"
-snippet "genvmat(\d+)x(\d+)" "Generate vmatrix of *width* by *height*" r
-endsnippet
-
-context "math()"
-snippet mat "mat" i
-\begin{matrix}
-	$1
-\end{matrix}
-$0
-endsnippet
-
-context "math()"
-snippet pmat "pmat" i
-\begin{pmatrix}
-	$1
-\end{pmatrix}
-$0
-endsnippet
-
-context "math()"
-snippet bmat "bmat" i
-\begin{bmatrix}
-	$1
-\end{bmatrix}
-$0
-endsnippet
-
-context "math()"
-snippet vmat "vmat" i
-\begin{vmatrix}
-	$1
-\end{bmatrix}
-$0
+snippet "matv(\d+)x(\d+)" "Generate vmatrix of *width* by *height*" r
 endsnippet
 
 context "math()"
@@ -287,32 +244,32 @@ endsnippet
 
 context "math()"
 snippet mbf "mathbf" iA
-\mathbf{${0:${VISUAL:}}}
+\mathbf{${0:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mbb "mathbb" iA
-\mathbb{${0:${VISUAL:}}}
+\mathbb{${0:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mcal "mathcal" iA
-\mathcal{${0:${VISUAL:}}}
+\mathcal{${0:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mfr "mathfrak" iA
-\mathfrak{${0:${VISUAL:}}}
+\mathfrak{${0:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet tt "text" iA
-\text{${0:${VISUAL:}}}
+\text{${0:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mt "mathtt" iA
-\mathtt{${0:${VISUAL:}}}
+\mathtt{${0:${VISUAL}}}
 endsnippet
 
 # symbols
@@ -566,17 +523,17 @@ endsnippet
 
 context "math()"
 snippet ceil "ceil" iA
-\left\lceil ${1:${VISUAL:}} \right\rceil $0
+\left\lceil ${1:${VISUAL}} \right\rceil $0
 endsnippet
 
 context "math()"
 snippet floor "floor" iA
-\left\lfloor ${1:${VISUAL:}} \right\rfloor$0
+\left\lfloor ${1:${VISUAL}} \right\rfloor$0
 endsnippet
 
 context "math()"
 snippet conj "conjugate" iA
-\overline{${1:${VISUAL:}}}$0
+\overline{${1:${VISUAL}}}$0
 endsnippet
 
 snippet bigfun "Big function" iA
@@ -588,7 +545,7 @@ endsnippet
 
 context "math()"
 snippet norm "norm" iA
-\|${1:${VISUAL:}}\|$0
+\|${1:${VISUAL}}\|$0
 endsnippet
 
 priority 100
@@ -622,17 +579,17 @@ endsnippet
 
 context "math()"
 snippet lim "limit" w
-\lim_{${1:n} \to ${2:\infty}} ${3:${VISUAL:}} $0
+\lim_{${1:n} \to ${2:\infty}} ${3:${VISUAL}} $0
 endsnippet
 
 context "math()"
 snippet limsup "limsup" w
-\limsup_{${1:n} \to ${2:\infty}} ${3:${VISUAL:}} $0
+\limsup_{${1:n} \to ${2:\infty}} ${3:${VISUAL}} $0
 endsnippet
 
 context "math()"
 snippet prod "product" w
-\prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL:}} $0
+\prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
 context "math()"
@@ -643,47 +600,47 @@ endsnippet
 priority 300
 context "math()"
 snippet dint "integral" wA
-\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL:}} $0
+\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
 endsnippet
 
 # delimiters
 
 context "math()"
 snippet () "left( right)" iA
-\left( ${1:${VISUAL:}} \right) $0
+\left( ${1:${VISUAL}} \right) $0
 endsnippet
 
 context "math()"
 snippet lr "left( right)" i
-\left( ${1:${VISUAL:}} \right) $0
+\left( ${1:${VISUAL}} \right) $0
 endsnippet
 
 context "math()"
 snippet lr( "left( right)" i
-\left( ${1:${VISUAL:}} \right) $0
+\left( ${1:${VISUAL}} \right) $0
 endsnippet
 
 context "math()"
 snippet lr| "left| right|" i
-\left| ${1:${VISUAL:}} \right| $0
+\left| ${1:${VISUAL}} \right| $0
 endsnippet
 
 context "math()"
 snippet lr{ "left\{ right\}" i
-\left\\{ ${1:${VISUAL:}} \right\\} $0
+\left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
 context "math()"
 snippet lrb "left\{ right\}" i
-\left\\{ ${1:${VISUAL:}} \right\\} $0
+\left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
 context "math()"
 snippet lr[ "left[ right]" i
-\left[ ${1:${VISUAL:}} \right] $0
+\left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
 context "math()"
 snippet lra "leftangle rightangle" iA
-\left<${1:${VISUAL:}} \right>$0
+\left<${1:${VISUAL}} \right>$0
 endsnippet

@@ -19,19 +19,25 @@ endsnippet
 
 snippet dm "Math" wA
 \[
-${1:${VISUAL}}
-.\] $0
+${VISUAL}${1}
+.\]$0
+endsnippet
+
+snippet split "split" b
+\begin{split}
+${VISUAL}${1}
+\end{split}$0
 endsnippet
 
 # Subscripts
 
 context "math()"
-snippet '( [A-Za-z])(\d)' "auto subscript" wrA
+snippet '([ $()\[\]\+\-\*/=][A-Za-z])(\d)' "auto subscript" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
 
 context "math()"
-snippet '( [A-Za-z])_(\d\d)' "auto subscript2" wrA
+snippet '([ $()\[\]\+\-\*/=][A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
@@ -53,6 +59,21 @@ endsnippet
 context "math()"
 snippet ob "overbrace" i
 \overbrace{${1:${VISUAL}}}_{$0}
+endsnippet
+
+context "math()"
+snippet "os" "overset" riA
+\overset{${2:?}}{${1:${VISUAL}}}
+endsnippet
+
+context "math()"
+snippet "us" "underset" riA
+\underset{${2:?}}{${1:${VISUAL}}}
+endsnippet
+
+context "math()"
+snippet at "atop" i
+$2 \atop ${1:${VISUAL}}
 endsnippet
 
 # Powers
@@ -125,6 +146,7 @@ while True:
 snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 `{$1}$0
 endsnippet
+priority 0
 
 # sympy
 
@@ -143,6 +165,7 @@ init_printing()
 snip.rv = eval('latex(' + match.group(1).replace('\\', '').replace('^', '**').replace('{', '(').replace('}', ')') + ')')
 `
 endsnippet
+priority 0
 
 # mathematica
 
@@ -165,7 +188,7 @@ endsnippet
 
 priority 10
 context "math()"
-snippet "bar" "bar" riA
+snippet "bar" "bar" wA
 \overline{${1:${VISUAL}}}$0
 endsnippet
 
@@ -177,7 +200,7 @@ endsnippet
 
 priority 10
 context "math()"
-snippet "hat" "hat" riA
+snippet "hat" "hat" wA
 \hat{${1:${VISUAL}}}$0
 endsnippet
 
@@ -186,6 +209,7 @@ context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
+priority 0
 
 context "math()"
 snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
@@ -195,32 +219,32 @@ endsnippet
 # matrices
 
 context "math()"
-pre_expand "create_matrix(snip, env='cases')"
+pre_expand "create_matrix(snip, match, env='cases')"
 snippet "cases(\d+)" "Generate cases of by *height*" r
 endsnippet
 
 context "math()"
-pre_expand "create_table(snip, env='array')"
+pre_expand "create_table(snip, match, env='array')"
 snippet "arr(\d+)x(\d+)" "Generate array of *width* by *height*" r
 endsnippet
 
 context "math()"
-pre_expand "create_matrix(snip, env='matrix')"
+pre_expand "create_matrix(snip, match, env='matrix')"
 snippet "mat(\d+)x(\d+)" "Generate matrix of *width* by *height*" r
 endsnippet
 
 context "math()"
-pre_expand "create_matrix(snip, env='pmatrix')"
+pre_expand "create_matrix(snip, match, env='pmatrix')"
 snippet "matp(\d+)x(\d+)" "Generate pmatrix of *width* by *height*" r
 endsnippet
 
 context "math()"
-pre_expand "create_matrix(snip, env='bmatrix')"
+pre_expand "create_matrix(snip, match, env='bmatrix')"
 snippet "matb(\d+)x(\d+)" "Generate bmatrix of *width* by *height*" r
 endsnippet
 
 context "math()"
-pre_expand "create_matrix(snip, env='vmatrix')"
+pre_expand "create_matrix(snip, match, env='vmatrix')"
 snippet "matv(\d+)x(\d+)" "Generate vmatrix of *width* by *height*" r
 endsnippet
 
@@ -244,32 +268,32 @@ endsnippet
 
 context "math()"
 snippet mbf "mathbf" iA
-\mathbf{${0:${VISUAL}}}
+\mathbf{${1:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mbb "mathbb" iA
-\mathbb{${0:${VISUAL}}}
+\mathbb{${1:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mcal "mathcal" iA
-\mathcal{${0:${VISUAL}}}
+\mathcal{${1:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mfr "mathfrak" iA
-\mathfrak{${0:${VISUAL}}}
+\mathfrak{${1:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet tt "text" iA
-\text{${0:${VISUAL}}}
+\text{${1:${VISUAL}}}
 endsnippet
 
 context "math()"
 snippet mt "mathtt" iA
-\mathtt{${0:${VISUAL}}}
+\mathtt{${1:${VISUAL}}}
 endsnippet
 
 # symbols
@@ -296,7 +320,7 @@ endsnippet
 
 context "math()"
 snippet != "equals" iA
-\neq 
+\neq
 endsnippet
 
 context "math()"
@@ -306,22 +330,22 @@ endsnippet
 
 context "math()"
 snippet <= "leq" iA
-\leq 
+\leqslant
 endsnippet
 
 context "math()"
 snippet >= "geq" iA
-\geq 
+\geqslant
 endsnippet
 
 context "math()"
 snippet EE "geq" iA
-\exists 
+\exists
 endsnippet
 
 context "math()"
 snippet AA "forall" iA
-\forall 
+\forall
 endsnippet
 
 context "math()"
@@ -331,24 +355,24 @@ endsnippet
 
 context "math()"
 snippet nabl "nabla" iA
-\nabla 
+\nabla
 endsnippet
 
 context "math()"
 snippet xx "cross" iA
-\times 
+\times
 endsnippet
 
 priority 100
 context "math()"
 snippet ** "cdot" iA
-\cdot 
+\cdot
 endsnippet
 
 priority 100
 context "math()"
 snippet -> "to" iA
-\to 
+\to
 endsnippet
 
 priority 200
@@ -356,10 +380,11 @@ context "math()"
 snippet <-> "leftrightarrow" iA
 \leftrightarrow
 endsnippet
+priority 0
 
 context "math()"
 snippet !> "mapsto" iA
-\mapsto 
+\mapsto
 endsnippet
 
 context "math()"
@@ -379,12 +404,12 @@ endsnippet
 
 context "math()"
 snippet ~~ "~" iA
-\sim 
+\sim
 endsnippet
 
 context "math()"
 snippet ap "approx" iA
-\approx 
+\approx
 endsnippet
 
 context "math()"
@@ -394,7 +419,7 @@ endsnippet
 
 context "math()"
 snippet || "mid" iA
-\mid 
+\mid
 endsnippet
 
 context "math()"
@@ -433,11 +458,11 @@ snippet nnn "bigcap" iA
 endsnippet
 
 snippet <! "normal" iA
-\triangleleft 
+\triangleleft
 endsnippet
 
 snippet <> "hokje" iA
-\diamond 
+\diamond
 endsnippet
 
 snippet SI "SI" iA
@@ -559,6 +584,7 @@ context "math()"
 snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
+priority 0
 
 # expressions
 
@@ -569,7 +595,7 @@ endsnippet
 
 context "math()"
 snippet sum "sum" w
-\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+\sum_{${1:n=1}}^{${2:\infty}} ${3:a_n z^n}
 endsnippet
 
 context "math()"
@@ -602,6 +628,7 @@ context "math()"
 snippet dint "integral" wA
 \int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
 endsnippet
+priority 0
 
 # delimiters
 

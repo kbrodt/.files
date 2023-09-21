@@ -16,8 +16,8 @@ def env(name):
     return x != '0' and y != '0'
 
 
-def add_row(snip):
-    row_len = int(''.join(s for s in snip.buffer[snip.line] if s.isdigit()))
+def add_row(snip, match):
+    row_len = int(match.group(1))
     old_spacing = snip.buffer[snip.line][:snip.buffer[snip.line].rfind('\t') + 1]
     snip.buffer[snip.line] = ''
     final_str = old_spacing
@@ -26,13 +26,13 @@ def add_row(snip):
     snip.expand_anon(final_str)
 
 
-def create_matrix(snip, env="matrix"):
+def create_matrix(snip, match, env="matrix"):
     if env == "cases":
-        rows = snip.buffer[snip.line]
+        rows = match.group(1)
         cols = "2"
     else:
-        rows = snip.buffer[snip.line].split('x')[0]
-        cols = snip.buffer[snip.line].split('x')[1]
+        rows = match.group(1)
+        cols = match.group(2)
     int_val = lambda string: int(''.join(s for s in string if s.isdigit()))
     rows = int_val(rows)
     cols = int_val(cols)
@@ -48,9 +48,9 @@ def create_matrix(snip, env="matrix"):
     snip.expand_anon(final_str)
 
 
-def create_table(snip, env="tabular"):
-    rows = snip.buffer[snip.line].split('x')[0]
-    cols = snip.buffer[snip.line].split('x')[1]
+def create_table(snip, match, env="tabular"):
+    rows = match.group(1)
+    cols = match.group(2)
     int_val = lambda string: int(''.join(s for s in string if s.isdigit()))
     rows = int_val(rows)
     cols = int_val(cols)

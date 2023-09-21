@@ -5,7 +5,7 @@ source $HOME/.config/nvim/keys/mappings.vim
 " Themes
 source $HOME/.config/nvim/themes/gruvbox.vim
 
-" Plugin configuraions
+" Plugin configurations
 source $HOME/.config/nvim/plug-config/lightline.vim
 source $HOME/.config/nvim/plug-config/ultisnip.vim
 source $HOME/.config/nvim/plug-config/vimwiki.vim

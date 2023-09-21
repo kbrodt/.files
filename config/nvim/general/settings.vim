@@ -26,13 +26,24 @@ set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 " autocmd BufReadPost,FileReadPost * normal zR
 
-autocmd Filetype c setlocal expandtab tabstop=2 shiftwidth=2
-autocmd Filetype cpp setlocal expandtab tabstop=2 shiftwidth=2
-autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2
-autocmd Filetype lua setlocal expandtab tabstop=2 shiftwidth=2
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
-autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
-autocmd Filetype vimwiki setlocal expandtab tabstop=2 shiftwidth=2
+autocmd Filetype
+  \ c
+  \,cpp
+  \,javascript
+  \,lua
+  \,vim
+  \,vimwiki
+  \,yaml
+  \ setlocal expandtab tabstop=2 shiftwidth=2
+
+autocmd Filetype
+  \ python
+  \ setlocal expandtab tabstop=4 shiftwidth=4
+
+autocmd Filetype
+  \ tex
+  \,vimwiki
+  \ setlocal spell spelllang=en_us,ru_ru
 
 " UI config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -129,3 +140,11 @@ let g:netrw_altv=1          " open splits to the right
 let g:netrw_liststyle=3     " tree view
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" spelling mistake
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+inoremap <C-d> <C-^>
+
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u

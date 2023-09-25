@@ -53,12 +53,12 @@ endsnippet
 
 context "math()"
 snippet ub "underbrace" i
-\underbrace{${1:${VISUAL}}}_{$0}
+\underbrace{${1:${VISUAL}}}_{$2}
 endsnippet
 
 context "math()"
 snippet ob "overbrace" i
-\overbrace{${1:${VISUAL}}}_{$0}
+\overbrace{${1:${VISUAL}}}_{$2}
 endsnippet
 
 context "math()"
@@ -373,6 +373,12 @@ priority 100
 context "math()"
 snippet -> "to" iA
 \to
+endsnippet
+
+priority 100
+context "math()"
+snippet -< "to" iA
+\leftarrow
 endsnippet
 
 priority 200

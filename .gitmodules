@@ -2,26 +2,6 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "vim/bundle/gruvbox-material"]
-    path = vim/pack/default/start/gruvbox-material
-    url = https://github.com/sainnhe/gruvbox-material.git
-    ignore = untracked
-[submodule "vim/bundle/lightline.vim"]
-	path = vim/pack/default/start/lightline.vim
-	url = https://github.com/itchyny/lightline.vim
-    ignore = untracked
 [submodule "zsh/plugins/fast-syntax-highlighting"]
 	path = zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting
-[submodule "vim/pack/default/start/vimwiki"]
-	path = vim/pack/default/start/vimwiki
-	url = https://github.com/vimwiki/vimwiki.git
-[submodule "vim/pack/default/start/nvim-lspconfig"]
-	path = vim/pack/default/start/nvim-lspconfig
-	url = https://github.com/neovim/nvim-lspconfig.git
-[submodule "vim/pack/default/start/nvim-cmp"]
-	path = vim/pack/default/start/nvim-cmp
-	url = https://github.com/hrsh7th/nvim-cmp.git
-[submodule "vim/pack/default/start/cmp-nvim-lsp"]
-	path = vim/pack/default/start/cmp-nvim-lsp
-	url = https://github.com/hrsh7th/cmp-nvim-lsp.git

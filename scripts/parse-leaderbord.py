@@ -1,7 +1,9 @@
-import sys
-import os
-import json
 import datetime
+import json
+import os
+import sys
+import shutil
+from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
@@ -11,8 +13,12 @@ WIDTH_USER = 16
 WIDTH_SCORE = 13
 WIDTH_TIME = 13
 DATE_FORMAT = "%d %b %H:%M"
-ME = "kbrodt"
+ME = ["kbrodt", "Kirill"]
 LB_PATH = fr"/tmp/competitions_lb.txt"
+OK = 0
+ERROR = -1
+DONT_REFRESH = 1
+NO_COOKIES = 2
 
 
 def shorten(text, width):
@@ -32,7 +38,7 @@ def format_lb(result, url):
         user, score, date = res
         user = shorten(user, WIDTH_USER)
         _body = fr"{i:>2} {user:<{WIDTH_USER}}{score:<{WIDTH_SCORE}}{date:<{WIDTH_TIME}}"
-        if user == ME:
+        if user in ME:
             _body = fr"<b>{_body}</b>"
 
         body += fr"{_body}\n"
@@ -43,6 +49,17 @@ def format_lb(result, url):
     }
 
     return result
+
+
+def parse_cookies(cookies_s):
+    cookies = {}
+    for kv in cookies_s.split():
+        k, *v = kv.split("=", 1)
+        v = "".join(v)
+        v = v.rstrip(";")
+        cookies[k] = v
+
+    return cookies
 
 
 def parse_aicrowd(url):
@@ -182,15 +199,52 @@ def parse_vkcup(url):
     return result
 
 
-def parse_leaderbord(url):
+def parse_yandex(url, cookies):
+    cookies = parse_cookies(cookies)
+    page = requests.get(url, cookies=cookies)
+    soup = BeautifulSoup(page.content, "html.parser")
+    table = soup.find(
+        name="table",
+        attrs={"class": "table"},
+    )
+    if table is None:
+        return NO_COOKIES
+
+    header = table.find(name="thead")
+
+    ths = header.find_all(name="th")
+    _, user, score = ths
+    user = user.text.strip()
+    score = score.text.strip()
+    date = ""
+    result = []
+    result.append((user, score, date))
+
+    tbody_element = table.find(name="tbody")
+    row_elements = tbody_element.find_all(name="tr")
+    for row_element in row_elements[:TOPK]:
+        tds = row_element.find_all(name="td")
+        _, user, score = tds
+        user = user.find(name="div")
+        user = user.text
+        score = float(score.text.strip().replace(",", ".").replace("-", "-1"))
+
+        result.append((user, score, date))
+
+    return result
+
+
+def parse_leaderbord(url, cookies):
     if "aicrowd" in url:
         result = parse_aicrowd(url)
-    elif "drivendata" in url or "prizechallenge.aisingapore":
+    elif "drivendata" in url or "prizechallenge.aisingapore" in url:
         result = parse_drivendata(url)
     elif "codalab" in url:
         result = parse_codalab(url)
     elif "cups" in url:
         result = parse_vkcup(url)
+    elif "yandex" in url:
+        result = parse_yandex(url, cookies)
     else:
         return []
 
@@ -198,9 +252,9 @@ def parse_leaderbord(url):
 
 
 def save_lb(result, lb_path):
-    errno = 1
+    errno = DONT_REFRESH
     if not os.path.exists(lb_path):
-        errno = 0
+        errno = OK
         with open(lb_path, "w") as f:
             json.dump(result, f)
             f.write("\n")
@@ -215,10 +269,13 @@ def save_lb(result, lb_path):
         if result["url"] == result_old["url"]:
             break
     else:
+        lb_path_out = Path(lb_path)
+        shutil.copyfile(lb_path, str(lb_path_out.with_stem(f"{lb_path_out.stem}_old")))
+
         with open(lb_path, "a") as f:
             json.dump(result, f)
             f.write("\n")
-        errno = 0
+        errno = OK
 
     for result_old in results:
         if result["url"] != result_old["url"]:
@@ -228,7 +285,11 @@ def save_lb(result, lb_path):
             continue
 
         result_old["body"] = result["body"]
-        errno = 0
+        errno = OK
+
+        lb_path_out = Path(lb_path)
+        shutil.copyfile(lb_path, str(lb_path_out.with_stem(f"{lb_path_out.stem}_old")))
+
         with open(lb_path, "w") as f:
             for result in results:
                 json.dump(result, f)
@@ -241,22 +302,29 @@ def save_lb(result, lb_path):
 
 def main():
     url = sys.argv[1]
-    result = parse_leaderbord(url)
+    cookies = sys.argv[2]
+    try:
+        result = parse_leaderbord(url, cookies)
+    except:
+        return ERROR
 
-    errno = 1
+    if isinstance(result, int):
+        return result
+
+    errno = DONT_REFRESH
     if len(result) == 0:
         return errno
 
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
         for u, l, d in result:
             print(f"{u:<{WIDTH_USER}}\t{l:<{WIDTH_SCORE}}\t{d:<{WIDTH_TIME}}")
 
-        errno = 0
+        errno = OK
 
         return errno
 
     result = format_lb(result, url)
-    lb_path = sys.argv[2]
+    lb_path = sys.argv[3]
     errno = save_lb(result, lb_path)
 
     return errno

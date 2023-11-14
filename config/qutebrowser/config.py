@@ -2285,6 +2285,14 @@ config.bind(
     "xx",
     "config-cycle statusbar.show always never;; config-cycle tabs.show always never",
 )
+config.bind(
+    "xp",
+    "set content.proxy 'socks://localhost:1080/';; message-info 'socks://localhost:1080/'",
+)
+config.bind(
+    "xs",
+    "set content.proxy 'system';; message-info 'proxy:system'",
+)
 
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 
 set -o nounset    # error when referencing undefined variable

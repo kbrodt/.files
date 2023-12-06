@@ -136,10 +136,16 @@ def parse_drivendata(url):
     row_elements = tbody_element.find_all(name="tr")
     for row_element in row_elements[:TOPK]:
         _, _, user_date, score, *_ = row_element.find_all(name="td")
-        date = user_date.find(name="div", attrs={"class": "d-inline-flex"}).get("title")
+        date = user_date.find(name="div", attrs={"class": "d-inline-flex"})
+        if date is  None:
+            date = ""
+        else:
+            date = date.get("title")
         team = user_date.find(name="span", attrs={"title": "This is a team"})
         if team is None:
             user = user_date.find(name="a")
+            if user is None:
+                user = user_date
         else:
             user = team
 

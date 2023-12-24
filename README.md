@@ -131,6 +131,7 @@ curl -F "shorten=SOME_URL" http://0x0.st
 ## Wayland
 
 - [`Hyprland` dynamic tiling compositor](https://hyprland.org/)
+  - [ssh tmux](https://codeberg.org/dnkl/foot/wiki#user-content-things-break-after-i-ssh-into-a-remote-machine)
 - [`waybar` bar](https://github.com/Alexays/Waybar)
 - [`foot` terminal emulator](https://codeberg.org/dnkl/foot)
 - ['wl-clipboard'](https://github.com/bugaevc/wl-clipboard)

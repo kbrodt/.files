@@ -75,6 +75,15 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
+" Show/hide the quickfix window
+nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>lc :lclose<CR>
+" Show prev/next item from quickfix
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
+
 augroup quickfix_group
   autocmd!
   autocmd filetype qf setlocal errorformat+=%f\|%l\ col\ %c\|%m

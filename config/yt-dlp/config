@@ -1,0 +1,3 @@
+--output '%(uploader)s_%(title)s_%(upload_date)s_%(id)s.%(ext)s'
+--write-sub --write-auto-sub --embed-subs --sub-lang en
+--format bestvideo[height<=1080]+bestaudio/best

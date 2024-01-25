@@ -1,0 +1,10 @@
+ACTION=="add", SUBSYSTEM=="input", SUBSYSTEMS=="usb", DRIVERS=="usb", ENV{NAME}=="?*", RUN+="/usr/bin/su kbrodt -c \"$HOME/.local/bin/usb-notify '$attr{name}'\""
+
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="sd?*", ENV{DEVTYPE}=="disk", RUN+="/usr/bin/su kbrodt -c \"$HOME/.local/bin/usb-notify '$env{ID_MODEL}' '$env{DEVNAME}'\""
+ACTION=="add", SUBSYSTEM=="block", KERNEL=="mmcblk*", ENV{DEVTYPE}=="disk", RUN+="/usr/bin/su kbrodt -c \"$HOME/.local/bin/usb-notify '$env{ID_NAME}' '$env{DEVNAME}'\""
+
+# ACTION=="add", SUBSYSTEM=="usb", ENV{ID_MODEL}=="?*", RUN+="/usr/bin/su kbrodt -c \"$HOME/.local/bin/usb-notify '$env{ID_NAME}'\""
+
+ACTION=="add", SUBSYSTEM=="net", ENV{DEVTYPE}=="wlan", ENV{ID_MODEL}=="?*", RUN+="/usr/bin/su kbrodt -c \"$HOME/.local/bin/usb-notify '$env{ID_MODEL}'\""
+
+ACTION=="add", SUBSYSTEM=="tty", ENV{ID_VENDOR}=="?*", RUN+="/usr/bin/su kbrodt -c \"$HOME/.local/bin/usb-notify '$env{ID_VENDOR}'\""

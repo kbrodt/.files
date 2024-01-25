@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+SNIP=~/.local/share/snippets
+
+snip=$(ls "${SNIP}" | dmenu)
+
+if [ -f "${SNIP}"/"${snip}" ]; then
+    data=$([ -x "${SNIP}"/"${snip}" ] && sh "${SNIP}"/"${snip}" || head --bytes=-1 "${SNIP}"/"${snip}")
+    printf "${data}" | xclip -sel cb
+    xdotool key ctrl+shift+V
+fi

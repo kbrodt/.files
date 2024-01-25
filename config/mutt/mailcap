@@ -1,17 +1,16 @@
-application/pdf; zathura %s;
 application/pdf; pdftotext -layout -l 10 -nopgbrk /dev/stdin -; copiousoutput
+application/pdf; zathura %s;
 
+application/vnd.oasis.opendocument.presentation; libreoffice %s;
+application/vnd.openxmlformats-officedocument.presentationml.presentation; libreoffice %s;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice %s
 application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s;
-application/vnd.openxmlformats-officedocument.presentationml.presentation; libreoffice %s;
 
 audio/*; mpv --no-video %s;
 image/*; sxiv %s;
+video/*; mpv %s;
 
+text/calendar; vcal %s; copiousoutput
 text/html; qutebrowser --temp-basedir -s content.proxy http://localhost:666 -s content.javascript.enabled false %s; needsterminal; nametemplate=%s.html
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
-text/calendar; vcal %s; copiousoutput
-
 text/plain; nvim %s;
-
-video/*; mpv %s;

@@ -93,6 +93,7 @@ After clonning this repo, run `install` to set up the development environment.
 - [`rtsp` server to publish live video streams](https://github.com/aler9/rtsp-simple-server)
 - [`jeyllyfin` to control of media](https://jellyfin.org/)
 - [`yakforms` forms](https://yakforms.org/)
+- [`dufs` file manager](https://github.com/sigoden/dufs)
 
 #### Not tested
 

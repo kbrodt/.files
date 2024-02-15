@@ -74,14 +74,14 @@ shift + XF86Audio{Lower,Raise}Volume
 
 # Screenshot
 super + s
-    import png:- | tee ~/pix/ss/$(date +%s).png | xclip -sel cb -t image/png
+    import png:- | tee ~/pix/ss/$(date +%Y-%m-%dT%H-%m-%S).png | xclip -sel cb -t image/png
 super + ctrl + s
     import -window "$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/\{print $NF\}')" png:- \
-        | tee ~/pix/ss/$(date +%s).png \
+        | tee ~/pix/ss/$(date +%Y-%m-%dT%H-%m-%S).png \
         | xclip -sel cb -t image/png \
         | :
 super + shift + s
-    import -window root png:- | tee ~/pix/ss/$(date +%s).png | xclip -sel cb -t image/png
+    import -window root png:- | tee ~/pix/ss/$(date +%Y-%m-%dT%H-%m-%S).png | xclip -sel cb -t image/png
 
 # Translate
 super + e

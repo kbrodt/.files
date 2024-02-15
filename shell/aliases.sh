@@ -60,11 +60,11 @@ function rem3() {
             ;;
 
         html)
-            rem -m -pp3 $2 | perl ~/soft/remind-04.02.02/rem2html/rem2html > ~/vimwiki/cal.html
+            rem -m -pp3 $2 | perl ~/soft/remind/rem2html/rem2html > ~/vimwiki/cal.html
             ;;
 
         *)
-            rem2pdf_prefix=~/soft/remind-04.02.02/rem2pdf
+            rem2pdf_prefix=~/soft/remind/rem2pdf
             rem -m -pp3 $1 \
                 | PERL5LIB=$rem2pdf_prefix/lib/ $rem2pdf_prefix/bin/rem2pdf \
                     -m A4 \

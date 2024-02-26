@@ -84,10 +84,12 @@ nnoremap ]l :lnext<CR>
 nnoremap [L :lfirst<CR>
 nnoremap ]L :llast<CR>
 
-augroup quickfix_group
-  autocmd!
-  autocmd filetype qf setlocal errorformat+=%f\|%l\ col\ %c\|%m
-augroup END
+if has("nvim")
+  augroup quickfix_group
+    autocmd!
+    autocmd filetype qf setlocal errorformat+=%f\|%l\ col\ %c\|%m
+  augroup END
+endif
 
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow

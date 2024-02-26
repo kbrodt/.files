@@ -74,7 +74,9 @@ set shortmess+=I        " Disable the default Vim startup message.
 set encoding=utf-8      " The encoding displayed
 set fileencoding=utf-8  " The encoding written to file
 set ruler               "  Show the cursor position all the time
-set signcolumn=yes      "  Always show the signcolumn, otherwise it would shift the text each time
+if has("nvim")
+  set signcolumn=yes      "  Always show the signcolumn, otherwise it would shift the text each time
+endif
 set clipboard=unnamedplus " Copy paste between vim and everything else
 set t_Co=256            " Support 256 colors
 set clipboard+=unnamed,unnamedplus
@@ -134,12 +136,14 @@ set nowritebackup
 " File browsing
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:netrw_banner=0        " disabel annoying banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+if has("nvim")
+  let g:netrw_banner=0        " disabel annoying banner
+  let g:netrw_browse_split=4  " open in prior window
+  let g:netrw_altv=1          " open splits to the right
+  let g:netrw_liststyle=3     " tree view
+  let g:netrw_list_hide=netrw_gitignore#Hide()
+  let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+endif
 
 " spelling mistake
 set keymap=russian-jcukenwin

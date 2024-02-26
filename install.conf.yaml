@@ -16,8 +16,17 @@
       glob: true
     ~/.gitconfig:
     ~/.gitignore_global:
+    ~/.ipython/profile_default/ipython_config.py:
+      path: pyide/ipython_config.py
+    ~/.jupyter/jupyter_notebook_config.py:
+      path: pyide/jupyter_notebook_config.py
     ~/.pdbrc:
+      path: pyide/pdbrc
     ~/pipewire-pulse.sh:
+    ~/.Renviron:
+      path: r/Renviron
+    ~/.Rprofile:
+      path: r/Rprofile
     ~/.local/bin/:
       path: scripts/**
       glob: true

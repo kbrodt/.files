@@ -1,5 +1,5 @@
-application/pdf; pdftotext -layout -l 10 -nopgbrk /dev/stdin -; copiousoutput
 application/pdf; zathura %s;
+application/pdf; pdftotext -layout -l 10 -nopgbrk /dev/stdin -; copiousoutput
 
 application/vnd.oasis.opendocument.presentation; libreoffice %s;
 application/vnd.openxmlformats-officedocument.presentationml.presentation; libreoffice %s;

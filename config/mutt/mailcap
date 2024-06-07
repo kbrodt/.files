@@ -11,6 +11,7 @@ image/*; sxiv %s;
 video/*; mpv %s;
 
 text/calendar; vcal %s; copiousoutput
+text/X-vCalendar; vcal %s; copiousoutput
 text/html; qutebrowser --temp-basedir -s content.proxy http://localhost:666 -s content.javascript.enabled false %s; needsterminal; nametemplate=%s.html
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
 text/plain; nvim %s;

@@ -32,6 +32,7 @@ browser "qutebrowser %u"
 macro , open-in-browser
 macro c set browser "echo %u | xclip -r -sel c"; open-in-browser; set browser "qutebrowser %u"
 macro v set browser "setsid -f mpv --really-quiet --no-terminal"; open-in-browser; set browser "qutebrowser %u"
+macro o set browser "readable -s ~/.config/newsboat/style.css %u 2> /dev/null > /tmp/output.html; setsid -f qutebrowser -s statusbar.show never -s tabs.show never --target private-window /tmp/output.html"; open-in-browser; set browser "qutebrowser %u"
 
 highlight feedlist "---.*---" yellow default bold
 highlight feedlist "---.*" yellow default bold

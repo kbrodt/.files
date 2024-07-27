@@ -45,6 +45,8 @@ After clonning this repo, run `install` to set up the development environment.
 - [`woof` web offer one file share](http://www.home.unix-ag.org/simon/woof.html)
 - [`webtorrent` streaming torrent client](https://github.com/webtorrent/webtorrent)
 - [`graphviz` graph visualization](https://graphviz.org/)
+- [unbloat html page `readability-cli`](https://www.npmjs.com/package/@gardenapple/readability-cli)
+- [readability of web pages `reader`](https://github.com/mrusme/reader)
 
 ### GUI
 

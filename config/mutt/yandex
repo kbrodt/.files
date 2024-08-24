@@ -17,7 +17,7 @@ set record    = '+Отправленные'
 set postponed = '+Черновики'
 set trash     = '+Удаленные'
 unmailboxes *
-mailboxes =INBOX '+Отправленные' '+Удаленные' '+Спам'
+mailboxes =INBOX '+Отправленные' '+Черновики' '+Удаленные' '+Спам'
 
 # SEND OPTIONS
 set ssl_starttls  = yes

@@ -9,10 +9,10 @@ UserCmd "pass social/google/neomutt | cut -d' ' -f1"
 ## To store the password in an encrypted file use PassCmd instead of Pass
 # PassCmd "gpg -q --for-your-eyes-only --no-tty -d ~/.authinfo.gpg | awk '/machine account@gmail.com/ {print $6}'"
 PassCmd "pass social/google/neomutt | cut -d' ' -f2"
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 AuthMechs LOGIN
-SSLVersions TLSv1.2
+TLSVersions +1.2
 # Increase timeout
 Timeout 120
 
@@ -107,10 +107,10 @@ UserCmd "pass social/yandex/neomutt | cut -d' ' -f1"
 # Pass ***************
 PassCmd "pass social/yandex/neomutt | cut -d' ' -f2"
 AuthMechs LOGIN
-SSLType IMAPS
+TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 AuthMechs LOGIN
-SSLVersion TLSv1.2
+TLSVersions +1.2
 Timeout 120
 
 IMAPStore yandex-remote
@@ -125,28 +125,8 @@ Channel yandex
 Far :yandex-remote:
 Near :yandex-local:
 Patterns *
-# Patterns "INBOX" "Archive" "Trash" "Spam" "Drafts" "Sent"
+# Patterns "INBOX*" "INBOX" "Отправленные" "Удаленные" "Спам" "Черновики"
 CopyArrivalDate yes
 Create Both
 Expunge Both
 SyncState *
-
-Channel yandex-inbox
-Far :yandex-remote:"INBOX"
-Near :yandex-local:"INBOX"
-CopyArrivalDate yes
-Create Both
-Expunge Both
-SyncState *
-
-Channel yandex-sent
-Far :yandex-remote:"&BB4EQgQ,BEAEMAQyBDsENQQ9BD0ESwQ1-"
-Near :yandex-local:"&BB4EQgQ,BEAEMAQyBDsENQQ9BD0ESwQ1-"
-CopyArrivalDate yes
-Create Both
-Expunge Both
-SyncState *
-
-Group yandex
-Channel yandex-inbox
-Channel yandex-sent

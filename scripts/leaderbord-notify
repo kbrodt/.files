@@ -4,7 +4,7 @@
 export DISPLAY=:0
 export XAUTHORITY=~/.Xauthority
 
-out_lb=/tmp/competitions_lb.txt
+out_lb=$HOME/.local/share/competitions_lb.txt
 
 while read line; do
     d=$(date -d $(echo $line | cut -d' ' -f 1) +"%b %-d, %Y, %I:%M %P %Z")
@@ -26,6 +26,7 @@ while read line; do
         && dunstify \
             -a "kaggle" \
             -t 0 \
+            -i 0 \
             "${d} ${url}" \
             "${msg}" \
 

@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+
+w=$(xrandr | grep " connected" | grep -oP '\d+x\d+' | awk -Fx '{print $1}')
+h=$(xrandr | grep " connected" | grep -oP '\d+x\d+' | awk -Fx '{print $2}')
+W=960
+H=790
+
+url=$(xclip -sel cb -o)
+
+#st \
+#    -c Gimp \
+#    -g 80x46+$((w / 2 - W / 2))+$((h / 2 - H / 2)) \
+#    -e \
+#        ~/soft/reader/reader.sh "${url}" \
+#
+#
+#exit 0
+
+HTML_OUTPUT=/tmp/output.html
+
+readable \
+    -s ~/.config/newsboat/style.css \
+    "${url}" \
+    2> /dev/null \
+    > "${HTML_OUTPUT}" \
+
+
+setsid \
+    -f qutebrowser \
+    --temp-basedir \
+    -s statusbar.show never \
+    -s tabs.show never \
+    -s content.local_content_can_access_remote_urls true \
+    --target private-window \
+    "${HTML_OUTPUT}" \
+

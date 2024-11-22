@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+
+w=$(xrandr | grep " connected" | grep -oP '\d+x\d+' | awk -Fx '{print $1}')
+h=$(xrandr | grep " connected" | grep -oP '\d+x\d+' | awk -Fx '{print $2}')
+W=644
+H=412
+
+#st \
+#    -c quicknote \
+#    -g +$((w / 2 - W / 2))+$((h / 2 - H / 2)) -e \
+#        nvim \
+#            -c "VimwikiMakeDiaryNote" \
+#            -c "norm Go* $(date +%H:%M)" \
+#            -c "norm G2o" \
+#            -c "norm zz" \
+#            -c "startinsert" \
+
+W=1604
+H=412
+
+args=$(printf "%s\n%s\n" clock "stopwatch -c 10s" | dmenu -l 25)
+
+xset s off -dpms
+
+st \
+    -c Gimp \
+    -g 200+$((w / 2 - W / 2))+$((h / 2 - H / 2)) \
+    -e \
+        ~/soft/clock-tui/target/debug/tclock -s 3 -c "#a60202" $args
+
+xset s on +dpms

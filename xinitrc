@@ -1,10 +1,13 @@
 # Keyboard layout
 # setxkbmap -model pc105 -layout us,ru -option grp:win_space_toggle
-setxkbmap -model pc105 -layout us,ru -option grp:alt_shift_toggle,caps:super
+# https://superuser.com/questions/1429285/how-to-revert-keyboard-layout-switching-shortcuts-after-setting-them-with-xkbs
+setxkbmap -option
+setxkbmap -model pc105 -layout us,ru -option grp:caps_toggle
+# setxkbmap -model pc105 -layout p-us,ru -option grp:alt_shift_toggle,caps:super
 # xbindkeys
 sxhkd &
 
-# [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+#[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 # Run slstatus
 slstatus &

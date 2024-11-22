@@ -41,7 +41,7 @@ XF86Audio{Lower,Raise}Volume
     changevolume {-,+}
 
 # Play mpv music
-super + shift + F11
+{super + shift + F11, shift + XF86AudioPlay}
     ps aux | grep '[m]pv' | grep -q '[-]-no-video'; \
     a=$?; \
     [ $a -eq 1 ] && mpv -\-shuffle -\-no-video "$(find $HOME/music -maxdepth 1 -type d | sort | dmenu -p "Choose music:" -l 20)" > /dev/null 2>&1; \
@@ -52,16 +52,20 @@ super + shift + F11
         )
 
 # Kill mpv music
-super + ctrl + F11
-    kill -9 $(ps aux | grep "[m]pv" | grep -v "[g]rep" | grep "[-]-no-video" | awk '\{print $2\}'); \
-    [ $? -eq 0 ] && (dunstify -a "ignore" "player killed")
+#{super + ctrl + F11, ctrl + XF86AudioPlay}
+#    kill -9 $(ps aux | grep "[m]pv" | grep -v "[g]rep" | grep "[-]-no-video" | awk '\{print $2\}'); \
+#    [ $? -eq 0 ] && (dunstify -a "ignore" "player killed")
 
 # Play/pause audio
 {XF86AudioPlay, super + F11}
     playerctl -a play-pause
 
+{super + ctrl + F11, XF86AudioStop}
+    playerctl -a stop; \
+    [ $? -eq 0 ] && (dunstify -a "ignore" "player killed")
+
 # Prev/next audio
-{super + shift + F12, super + F12}
+super + {shift,_} + F12
     playerctl -a {previous, next}
 XF86Audio{Prev,Next}
     playerctl -a {previous, next}
@@ -69,18 +73,18 @@ XF86Audio{Prev,Next}
 # Position +/- audio
 super + shift + {F9, F10}
     playerctl -a {position 10-, position 10+}
-shift + XF86Audio{Lower,Raise}Volume
+XF86Audio{Rewind,Forward}
     playerctl -a {position 10-, position 10+}
 
 # Screenshot
-super + s
+super + n
     import png:- | tee ~/pix/ss/$(date +%Y-%m-%dT%H-%M-%S).png | xclip -sel cb -t image/png
-super + ctrl + s
+super + ctrl + n
     import -window "$(xprop -root | awk '/_NET_ACTIVE_WINDOW\(WINDOW\)/\{print $NF\}')" png:- \
         | tee ~/pix/ss/$(date +%Y-%m-%dT%H-%M-%S).png \
         | xclip -sel cb -t image/png \
         | :
-super + shift + s
+super + shift + n
     import -window root png:- | tee ~/pix/ss/$(date +%Y-%m-%dT%H-%M-%S).png | xclip -sel cb -t image/png
 
 # Translate

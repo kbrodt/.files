@@ -1,0 +1,6 @@
+# https://www.computerhope.com/unix/bash/bind.html
+# bind -p
+# press ctrl+v and then another key to find a keycode
+
+"\ep": nop
+"\C-s": nop

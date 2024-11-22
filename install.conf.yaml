@@ -30,14 +30,15 @@
     ~/.local/bin/:
       path: scripts/**
       glob: true
+    ~/.inputrc:
     ~/.mbsyncrc:
     ~/.shell:
     ~/.ssh/config: ssh/config
     ~/.taskrc:
     ~/.vim:
     ~/.vimrc:
-    ~/.xinitrc:
     ~/.Xmodmap:
+    ~/.xinitrc:
     ~/.zsh:
     ~/.zshrc:
 
